@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,13 @@ Route::put('/profile/{user}/edit', [UserController::class, 'update']);
 //delete 
 Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
 
+//terms
+//show
+Route::get('/terms', [TermController::class, 'index'])->name('terms');
+
+//create
+Route::get('/terms/create', [TermController::class, 'create'])->name('terms.create'); 
+Route::post('/terms/create', [TermController::class, 'store']);
 
 // GET	/photos	index	photos.index
 // GET	/photos/create	create	photos.create
@@ -51,3 +59,9 @@ Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware(
 // GET	/photos/{photo}/edit	edit	photos.edit
 // PUT/PATCH	/photos/{photo}	update	photos.update
 // DELETE	/photos/{photo}	destroy	photos.destroy
+
+
+
+
+// Environmental Impact Tracking
+// Reward Programs

@@ -13,7 +13,7 @@
             </li>
 
             <li class="nav-item d-flex align-items-center mx-2">
-                <i class=" bi bi-file-earmark-ruled text-white"></i><a href="{{ route('home') }}"
+                <i class=" bi bi-file-earmark-ruled text-white"></i><a href="{{ route('terms') }}"
                     class="{{ Route::is('terms') ? 'active' : '' }} nav-link p-1">Rental Terms</a>
             </li>
 
