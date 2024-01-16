@@ -14,7 +14,7 @@
                     @enderror
                 </div>
                 <div class="form-group mt-3">
-                    <label for="password" class="text-dark">Password:</label><br>
+                    <label for="password" class="text-dark">Term Text:</label><br>
                     <textarea name="content" id="content" cols="60" rows="5"></textarea>
                     @error('password')
                         <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>

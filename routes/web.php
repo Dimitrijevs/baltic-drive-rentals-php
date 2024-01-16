@@ -44,6 +44,7 @@ Route::put('/profile/{user}/edit', [UserController::class, 'update']);
 //delete 
 Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
 
+
 //terms
 //show
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
@@ -51,6 +52,13 @@ Route::get('/terms', [TermController::class, 'index'])->name('terms');
 //create
 Route::get('/terms/create', [TermController::class, 'create'])->name('terms.create'); 
 Route::post('/terms/create', [TermController::class, 'store']);
+
+//edit
+Route::get('/terms/{term}/edit', [TermController::class, 'edit'])->middleware('auth')->name('terms.edit');
+Route::put('/terms/{term}/edit', [TermController::class, 'update']);
+
+//delete
+Route::delete('terms/{term}', [TermController::class, 'destroy'])->middleware('auth')->name('terms.delete');
 
 // GET	/photos	index	photos.index
 // GET	/photos/create	create	photos.create

@@ -12,7 +12,7 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function store(Request $request) {
+    public function store() {
         $validated = request()->validate([
             'name' => 'required|min:3|max:40',
             'phone_number' => 'required|min:8|max:20',

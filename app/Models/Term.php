@@ -9,7 +9,8 @@ class Term extends Model
 {
     use HasFactory;
 
-    protected $fillabe = [
-        'content'
+    protected $fillable = [
+        'title',
+        'content',
     ];
 }

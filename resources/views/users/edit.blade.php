@@ -17,8 +17,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning"
-                            value="Save Name">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Save Name</button>
                     </div>
                 </div>
             </form>
@@ -36,8 +35,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning"
-                            value="Save Phone Number">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Save Phone Number</button>
                     </div>
                 </div>
             </form>
@@ -54,8 +52,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning"
-                            value="Save Email">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Save Email</button>
                     </div>
                 </div>
             </form>
@@ -72,8 +69,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning"
-                            value="Save Profile Photo">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Save Profile Photo</button>
                     </div>
                 </div>
             </form>
@@ -105,7 +101,7 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center my-3">
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning" value="Save Password">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Save Password</button>
                     </div>
                 </div>
             </form>

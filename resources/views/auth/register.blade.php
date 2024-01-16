@@ -46,7 +46,7 @@
                         <a href="{{ route('login') }}" class="text-dark lead">Login here</a>
                     </div>
                     <div class="form-group ms-3">
-                        <input type="submit" name="submit" class="btn btn-primary btn-md h3 text-warning" value="submit">
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3">Register!</button>
                     </div>
                 </div>
             </form>
