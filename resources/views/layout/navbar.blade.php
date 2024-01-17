@@ -7,9 +7,8 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
             <li class="nav-item d-flex align-items-center mx-2">
-                <i class="bi bi-clock-history text-white"></i><a href="{{ route('home') }}"
-                    class="{{ Route::is('history') ? 'active' : '' }} nav-link p-1">Our
-                    History</a>
+                <i class="bi bi-clock-history text-white"></i><a href="{{ route('learn') }}"
+                    class="{{ Route::is('learn') ? 'active' : '' }} nav-link p-1">Learn to drive</a>
             </li>
 
             <li class="nav-item d-flex align-items-center mx-2">
@@ -18,8 +17,8 @@
             </li>
 
             <li class="nav-item d-flex align-items-center mx-2">
-                <i class="bi bi-car-front-fill text-white"></i><a href="{{ route('home') }}"
-                    class="{{ Route::is('car-list') ? 'active' : '' }} nav-link p-1">Our
+                <i class="bi bi-car-front-fill text-white"></i><a href="{{ route('cars') }}"
+                    class="{{ Route::is('cars') ? 'active' : '' }} nav-link p-1">Our
                     Car List</a>
             </li>
 

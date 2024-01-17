@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LearnController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,21 @@ Route::put('/terms/{term}/edit', [TermController::class, 'update']);
 
 //delete
 Route::delete('terms/{term}', [TermController::class, 'destroy'])->middleware('auth')->name('terms.delete');
+
+
+//learn
+//show
+Route::get('/learn', [LearnController::class, 'index'])->name('learn');
+
+
+//cars
+// index
+Route::get('/cars', [CarController::class, 'index'])->name('cars');
+
+//create cat
+Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
+Route::post('/cars/create', [CarController::class, 'store']);
+
 
 // GET	/photos	index	photos.index
 // GET	/photos/create	create	photos.create

@@ -64,3 +64,20 @@
     align-items: flex-end;
     justify-content: space-between;
 }
+
+/* Cars list */
+.box {
+    width: 90%;
+}
+
+.box .left .filter .filter-box .one-line label:hover {
+    text-decoration: underline;
+}
+
+.box .right {
+    flex-grow: 1;
+}
+
+.box .right .brands img {
+    width: 120px;
+}
