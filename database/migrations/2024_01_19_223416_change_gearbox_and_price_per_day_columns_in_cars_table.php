@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->string('title')->after('id');
+        Schema::table('cars', function (Blueprint $table) {
+            $table->string('gearbox')->change();
+            $table->integer('price_per_day')->change();
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('terms', function (Blueprint $table) {
-            $table->dropColumn('title');
+        Schema::table('cars', function (Blueprint $table) {
+            $table->integer('gearbox')->change();
+            $table->float('price_per_day')->change();
         });
     }
 };

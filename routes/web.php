@@ -72,7 +72,7 @@ Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 // index
 Route::get('/cars', [CarController::class, 'index'])->name('cars');
 
-//create cat
+//create car
 Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
 Route::post('/cars/create', [CarController::class, 'store']);
 
