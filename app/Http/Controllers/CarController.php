@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
-    public function index() {
-        $cars = Car::all();
-        return view('cars.cars', compact('cars'));
+    public function index(Request $request) {
+        $cars = Car::orderBy('created_at', 'ASC');
+
+        if ($request->has('brands')) {
+            $selected = $request->input('brands');
+            $cars = $cars->whereIn('brand', $selected);
+        }
+
+        if ($request->has('body_types')) {
+            $selected = $request->input('body_types');
+            $cars = $cars->whereIn('body_type', $selected);
+        }
+    
+        return view('cars.cars', [
+            'cars' => $cars->paginate(9)
+        ]);
     }
 
     public function show($car_id) {

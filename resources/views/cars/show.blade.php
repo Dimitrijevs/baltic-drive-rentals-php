@@ -35,7 +35,7 @@
                                 </li>
                                 <li class="bg-light py-2 px-4 d-flex my-3">
                                     <p class="mb-0 me-2 fw-bold">CO2 Emissions:</p>
-                                    <span class="">{{ $car->emissions }}g</span>
+                                    <span class="">{{ $car->emissions }}g/km</span>
                                 </li>
                                 <li class="bg-light py-2 px-4 d-flex my-3">
                                     <p class="mb-0 me-2 fw-bold">Price Per Day:</p>
@@ -75,6 +75,7 @@
             </div>
         </div>
 
+        {{-- Not working --}}
         <form action="">
             <div class="container mt-5">
                 <div class="row text-center">
@@ -90,7 +91,7 @@
 
                     <div class="col-md-4">
                         <p class="text-white mb-2" for="totalPrice">Total Price:</p>
-                        <h4 class="text-warning">Big Number €</h4>
+                        <h4 class="text-warning" value="1234"></h4>
                     </div>
                 </div>
             </div>
@@ -101,26 +102,5 @@
         </form>
     </section>
 
-
     @include('home.contact-us')
 @endsection
-
-{{-- <script>
-    totalPrice() {
-            if (this.pricePerDay < 0) this.pricePerDay = 0;
-            else if (this.pricePerDay > 100) this.pricePerDay = 100;
-
-            if (this.amounthOfDays < 0) this.amounthOfDays = 0;
-            else if (this.amounthOfDays > 365) this.amounthOfDays = 365;
-
-            if (this.pricePerKm < 0.2) this.pricePerKm = 0.2;
-            else if (this.pricePerKm > 1) this.pricePerKm = 1;
-
-            if (this.kmAmounth < 0) this.kmAmounth = 0;
-            else if (this.kmAmounth > 50000) this.kmAmounth = 50000;
-            return Math.round((this.pricePerDay * this.amounthOfDays + this.pricePerKm * this.kmAmounth) * 100) / 100.0;
-        },
-        formattedTotalPrice() {
-            return this.totalPrice <= this.maxValue ? this.totalPrice : this.maxValue;
-        },
-</script> --}}
