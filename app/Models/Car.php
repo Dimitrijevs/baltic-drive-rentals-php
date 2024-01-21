@@ -13,6 +13,7 @@ class Car extends Model
         'brand',
         'model',
         'year',
+        'horsepower',
         'body_type',
         'fuel_type',
         'emissions',
@@ -29,16 +30,29 @@ class Car extends Model
         'carImage8'
     ];
 
-    public function getImageURL()
+    public function getImageURLs()
     {
         $maxImages = 8;
-        for($i = 1; $i <= $maxImages; $i++) {
-            $carImage = $this->carImage . $i;
-            if (file_exists($carImage)) {
-                return url('storage/'.$carImage);
+        $images = [];
+    
+        for ($i = 2; $i <= $maxImages; $i++) {
+            $carImage = 'carImage' . $i;
+            $image = $this->$carImage;
+            if ($image) {
+                $images[] = url('storage/' . $image);
             }
         }
 
-        return 0;
+        return $images;
+    } 
+
+    public function getFirstImageURL()
+    {
+        $carImage = $this->carImage1;
+        if ($carImage) {
+            return url('storage/'.$carImage);
+        }
+
+        return null;
     }
 }

@@ -6,6 +6,9 @@
     transform: scale(1.02);
 }
 
+.input-small {
+    max-width: 260px;
+}
 
 /* home */
 #carouselCars {
@@ -80,4 +83,21 @@
 
 .box .right .brands img {
     width: 120px;
+}
+
+/* Car show */
+.main-container {
+    width: 90%;
+}
+
+#desc {
+    max-width: 280px;
+}
+
+#totalPrice {
+    max-width: 260px;
+}
+
+.active-item {
+    height: 480px;
 }

@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 class CarController extends Controller
 {
     public function index() {
-        return view('cars.cars');
+        $cars = Car::all();
+        return view('cars.cars', compact('cars'));
+    }
+
+    public function show($car_id) {
+        $car = Car::find($car_id);
+        return view('cars.show', compact('car'));
     }
 
     public function create() {
@@ -21,6 +27,7 @@ class CarController extends Controller
             'brand' => 'required',
             'model' => 'required',
             'year' => 'required',
+            'horsepower' => 'required',
             'body_type' => 'required',
             'fuel_type' => 'required|min:3',
             'emissions' => 'required',

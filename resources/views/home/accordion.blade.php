@@ -1,7 +1,7 @@
 <section class="p-5 mt-5">
     <div class="container mb-5">
         <div class="accordion" id="accordionExample">
-            <h2 class="text-center mb-5">Most Asked questons</h2>
+            <h2 class="text-center mb-5">FAQ</h2>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"

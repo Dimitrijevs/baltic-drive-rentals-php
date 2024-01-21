@@ -1,7 +1,7 @@
 <section class="p-5">
     <div class="container">
         <h2 class="text-center mb-4">
-            Contact Us
+            Still Have Some Questions? Contact Us!
         </h2>
         <div class="row g-4">
             <div class="col my-auto">

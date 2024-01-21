@@ -28,6 +28,13 @@
                     @enderror
                 </div>
                 <div class="form-group mt-3">
+                    <label for="horsepower" class="text-dark">Horsepowers:</label><br>
+                    <input type="number" name="horsepower" id="horsepower" class="form-control">
+                    @error('horsepower')
+                        <span class="d-block fs-6 text-danger mt-2">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group mt-3">
                     <label for="body_type" class="text-dark">Body Type:</label><br>
                     <input type="text" name="body_type" id="body_type" class="form-control border-primary">
                     @error('body_type')
