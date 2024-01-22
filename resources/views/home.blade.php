@@ -7,6 +7,7 @@
     @include('home.new-approach')
     @include('home.popular')
     @include('home.carousel')
+    @include('home.free-parking')
     @include('home.accordion')
     @include('home.contact-us')
 @endsection

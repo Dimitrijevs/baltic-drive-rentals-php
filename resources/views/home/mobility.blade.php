@@ -12,7 +12,7 @@
                     href="https://play.google.com/store/apps/details?id=com.primeleasing.citybee&hl=en&pli=1">Download
                     App!</a>
             </div>
-            <img class="img-fluid w-50 rounded hover-shadow img-zoom" src="{{ url('/images/corolla.jpg') }}"
+            <img class="img-fluid w-50 rounded hover-shadow img-zoom" src="{{ url('/storage/carImages/mqOL5OOM5wFxthOIcjS2fmW0E9AaBgOdo1TwcxhG.png') }}"
                 alt="404">
         </div>
     </div>
