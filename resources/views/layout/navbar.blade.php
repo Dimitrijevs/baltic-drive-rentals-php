@@ -45,8 +45,6 @@
                         class="{{ Route::is('register') ? 'active' : '' }} nav-link p-1">Register</a>
                 </li>
             @endguest
-
-
         </ul>
     </div>
 </div>
