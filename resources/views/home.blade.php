@@ -1,5 +1,7 @@
 @extends('layout.layout')
 
+{{-- test --}}
+
 @section('content')
     @include('shared.flash-message')
     @include('home.mobility')
