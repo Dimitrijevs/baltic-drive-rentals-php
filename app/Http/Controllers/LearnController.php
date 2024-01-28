@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LearnController extends Controller
 {
     public function index() {
-        return view('learn.learn');
+        return Inertia::render('Learn/Learn');
     }
 }
