@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
     public function register() {
-        return view('auth.register');
+        return Inertia::render('Auth/Register');
     }
 
     public function store() {
