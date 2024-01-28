@@ -1,8 +1,8 @@
 <template>
     <Layout>
         <div
+            id="section"
             class="row justify-content-center text-center mx-auto"
-            style="margin-top: 140px; margin-bottom: 180px"
         >
             <div class="col-12 col-sm-8 col-md-6 margin-100">
                 <form @submit.prevent="form.post('register')">
@@ -140,4 +140,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+    #section {
+        margin-top: 140px;
+        margin-bottom: 180px;
+    }
+</style>

@@ -40,7 +40,32 @@
                         >
                     </li>
 
-                    <li class="nav-item d-flex align-items-center mx-2">
+                    <li
+                        v-if="$page.props.auth"
+                        class="nav-item d-flex align-items-center mx-2"
+                    >
+                        <i class="bi bi-person-circle text-white ms-5"></i
+                        ><Link
+                            :href="route('profile', { user: $page.props.auth })"
+                            class="{{ Route::is('profile') ? 'active' : '' }} nav-link p-1"
+                            >Profile Page</Link
+                        >
+                    </li>
+
+                    <li
+                        v-if="$page.props.auth"
+                        class="nav-item d-flex align-items-center mx-2 bg-danger py-1 px-2"
+                    >
+                        <i class="bi bi-person-circle text-white"></i
+                        ><Link :href="route('logout')" class="nav-link p-1"
+                            >Log Out</Link
+                        >
+                    </li>
+
+                    <li
+                        v-if="!$page.props.auth"
+                        class="nav-item d-flex align-items-center mx-2"
+                    >
                         <i class="bi bi-box-arrow-in-right text-white ms-5"></i
                         ><Link
                             :href="route('login')"
@@ -49,7 +74,10 @@
                         >
                     </li>
 
-                    <li class="nav-item d-flex align-items-center mx-2">
+                    <li
+                        v-if="!$page.props.auth"
+                        class="nav-item d-flex align-items-center mx-2"
+                    >
                         <i class="bi bi-box-arrow-in-right text-white"></i
                         ><Link
                             :href="route('register')"
