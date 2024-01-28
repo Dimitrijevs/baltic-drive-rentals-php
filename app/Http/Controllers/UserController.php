@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function profile() {
-        return view("users.profile")->with('user', auth()->user());
+    public function profile($id) {
+        $user = User::find($id);
+
+        $user['avatar'] = $user->getImageURL();
+        $user['created_at'] = $user['created_at']->format('d.m.Y');
+
+        return Inertia::render("User/Profile")->with('user', $user);
     }
 
     public function edit() {
