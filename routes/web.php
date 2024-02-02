@@ -41,7 +41,7 @@ Route::get('/profile/{user}', [UserController::class, 'profile'])->middleware('a
 
 //edit
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('edit');
-Route::put('/profile/{user}/edit', [UserController::class, 'update']);
+Route::put('/profile/{user}/edit', [UserController::class, 'update'])->name('update');
 
 //delete 
 Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');

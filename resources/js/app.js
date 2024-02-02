@@ -1,6 +1,7 @@
 import "./bootstrap";
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
+import route from "ziggy-js";
 
 createInertiaApp({
     resolve: (name) => {
