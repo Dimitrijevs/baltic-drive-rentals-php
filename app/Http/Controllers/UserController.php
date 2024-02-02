@@ -72,7 +72,13 @@ class UserController extends Controller
                 'password' => Hash::make(request()->password),
             ]);
 
-            return redirect()->route('home')->with('success', 'Password updated successfully');
+            auth()->logout();
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
+        }
+
+        if(count($validated) == 0) {
+            return redirect()->route('home')->with('message', 'Profile was not updated.');
         }
 
         $user->update($validated);

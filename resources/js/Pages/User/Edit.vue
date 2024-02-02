@@ -6,6 +6,7 @@
             <EditPhoneNumber :user="user" :errors="errors"/>
             <EditEmail :user="user" :errors="errors"/>
             <EditAvatar :avatar="user.avatar" :id="user.id" :errors="errors"/>
+            <EditPassword :user="user" :errors="errors"/>
         </div>
     </Layout>
 </template>
@@ -17,6 +18,7 @@ import EditName from "./Edit/EditName.vue";
 import EditEmail from "./Edit/EditEmail.vue";
 import EditPhoneNumber from "./Edit/EditPhoneNumber.vue";
 import EditAvatar from "./Edit/EditAvatar.vue";
+import EditPassword from "./Edit/EditPassword.vue";
 
 export default {
     components: {
@@ -25,6 +27,7 @@ export default {
         EditEmail,
         EditPhoneNumber,
         EditAvatar,
+        EditPassword,
         Link,
     },
     props: {
