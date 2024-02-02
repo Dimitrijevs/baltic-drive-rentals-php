@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Term;
-use App\Models\User;
-use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class TermController extends Controller
 {
     public function index() {
         $terms = Term::all();
-        return view('terms.terms', compact('terms'));
+        return Inertia::render('Terms/Terms', compact('terms'));
     }
 
     public function create() {
-        return view('terms.create');
+        return Inertia::render('Terms/Create');
     }
 
     public function store() {
@@ -29,12 +28,12 @@ class TermController extends Controller
             'content' => $validated['content']
         ]);
 
-        return redirect()->route('home')->with('success', 'Term created successfully!');
+        return redirect()->route('home')->with('message', 'Term created successfully!');
     }
 
     public function edit($term_id) {
         $term = Term::find($term_id);
-        return view("terms.edit", compact('term'));
+        return Inertia::render("Terms/Edit", compact('term'));
     }
 
     public function update($term_id) {
@@ -45,12 +44,12 @@ class TermController extends Controller
 
         Term::find($term_id)->update($validated);
 
-        return redirect()->route('home')->with('success', 'Term updated successfully');
+        return redirect()->route('home')->with('message', 'Term updated successfully');
     }
 
     public function destroy(Term $term) {
         Term::find($term->id)->delete();
 
-        return redirect()->route('home')->with('success', 'Term deleted successfully');
+        return redirect()->route('home')->with('message', 'Term deleted successfully');
     }
 }

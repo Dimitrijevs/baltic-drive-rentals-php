@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="col img-zoom">
+                <div class="col img-zoom mt-5">
                     <div class="card bg-white text-primary">
                         <div class="card-body text-center">
                             <div class="h1 mb-3">

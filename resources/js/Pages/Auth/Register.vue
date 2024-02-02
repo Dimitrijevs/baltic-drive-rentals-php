@@ -4,7 +4,7 @@
             id="section"
             class="row justify-content-center text-center mx-auto"
         >
-            <div class="col-12 col-sm-8 col-md-6 margin-100">
+            <div class="col-12 col-sm-8 col-md-6">
                 <form @submit.prevent="form.post('register')">
                     <h1>Register</h1>
                     <div class="form-group mt-3">

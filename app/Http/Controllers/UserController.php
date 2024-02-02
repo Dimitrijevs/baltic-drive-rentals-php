@@ -75,10 +75,8 @@ class UserController extends Controller
             auth()->logout();
             request()->session()->invalidate();
             request()->session()->regenerateToken();
-        }
-
-        if(count($validated) == 0) {
-            return redirect()->route('home')->with('message', 'Profile was not updated.');
+        } else {
+            return redirect()->route('home')->with('message', 'Profile was not updated');
         }
 
         $user->update($validated);

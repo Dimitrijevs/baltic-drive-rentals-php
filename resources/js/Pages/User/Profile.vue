@@ -14,17 +14,17 @@
                         >
                     </li>
                     <li class="m-1">
-                        <a
+                        <Link
                             :href="route('edit', { user: $page.props.auth })"
                             class="text-secondary h5 text-decoration-none"
-                            >Edit Profile</a
+                            >Edit Profile</Link
                         >
                     </li>
                     <li class="m-1">
-                        <a
+                        <Link
                             :href="route('logout')"
                             class="text-secondary h5 text-decoration-none"
-                            >Log Out</a
+                            >Log Out</Link
                         >
                     </li>
                     <li class="m-1">

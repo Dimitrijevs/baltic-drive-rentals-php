@@ -18,4 +18,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.img-zoom {
+    transition: 0.3s;
+}
+  
+.img-zoom:hover{
+    transform: scale(1.03);
+}
+</style>
