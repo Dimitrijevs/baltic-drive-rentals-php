@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -27,7 +29,14 @@ class CarController extends Controller
 
     public function show($car_id) {
         $car = Car::find($car_id);
-        return view('cars.show', compact('car'));
+        $car['carImage1'] = $car->getFirstImageURL();
+
+        $carImages = $car->getImageURLs();
+        
+        return Inertia::render('Cars/Car', [
+            'car' => $car,
+            'carImages' => $carImages,
+        ]);
     }
 
     public function create() {
@@ -73,5 +82,9 @@ class CarController extends Controller
         Car::create($data);
 
         return redirect()->route('home')->with('success', 'Created car successfully!');
+    }
+
+    public function test() {
+        dd(request());
     }
 }

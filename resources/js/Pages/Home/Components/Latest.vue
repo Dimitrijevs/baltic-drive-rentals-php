@@ -19,12 +19,12 @@
                         <p class="text-white">
                             Price Per Km: {{ car.price_per_km }}€
                         </p>
-                        <!-- <router
-                            :to="{ name: 'car.show', params: { id: car.id } }"
+                        <Link
+                            :href="route('car.show', car.id)"
                             class="btn btn-warning mb-1 img-zoom text-primary"
                         >
                             <i class="bi bi-chevron-right"></i> Read More
-                        </router> -->
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,12 @@
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3";
+
 export default {
+    components: {
+        Link,
+    },
     props: {
         cars: {
             type: Array,

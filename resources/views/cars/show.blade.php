@@ -50,7 +50,7 @@
 
                         <div id="carouselExample" class="carousel slide">
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
+                                <div class="carousel-item active" style="height: 1000px">
                                     <img src="{{ $car->getFirstImageURL() }}" class="d-block w-100" alt="...">
                                 </div>
                                 @foreach ($car->getImageURLs() as $image)

@@ -79,6 +79,8 @@ Route::post('/cars/create', [CarController::class, 'store']);
 //show
 Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
 
+Route::get('/test', [CarController::class, 'test'])->name('test');
+
 
 
 // GET	/photos	index	photos.index

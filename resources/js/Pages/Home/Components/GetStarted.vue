@@ -12,15 +12,15 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img :src="getStartedURLs[0]"
-                                class="img-fluid zoom-effect" alt="">
+                                class="img-fluid zoom-effect rounded" alt="">
                         </div>
                         <div class="carousel-item">
                             <img :src="getStartedURLs[1]"
-                                class="img-fluid" alt="">
+                                class="img-fluid rounded" alt="">
                         </div>
                         <div class="carousel-item">
                             <img :src="getStartedURLs[2]"
-                                class="img-fluid" alt="">
+                                class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
