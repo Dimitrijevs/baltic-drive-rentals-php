@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LearnController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,8 +79,10 @@ Route::post('/cars/create', [CarController::class, 'store']);
 
 //show
 Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
+Route::post('/cars/{car}', [ReservationController::class, 'store'])->name('reservation');
 
-Route::get('/test', [CarController::class, 'test'])->name('test');
+
+// Reservations
 
 
 

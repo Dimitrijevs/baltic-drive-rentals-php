@@ -83,8 +83,4 @@ class CarController extends Controller
 
         return redirect()->route('home')->with('success', 'Created car successfully!');
     }
-
-    public function test() {
-        dd(request());
-    }
 }

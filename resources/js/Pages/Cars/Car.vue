@@ -134,40 +134,169 @@
                 </div>
             </div>
 
-            <form @submit.prevent="formSubmit">
+            <form @submit.prevent="submitForm" class="mt-5">
+                <h1 class="text-warning text-center mb-0">Rent a car</h1>
                 <div class="container mt-5">
-                    <div class="row text-center">
-                        <div class="col-md-4 mb-3">
-                            <label class="text-white mb-2" for="tripDuration"
-                                >How long is your trip going to be?</label
-                            >
-                            <input
-                                v-model="form.tripDuration"
-                                class="form-control form-control-md input-small mx-auto"
-                                type="number"
-                                id="tripDuration"
-                                placeholder="1-365"
-                                min="1"
-                                max="365"
-                            />
+                    <div class="text-center">
+                        <div class="d-flex justify-content-around">
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="startingDate">Starting Date</label>
+                                <input v-model="form.startingDate" class="form-control form-control-md input-small mx-auto" type="date" id="startingDate" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="endDate">End Date</label>
+                                <input v-model="form.endDate" class="form-control form-control-md input-small mx-auto" type="date" id="endDate" />
+                            </div>
                         </div>
 
-                        <div class="col-md-4 mb-3">
-                            <label class="text-white mb-2" for="kilometers"
-                                >How many kilometers?</label
-                            >
-                            <input
-                                v-model="form.kilometers"
-                                class="form-control form-control-md input-small mx-auto"
-                                type="number"
-                                id="kilometers"
-                                placeholder="0-20000 Km"
-                                min="0"
-                                max="20000"
-                            />
+                        <div class="d-flex justify-content-around">
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="kilometers"
+                                    >How many kilometers?</label
+                                >
+                                <input
+                                    v-model="form.kilometers"
+                                    class="form-control form-control-md input-small mx-auto"
+                                    type="number"
+                                    id="kilometers"
+                                    placeholder="0-20000 Km"
+                                />
+                            </div>
+    
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="startingTime">Starting Time</label>
+                                <input v-model="form.startingTime" class="form-control form-control-md input-small mx-auto" type="time" id="startingTime" />
+                            </div>    
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="d-flex justify-content-around">
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="startingPoint"
+                                    >Select starting point</label
+                                >
+                                <div class="dropdown">
+                                    <button
+                                        class="btn btn-secondary dropdown-toggle"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                    >
+                                        {{
+                                            form.selectedStartingAddress
+                                                ? form.selectedStartingAddress
+                                                : "Select Starting Point"
+                                        }}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedStartingAddress =
+                                                        'Lidosta Rīga'
+                                                "
+                                            >
+                                                Lidosta Rīga
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedStartingAddress =
+                                                        'Aspazijas bulvāris 32'
+                                                "
+                                            >
+                                                Aspazijas bulvāris 32
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedStartingAddress =
+                                                        'Brīvības iela 366'
+                                                "
+                                            >
+                                                Brīvības iela 366
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <input
+                                                v-model="form.selectedStartingAddress"
+                                                class="form-control"
+                                                type="text"
+                                                placeholder="Enter custom starting point"
+                                            />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+    
+                            <div class="mb-3">
+                                <label class="text-white mb-2" for="startingPoint"
+                                    >Select Ending point</label
+                                >
+                                <div class="dropdown">
+                                    <button
+                                        class="btn btn-secondary dropdown-toggle"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                    >
+                                        {{
+                                            form.selectedEndingAddress
+                                                ? form.selectedEndingAddress
+                                                : "Select Starting Point"
+                                        }}
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedEndingAddress =
+                                                        'Lidosta Rīga'
+                                                "
+                                            >
+                                                Lidosta Rīga
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedEndingAddress =
+                                                        'Aspazijas bulvāris 32'
+                                                "
+                                            >
+                                                Aspazijas bulvāris 32
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p
+                                                class="dropdown-item mb-0"
+                                                @click="
+                                                    form.selectedEndingAddress =
+                                                        'Brīvības iela 366'
+                                                "
+                                            >
+                                                Brīvības iela 366
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <input
+                                                v-model="form.selectedEndingAddress"
+                                                class="form-control"
+                                                type="text"
+                                                placeholder="Enter custom starting point"
+                                            />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
                             <p class="text-white mb-2" for="totalPrice">
                                 Total Price:
                             </p>
@@ -213,26 +342,67 @@ export default {
     },
     setup(props) {
         const form = useForm({
-            tripDuration: 0,
-            kilometers: 0,
+            kilometers: null,
+            selectedStartingAddress: "",
+            selectedEndingAddress: "",
+            startingDate: "",
+            endDate: "",
+            startingTime: "",
+            carId: props.car.id,
+            totalPrice: 0
         });
+
+        const calculateTripDuration = () => {
+            const endDate = new Date(form.endDate);
+            const startDate = new Date(form.startingDate);
+
+            const tripDuration = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000*3600*24))
+        
+            return tripDuration;
+        };
 
         const calculateTotalPrice = () => {
             const pricePerDay = props.car.price_per_day;
             const pricePerKm = props.car.price_per_km;
-            const totalDaysPrice = form.tripDuration * pricePerDay;
+
+            const tripDuration = calculateTripDuration();
+
+            const totalDaysPrice = tripDuration * pricePerDay;
             const totalKmPrice = form.kilometers * pricePerKm;
-            return totalDaysPrice + totalKmPrice;
+
+            let totalPrice = totalDaysPrice + totalKmPrice;
+
+            const startingAddresses = ['Lidosta Rīga', 'Aspazijas bulvāris 32', 'Brīvības iela 366'];
+
+            const endingAddresses = ['Lidosta Rīga', 'Aspazijas bulvāris 32', 'Brīvības iela 366'];
+
+            if(!startingAddresses.includes(form.selectedStartingAddress)) {
+                totalPrice += 10;
+            }
+
+            if(!endingAddresses.includes(form.selectedEndingAddress)) {
+                totalPrice += 10;
+            }
+
+            if (totalPrice >= 1000) {
+                totalPrice *= 0.85;
+            } else if (totalPrice >= 500) {
+                totalPrice *= 0.9;
+            }else if (totalPrice >= 200) {
+                totalPrice *= 0.94;
+            } else if (totalPrice >= 100) {
+                totalPrice *= 0.97;
+            }
+
+            totalPrice = parseFloat(totalPrice.toFixed(2));
+            
+            return totalPrice;
         };
 
         const submitForm = () => {
-            const formData = {
-                tripDuration: form.tripDuration,
-                kilometers: form.kilometers,
-                totalPrice: totalPrice,
-            };
-
-            form.submit('post', route('test'));
+            const totalPrice = calculateTotalPrice();
+            form.totalPrice = totalPrice;
+            form.post(`/cars/${props.car.id}`);
         };
 
         return { form, calculateTotalPrice, submitForm };
@@ -256,5 +426,9 @@ export default {
 
 .carousel-inner {
     height: 600px;
+}
+
+input {
+    width: 400px;
 }
 </style>
