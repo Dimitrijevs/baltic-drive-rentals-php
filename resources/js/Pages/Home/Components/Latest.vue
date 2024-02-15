@@ -3,7 +3,7 @@
         <div class="container text-center">
             <h1 class="mb-4">New Arrivals</h1>
             <div class="row justify-content-between">
-                <div class="card col-3 p-0 m-3 bg-primary text-light border-primary" v-for="car in cars" :key="car.id">
+                <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary" v-for="car in cars" :key="car.id">
                     <img
                         :src="car.carImageURL"
                         class="card-img-top img-fluid"

@@ -2,7 +2,7 @@
     <Layout>
         <section class="mb-5" id="section">
 
-            <div v-if="auth == isAdmin" class="d-flex justify-content-center mb-4">
+            <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-4">
                 <Link :href="route('terms.create')" class="bg-primary nav-link h1 text-white bg-primary py-3 px-4 rounded img-zoom">Create new Term</Link>
             </div>
 
@@ -26,7 +26,7 @@
                                 </h3>
 
                                 <div
-                                    v-if="auth == isAdmin"
+                                    v-if="$page.props.isAdmin"
                                     class="mb-2 d-flex justify-content-center"
                                 >
                                     <Link

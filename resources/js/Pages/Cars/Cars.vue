@@ -1,6 +1,11 @@
 <template>
     <Layout>
 
+        <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-4">
+            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded"
+                style="font-size: 24px">Add New Car</a>
+        </div>
+
         <div class="box d-flex mx-auto mb-5 justify-content-center">
             <div class="left">
                 <form action="">
@@ -200,6 +205,10 @@ export default {
     }
 
     .box {
-        margin-top: 120px
+        margin-top: 100px
+    }
+
+    #create {
+        margin-top: 120px;
     }
 </style>

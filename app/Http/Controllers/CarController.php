@@ -53,10 +53,12 @@ class CarController extends Controller
     }
 
     public function create() {
-        return view('cars.create');
+        return Inertia::render('Cars/Create');
     }
 
     public function store(Request $request) {
+
+        dd(request());
 
         $validated = $request->validate([
             'brand' => 'required',

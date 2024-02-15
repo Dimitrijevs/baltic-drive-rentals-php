@@ -32,7 +32,7 @@ class HomeController extends Controller
         $getStartedURLs = array(
             asset(Storage::url('carImages/oKwpV0e3hCpHKnEWFstSVahuHbVi6zBlvYJQfN0p.png')),
             asset(Storage::url('carImages/kd9L6mMwKAdudsByqc1t9ROlA3UTfZdNRKV9Ya5b.png')),
-            asset(Storage::url('carImages/Ha7jothspgWb9A5VbunRBIZBGnVQ661915v7zrjO.png'))
+            asset(Storage::url('carImages/03GYwDUHWreh29BjIGG6qwQ4ExD6VRQ2AKXUG5F6.png'))
         );
 
         $parkingImage = asset(Storage::url('carImages/Fe1M3xCSQSrWjxNdJldxtMQ6wgQlVGlfh0c44JGH.png'));

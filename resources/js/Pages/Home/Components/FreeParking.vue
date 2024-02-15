@@ -1,13 +1,15 @@
 <template>
-    <section class="p-5 my-5">
+    <section class="p-0 p-lg-5 my-5">
         <div class="container mt-4">
-            <div class="d-flex align-items-center justify-content-between">
-                <img
-                    class="img-fluid w-50 rounded img-zoom"
-                    :src="parkingImage"
-                    alt=""
-                />
-                <div class="ms-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <img
+                        class="img-fluid rounded img-zoom"
+                        :src="parkingImage"
+                        alt=""
+                    />
+                </div>
+                <div class="col-lg-6 mt-3 mt-lg-0">
                     <h1 class="text-primary">
                         Now Parking is <span class="text-warning">Free!</span>
                     </h1>

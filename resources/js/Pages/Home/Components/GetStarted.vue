@@ -1,14 +1,14 @@
 <template>
     <section class="p-5 bg-primary mt-5">
         <div class="container p-4">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="text-warning">
+            <div class="row justify-content-between align-items-center">
+                <div class="text-warning col-lg-6">
                     <h1 class="text-warning">Easy to get started!</h1>
-                    <p class="lead text-light">1. Registration, takes about 1 minute!</p>
-                    <p class="lead text-light">2. Order a car!</p>
-                    <p class="lead text-light">3. Receive it the next day at your home!</p>
+                    <p class="lead text-light">1. Registration, takes about 1 minute! Sign up with your email and password!</p>
+                    <p class="lead text-light">2. Order a car! Browse through our available cars and select your preferred model!</p>
+                    <p class="lead text-light">3. Receive it the next day at your home! We'll deliver the car to your doorstep at the scheduled time!</p>
                 </div>
-                <div id="carouselCars" class="carousel slide" data-bs-ride="carousel">
+                <div id="carouselCars" class="carousel slide col-lg-6" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img :src="getStartedURLs[0]"
@@ -40,9 +40,5 @@ export default {
 }
 </script>
 
-<style>
-    .carousel-inner {
-        height: 400px;
-        width: 800px;
-    }
+<style scoped>
 </style>

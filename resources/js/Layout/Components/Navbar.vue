@@ -1,94 +1,151 @@
 <template>
-    <nav
-        id="nav-bar"
-        class="navbar navbar-expand-lg bg-primary navbar-dark py-3 fixed-top z-2"
-    >
+    <section class="bg-primary">
         <div class="container">
-            <li class="nav-item d-flex align-items-center">
-                <i class="bi bi-car-front text-warning h2 my-0 me-1"></i>
-                <Link :href="route('home')" class="navbar-brand text-warning"
-                    >Baltic Drive Rentals</Link
-                >
-            </li>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item d-flex align-items-center mx-2">
-                        <i class="bi bi-clock-history text-white"></i
-                        ><Link
-                            :href="route('learn')"
-                            class="{{ Route::is('learn') ? 'active' : '' }} nav-link p-1"
-                            >Learn to drive</Link
-                        >
-                    </li>
-
-                    <li class="nav-item d-flex align-items-center mx-2">
-                        <i class="bi bi-file-earmark-ruled text-white"></i
-                        ><Link
-                            :href="route('terms')"
-                            class="{{ Route::is('terms') ? 'active' : '' }} nav-link p-1"
-                            >Rental Terms</Link
-                        >
-                    </li>
-
-                    <li class="nav-item d-flex align-items-center mx-2">
-                        <i class="bi bi-car-front-fill text-white"></i
-                        ><Link
-                            :href="route('cars')"
-                            class="{{ Route::is('cars') ? 'active' : '' }} nav-link p-1"
-                            >Our Car List</Link
-                        >
-                    </li>
-
-                    <li
-                        v-if="$page.props.auth"
-                        class="nav-item d-flex align-items-center mx-2"
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <div class="container-fluid px-0">
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
                     >
-                        <i class="bi bi-person-circle text-white ms-5"></i
-                        ><Link
-                            :href="route('profile', { user: $page.props.auth })"
-                            class="{{ Route::is('profile') ? 'active' : '' }} nav-link p-1"
-                            >Profile Page</Link
-                        >
-                    </li>
-
-                    <li
-                        v-if="$page.props.auth"
-                        class="nav-item d-flex align-items-center mx-2 bg-danger py-1 px-2"
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse justify-content-between"
+                        id="navbarNavDropdown"
                     >
-                        <i class="bi bi-person-circle text-white"></i
-                        ><Link :href="route('logout')" class="nav-link p-1"
-                            >Log Out</Link
-                        >
-                    </li>
-
-                    <li
-                        v-if="!$page.props.auth"
-                        class="nav-item d-flex align-items-center mx-2"
-                    >
-                        <i class="bi bi-box-arrow-in-right text-white ms-5"></i
-                        ><Link
-                            :href="route('login')"
-                            class="{{ Route::is('login') ? 'active' : '' }} nav-link p-1"
-                            >Log In</Link
-                        >
-                    </li>
-
-                    <li
-                        v-if="!$page.props.auth"
-                        class="nav-item d-flex align-items-center mx-2"
-                    >
-                        <i class="bi bi-box-arrow-in-right text-white"></i
-                        ><Link
-                            :href="route('register')"
-                            class="{{ Route::is('register') ? 'active' : '' }} nav-link p-1"
-                            >Register</Link
-                        >
-                    </li>
-                </ul>
-            </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item d-flex align-items-center m-0">
+                                <i
+                                    class="bi bi-car-front text-warning h2 my-0 me-1"
+                                ></i>
+                                <Link
+                                    :href="route('home')"
+                                    class="navbar-brand text-warning me-0"
+                                    >Baltic Drive Rentals</Link
+                                >
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li
+                                class="nav-item d-flex align-items-center me-3 my-2 my-lg-0"
+                            >
+                                <i class="bi bi-clock-history text-white"></i
+                                ><Link
+                                    :href="route('learn')"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/learn'),
+                                        'text-white': $page.url.includes('/learn'),
+                                    }"
+                                    >Learn to drive</Link
+                                >
+                            </li>
+                            <li
+                                class="nav-item d-flex align-items-center me-3 my-2 my-lg-0"
+                            >
+                                <i class="bi bi-file-earmark-ruled text-white"></i
+                                ><Link
+                                    :href="route('terms')"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/terms'),
+                                        'text-white': $page.url.includes('/terms'),
+                                    }"
+                                    >Rental Terms</Link
+                                >
+                            </li>
+                            <li
+                                class="nav-item d-flex align-items-center me-3 my-2 my-lg-0"
+                            >
+                                <i class="bi bi-car-front-fill text-white"></i
+                                ><Link
+                                    :href="route('cars')"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/cars'),
+                                        'text-white': $page.url.includes('/cars'),
+                                    }"
+                                    >Our Car List</Link
+                                >
+                            </li>
+                            <li
+                                v-if="$page.props.auth"
+                                class="nav-item d-flex align-items-center ms-0 ms-lg-4 me-3 my-2 my-lg-0"
+                            >
+                                <i class="bi bi-person-circle text-white"></i
+                                ><Link
+                                    :href="route('profile', { user: $page.props.auth })"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/profile'),
+                                        'text-white': $page.url.includes('/profile'),
+                                    }"
+                                    >Profile Page</Link
+                                >
+                            </li>
+        
+                            <li
+                                v-if="$page.props.auth"
+                                class="nav-item d-flex align-items-center my-2 my-lg-0 bg-danger p-2 rounded me-0"
+                            >
+                                <i class="bi bi-person-circle text-white"></i
+                                ><Link
+                                    :href="route('logout')"
+                                    class="nav-link p-1 text-white"
+                                    >Log Out</Link
+                                >
+                            </li>
+        
+                            <li
+                                v-if="!$page.props.auth"
+                                class="nav-item d-flex align-items-center my-2 my-lg-0"
+                            >
+                                <i
+                                    class="bi bi-box-arrow-in-right text-white ms-0 ms-lg-5"
+                                ></i
+                                ><Link
+                                    :href="route('login')"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/login'),
+                                        'text-white': $page.url === '/login',
+                                    }"
+                                    >Log In</Link
+                                >
+                            </li>
+        
+                            <li
+                                v-if="!$page.props.auth"
+                                class="nav-item d-flex align-items-center my-2 my-lg-0"
+                            >
+                                <i class="bi bi-box-arrow-in-right text-white"></i
+                                ><Link
+                                    :href="route('register')"
+                                    class="nav-link p-1"
+                                    :class="{
+                                        'text-secondary':
+                                            !$page.url.includes('/register'),
+                                        'text-white': $page.url === '/register',
+                                    }"
+                                    >Register</Link
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </section>
 </template>
 
 <script>

@@ -13,7 +13,7 @@
                         <div class="d-flex">
                             <div id="statistics" class="me-5">
                                 <ul class="list-unstyled">
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class=""
                                             >{{ car.brand }}

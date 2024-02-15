@@ -1,9 +1,9 @@
 <template>
-    <Navbar />
-
-    <slot />
-
-    <Footer />
+    <div>
+        <Navbar />
+        <slot />
+        <Footer />
+    </div>
 </template>
 
 <script>
@@ -19,11 +19,15 @@ export default {
 </script>
 
 <style>
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .img-zoom {
     transition: 0.3s;
 }
   
-.img-zoom:hover{
+.img-zoom:hover {
     transform: scale(1.03);
 }
 </style>

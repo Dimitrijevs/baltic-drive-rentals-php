@@ -1,13 +1,13 @@
 <template>
-    <section class="p-5 bg-primary mt-5">
+    <section class="p-5 bg-primary">
         <div class="container mt-4">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="text-white me-5">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0 text-white">
                     <h1 class="text-white">
                         Mobility
                         <span class="text-warning">when you need it!</span>
                     </h1>
-                    <p class="lead text-white">
+                    <p class="lead">
                         Introducing our unbeatable mobility solution tailored
                         just for you! Say goodbye to transportation hassles and
                         hello to the freedom of movement with our incredible
@@ -19,11 +19,13 @@
                         >Download App!</a
                     >
                 </div>
-                <img
-                    class="img-fluid w-50 rounded hover-shadow img-zoom"
-                    :src="mazdaImage"
-                    alt="404"
-                />
+                <div class="col-lg-6 text-center">
+                    <img
+                        class="img-fluid rounded hover-shadow img-zoom"
+                        :src="mazdaImage"
+                        alt="404"
+                    />
+                </div>
             </div>
         </div>
     </section>
