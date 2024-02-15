@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LearnController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::get('/profile/{user}', [UserController::class, 'profile'])->middleware('a
 
 //edit
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('edit');
-Route::put('/profile/{user}/edit', [UserController::class, 'update']);
+Route::put('/profile/{user}/edit', [UserController::class, 'update'])->name('update');
 
 //delete 
 Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
@@ -78,6 +79,10 @@ Route::post('/cars/create', [CarController::class, 'store']);
 
 //show
 Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
+Route::post('/cars/{car}', [ReservationController::class, 'store'])->name('reservation');
+
+
+// Reservations
 
 
 

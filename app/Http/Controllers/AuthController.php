@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
     public function register() {
-        return view('auth.register');
+        return Inertia::render('Auth/Register');
     }
 
     public function store() {
@@ -30,11 +31,11 @@ class AuthController extends Controller
         // Mail::to($user->email)
         // ->send(new WelcomeEmail($user));
 
-        return redirect()->route('home')->with('success', 'Registered successfully!');
+        return redirect()->route('home')->with('message', 'Registered successfully!');
     }
 
     public function login() {
-        return view('auth.login');
+        return Inertia::render('Auth/Login');
     }
 
     public function authenticate(){
@@ -46,7 +47,7 @@ class AuthController extends Controller
         if(auth()->attempt($validated)){
             request()->session()->regenerate();
 
-            return redirect()->route('home')->with('success', 'Loged in successfully!');
+            return redirect()->route('home')->with('message', 'Loged In successfully!');
         };
 
         return redirect()->route('login')->withErrors([
@@ -60,6 +61,6 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('home')->with('success', 'Loged Out successfully!');
+        return redirect()->route('home')->with('message', 'Loged Out successfully!');
     }
 }

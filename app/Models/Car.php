@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Car extends Model
 {
@@ -29,6 +30,10 @@ class Car extends Model
         'carImage7',
         'carImage8'
     ];
+
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
+    }
 
     public function getImageURLs()
     {

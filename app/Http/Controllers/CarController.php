@@ -3,38 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
     public function index(Request $request) {
-        $cars = Car::orderBy('created_at', 'ASC');
+        $cars = Car::orderBy('created_at', 'ASC')
+            ->select('id', 'brand', 'model', 'price_per_day', 'price_per_km', 'carImage1')
+            ->paginate(9);
 
-        if ($request->has('brands')) {
-            $selected = $request->input('brands');
-            $cars = $cars->whereIn('brand', $selected);
-        }
+            $carsWithImageURLs = $cars->map(function ($car) {
+                return [
+                    'id' => $car->id,
+                    'brand' => $car->brand,
+                    'model' => $car->model,
+                    'price_per_day' => $car->price_per_day,
+                    'price_per_km' => $car->price_per_km,
+                    'carImageURL' => $car->getFirstImageURL(),
+                ];
+            });
 
-        if ($request->has('body_types')) {
-            $selected = $request->input('body_types');
-            $cars = $cars->whereIn('body_type', $selected);
-        }
+        $carBrandsImages = array(
+            asset("images/logos/audi.png"),
+            asset("images/logos/bmw.png"),
+            asset("images/logos/tesla.png"),
+            asset("images/logos/toyota.png"),
+            asset("images/logos/vw.png"),
+        );
     
-        return view('cars.cars', [
-            'cars' => $cars->paginate(9)
+        return Inertia::render('Cars/Cars', [
+            'carBrandsImages' => $carBrandsImages,
+            'cars' => $carsWithImageURLs,
+            'pagination' => $cars->links()->toHtml(),
         ]);
     }
 
     public function show($car_id) {
         $car = Car::find($car_id);
-        return view('cars.show', compact('car'));
+        $car['carImage1'] = $car->getFirstImageURL();
+
+        $carImages = $car->getImageURLs();
+        
+        return Inertia::render('Cars/Car', [
+            'car' => $car,
+            'carImages' => $carImages,
+        ]);
     }
 
     public function create() {
-        return view('cars.create');
+        return Inertia::render('Cars/Create');
     }
 
     public function store(Request $request) {
+
+        dd(request());
 
         $validated = $request->validate([
             'brand' => 'required',
