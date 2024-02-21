@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CarStoreRequest;
 use App\Models\Car;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class CarController extends Controller
             asset("images/logos/toyota.png"),
             asset("images/logos/vw.png"),
         );
-    
+
         return Inertia::render('Cars/Cars', [
             'carBrandsImages' => $carBrandsImages,
             'cars' => $carsWithImageURLs,
@@ -45,7 +46,7 @@ class CarController extends Controller
         $car['carImage1'] = $car->getFirstImageURL();
 
         $carImages = $car->getImageURLs();
-        
+
         return Inertia::render('Cars/Car', [
             'car' => $car,
             'carImages' => $carImages,
@@ -53,33 +54,12 @@ class CarController extends Controller
     }
 
     public function create() {
-        return Inertia::render('Cars/Create');
+        return Inertia::render('Cars/CreateCar');
     }
 
-    public function store(Request $request) {
+    public function store(CarStoreRequest $request) {
 
-        dd(request());
-
-        $validated = $request->validate([
-            'brand' => 'required',
-            'model' => 'required',
-            'year' => 'required',
-            'horsepower' => 'required',
-            'body_type' => 'required',
-            'fuel_type' => 'required|min:3',
-            'emissions' => 'required',
-            'gearbox' => 'required',
-            'price_per_day' => 'required',
-            'price_per_km' => 'required',
-            'carImage1' => 'required|image',
-            'carImage2' => 'nullable|image',
-            'carImage3' => 'nullable|image',
-            'carImage4' => 'nullable|image',
-            'carImage5' => 'nullable|image',
-            'carImage6' => 'nullable|image',
-            'carImage7' => 'nullable|image',
-            'carImage8' => 'nullable|image',
-        ]);
+        $validated = $request->validated();
 
         $carImages = [];
         for ($i = 1; $i <= 8; $i++) {
@@ -96,6 +76,6 @@ class CarController extends Controller
 
         Car::create($data);
 
-        return redirect()->route('home')->with('success', 'Created car successfully!');
+        return redirect()->route('home')->with('message', 'Car created successfully!');
     }
 }

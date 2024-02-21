@@ -1,12 +1,10 @@
 <template>
     <Layout>
-
-        <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-4">
-            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded"
-                style="font-size: 24px">Add New Car</a>
+        <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-0">
+            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add New Car</a>
         </div>
 
-        <div class="box d-flex mx-auto mb-5 justify-content-center">
+        <div class="box d-flex mx-auto my-3 justify-content-center">
             <div class="left">
                 <form action="">
                     <div class="filter rounded bg-light p-4 me-2">
@@ -42,7 +40,7 @@
                             </div>
                             <hr>
                         </div>
-        
+
                         <div class="filter-box">
                             <h4>Body Type</h4>
                             <div class="one-line">
@@ -67,7 +65,7 @@
                             </div>
                             <hr>
                         </div>
-        
+
                         <div class="filter-box">
                             <h4>Fuel Type</h4>
                             <div class="one-line">
@@ -85,7 +83,7 @@
                             </div>
                             <hr>
                         </div>
-        
+
                         <div class="filter-box">
                             <h4>Gearbox</h4>
                             <div class="one-line">
@@ -96,7 +94,7 @@
                             </div>
                             <hr>
                         </div>
-        
+
                         <div class="filter-box one-select">
                             <h4>Price</h4>
                             <div class="one-line">
@@ -124,14 +122,14 @@
                     <button type="submit" class="btn btn-warning text-primary py-2 px-3">Apply</button>
                 </form>
             </div>
-    
+
             <div class="right">
                 <div class="brands p-4 rounded bg-light mb-2 d-flex">
-                    <img class="img-zoom mx-auto my-3 logo" :src="carBrandsImages[0]" alt="#">
-                    <img class="img-zoom mx-auto my-3 logo" :src="carBrandsImages[1]" alt="#">
-                    <img class="img-zoom mx-auto my-3 logo" :src="carBrandsImages[2]" alt="#">
-                    <img class="img-zoom mx-auto my-3 logo" :src="carBrandsImages[3]" alt="#">
-                    <img class="img-zoom mx-auto my-3 logo" :src="carBrandsImages[4]" alt="#">
+                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[0]" alt="#">
+                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[1]" alt="#">
+                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[2]" alt="#">
+                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[3]" alt="#">
+                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[4]" alt="#">
                 </div>
 
                 <section class="bg-light mt-2 rounded">
@@ -169,7 +167,6 @@
                 </section>
             </div>
         </div>
-
     </Layout>
 </template>
 
@@ -201,14 +198,10 @@ export default {
 
 <style scoped>
     .logo {
-        width: 120px;
-    }
-
-    .box {
-        margin-top: 100px
+        width: 100px;
     }
 
     #create {
-        margin-top: 120px;
+        margin-top: 20px;
     }
 </style>

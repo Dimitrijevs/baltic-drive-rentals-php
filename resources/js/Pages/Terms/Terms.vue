@@ -1,15 +1,15 @@
 <template>
     <Layout>
-        <section class="mb-5" id="section">
+        <section class="mb-3" id="section">
 
-            <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-4">
-                <Link :href="route('terms.create')" class="bg-primary nav-link h1 text-white bg-primary py-3 px-4 rounded img-zoom">Create new Term</Link>
+            <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-3">
+                <Link :href="route('terms.create')" class="bg-warning nav-link h1 text-primary bg-primary py-3 px-4 rounded img-zoom">Create new Term</Link>
             </div>
 
             <div class="container">
                 <div class="row">
                     <div
-                        class="card bg-primary text-light mb-4 p-4"
+                        class="card bg-primary text-light mb-3 p-4"
                         v-for="(term, index) in terms"
                         :key="term.id"
                     >
@@ -86,6 +86,6 @@ export default {
 
 <style scoped>
 #section {
-    margin-top: 140px;
+    margin-top: 20px;
 }
 </style>

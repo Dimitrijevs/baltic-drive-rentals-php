@@ -31,15 +31,11 @@ class Car extends Model
         'carImage8'
     ];
 
-    public function reservations() {
-        return $this->hasMany(Reservation::class);
-    }
-
     public function getImageURLs()
     {
         $maxImages = 8;
         $images = [];
-    
+
         for ($i = 2; $i <= $maxImages; $i++) {
             $carImage = 'carImage' . $i;
             $image = $this->$carImage;
@@ -49,7 +45,7 @@ class Car extends Model
         }
 
         return $images;
-    } 
+    }
 
     public function getFirstImageURL()
     {
