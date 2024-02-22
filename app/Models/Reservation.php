@@ -10,10 +10,19 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'start',
-        'end',
+        'user_id',
+        'car_id',
+        'start_time',
         'car_start_point',
         'car_end_point',
-        'end_price'
+        'start_date',
+        'end_date',
+        'end_price',
+        'kilometers',
     ];
+
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
 }
