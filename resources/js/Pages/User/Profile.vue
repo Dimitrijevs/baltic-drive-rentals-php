@@ -1,38 +1,22 @@
 <template>
     <Layout>
         <div class="profile d-flex mx-auto mb-5">
-            <div
-                class="profileImg-navBar text-center rounded bg-light me-2 p-5"
-            >
-                <img :src="user.avatar" alt="" class="rounded-circle z-1" />
+            <div class="profileImg-navBar text-center rounded bg-light me-2 p-5">
+                <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
                 <ul>
                     <li class="m-1">
-                        <a
-                            :href="route('home')"
-                            class="text-secondary h5 text-decoration-none"
-                            >Home Page</a
-                        >
+                        <a :href="route('home')" class="text-secondary h5 text-decoration-none">Home Page</a>
                     </li>
                     <li class="m-1">
-                        <Link
-                            :href="route('edit', { user: $page.props.auth })"
-                            class="text-secondary h5 text-decoration-none"
-                            >Edit Profile</Link
-                        >
+                        <Link :href="route('edit', { user: $page.props.auth })"
+                            class="text-secondary h5 text-decoration-none">Edit Profile</Link>
                     </li>
                     <li class="m-1">
-                        <Link
-                            :href="route('logout')"
-                            class="text-secondary h5 text-decoration-none"
-                            >Log Out</Link
-                        >
+                        <Link :href="route('logout')" class="text-secondary h5 text-decoration-none">Log Out</Link>
                     </li>
                     <li class="m-1">
-                        <button
-                            @click="destroy(user.id)"
-                            type="submit"
-                            class="btn border-none bg-danger h5 py-2 px-3 text-white"
-                        >
+                        <button @click="destroy(user.id)" type="submit"
+                            class="btn border-none bg-danger h5 py-2 px-3 text-white">
                             Delete Account
                         </button>
                     </li>
@@ -65,32 +49,29 @@
                         </li>
                     </ul>
                 </div>
-                <div
-                    class="rent-history rounded bg-light mt-2 p-5 overflow-auto"
-                >
+                <div class="rent-history rounded bg-light mt-2 p-5 overflow-auto">
                     <h3 class="text-center">Rent History</h3>
                     <ul class="rents list-unstyled">
                         <li class="rent">
-                            <p class="m-1">Car Name</p>
-                            <p class="m-1">Total Days</p>
-                            <p class="m-1">Total KM</p>
-                            <p class="rounded py-1 px-2 m-1">Total Price</p>
+                            <p class="m-1">Car</p>
+                            <p class="m-1">Start Date</p>
+                            <p class="m-1">End Date</p>
+                            <p class="m-1">Drived distance (Km)</p>
+                            <p class="rounded py-1 px-2 m-1">Total price (€)</p>
                         </li>
                         <hr class="m-1" />
-                        <li class="rent">
-                            <p class="m-1">Car Name</p>
-                            <p class="m-1">Total Days</p>
-                            <p class="m-1">Total KM</p>
-                            <p class="rounded py-1 px-2 m-1">Total Price</p>
-                        </li>
-                        <hr class="m-1" />
-                        <li class="rent">
-                            <p class="m-1">Car Name</p>
-                            <p class="m-1">Total Days</p>
-                            <p class="m-1">Total KM</p>
-                            <p class="rounded py-1 px-2 m-1">Total Price</p>
-                        </li>
                     </ul>
+                    <ul class="rents list-unstyled" v-for="(reservation, index) in reservations" :key="index">
+                        <li class="rent">
+                            <p class="m-1">{{ cars[index].brand }} {{ cars[index].model }}</p>
+                            <p class="m-1">{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</p>
+                            <p class="m-1">{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</p>
+                            <p class="m-1">{{ reservation.kilometers }} Km</p>
+                            <p class="rounded py-1 px-2 m-1 bg-primary text-warning">{{ reservation.end_price }}€</p>
+                        </li>
+                        <hr class="m-1" />
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -113,6 +94,14 @@ export default {
             type: Object,
             required: true,
         },
+        reservations: {
+            type: Array,
+            required: true,
+        },
+        cars: {
+            type: Array,
+            required: true,
+        }
     },
     data() {
         return {
@@ -132,9 +121,13 @@ export default {
 </script>
 
 <style scoped>
+#avatar {
+    max-height: 240px;
+}
+
 .profile {
-    width: 70%;
-    margin-top: 100px;
+    width: 60%;
+    margin-top: 20px;
 }
 
 .profile .right-info {
