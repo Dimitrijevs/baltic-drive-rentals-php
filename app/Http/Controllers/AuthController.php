@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserAuthenticateRequest;
 
 class AuthController extends Controller
 {
@@ -13,20 +13,13 @@ class AuthController extends Controller
         return Inertia::render('Auth/Register');
     }
 
-    public function store() {
-        $validated = request()->validate([
-            'name' => 'required|min:3|max:40',
-            'phone_number' => 'required|min:8|max:20',
-            'email' =>'required|email|unique:users,email',
-            'password' => 'required|min:3|confirmed'
-        ]);
+    public function store(UserCreateRequest $request) {
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'phone_number' => $validated['phone_number'],
-            'email' => $validated['email'],
-            'password' => $validated['password']
-        ]);
+        User::create([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),]);
 
         // Mail::to($user->email)
         // ->send(new WelcomeEmail($user));
@@ -38,13 +31,9 @@ class AuthController extends Controller
         return Inertia::render('Auth/Login');
     }
 
-    public function authenticate(){
-        $validated = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:3',
-        ]);
+    public function authenticate(UserAuthenticateRequest $request){
 
-        if(auth()->attempt($validated)){
+        if(auth()->attempt($request->validated())){
             request()->session()->regenerate();
 
             return redirect()->route('home')->with('message', 'Loged In successfully!');

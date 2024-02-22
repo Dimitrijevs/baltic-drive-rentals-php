@@ -6,16 +6,30 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
     public function profile($id) {
         $user = User::find($id);
 
-        $user['avatar'] = $user->getImageURL();
-        $user['created_at'] = $user['created_at']->format('d.m.Y');
+        $reservations = $user->reservations()->orderBy('created_at', 'desc')->get();
 
-        return Inertia::render("User/Profile")->with('user', $user);
+        $cars = [];
+        foreach ($reservations as $reservation) {
+            $cars[] = [
+                'brand' => $reservation->car->brand,
+                'model' => $reservation->car->model,
+            ];
+        }
+
+        $user['avatar'] = $user->getImageURL();
+
+        return Inertia::render("User/Profile", [
+            'user' => $user,
+            'reservations' => $reservations,
+            'cars' => $cars,
+        ]);
     }
 
     public function edit($id) {
@@ -25,61 +39,28 @@ class UserController extends Controller
         return Inertia::render("User/Edit")->with('user', $user);
     }
 
-    public function update(){
+    public function update(UserUpdateRequest $request) {
         $id = auth()->user()->id;
-
         $user = User::find($id);
-        $validated = [];
 
-        if (request()->has('name')) {
-            $validated = request()->validate([
-                'name' => 'required|min:3|max:40',
-            ]);
-        }
+        $validatedData = $request->validated();
 
-        if (request()->has('phone_number')) {
-            $validated = request()->validate([
-                'phone_number' => 'required|min:8|max:20',
-            ]);
-        } 
-
-        if (request()->has('email')) {
-            $validated = request()->validate([
-                'email' => 'required|email|unique:users,email',
-            ]);
-        }
-
-        if (request()->has('avatar')) {
-            $validated = request()->validate([
-                'avatar' => 'required|image',
-            ]);
-
+        if (isset($validatedData['avatar'])) {
             $avatarPath = request()->file('avatar')->store('profile', 'public');
-            $validated['avatar'] = $avatarPath;
-
-            if($user->avatar) {
+            $validatedData['avatar'] = $avatarPath;
+            if ($user->avatar) {
                 Storage::disk('public')->delete($user->avatar);
             }
-        };
+        }
 
-        if (request()->has('password') && Hash::check(request()->old_password, $user->password)) {
-            request()->validate([
-                'old_password' => 'required',
-                'password' => 'required|min:3|confirmed',
-            ]);
-
-            $user->update([
-                'password' => Hash::make(request()->password),
-            ]);
-
+        if (isset($validatedData['password']) && Hash::check(request()->old_password, $user->password)) {
+            $validatedData['password'] = Hash::make($validatedData['password']);
             auth()->logout();
             request()->session()->invalidate();
             request()->session()->regenerateToken();
-        } else {
-            return redirect()->route('home')->with('message', 'Profile was not updated');
         }
 
-        $user->update($validated);
+        $user->update($validatedData);
 
         return redirect()->route('home')->with('message', 'Profile updated successfully!');
     }

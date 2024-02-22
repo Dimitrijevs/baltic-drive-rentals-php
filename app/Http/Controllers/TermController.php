@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Term;
 use Inertia\Inertia;
+use App\Http\Requests\TermStoreRequest;
 
 class TermController extends Controller
 {
@@ -16,16 +17,10 @@ class TermController extends Controller
         return Inertia::render('Terms/Create');
     }
 
-    public function store() {
-
-        $validated = request()->validate([
-            'title' => 'required|min:4|max:30',
-            'content' => 'required|min:30|unique:terms,content'
-        ]);
-
+    public function store(TermStoreRequest $request) {
         Term::create([
-            'title' => $validated['title'],
-            'content' => $validated['content']
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
         ]);
 
         return redirect()->route('home')->with('message', 'Term created successfully!');
@@ -36,13 +31,8 @@ class TermController extends Controller
         return Inertia::render("Terms/Edit", compact('term'));
     }
 
-    public function update($term_id) {
-        $validated = request()->validate([
-            'title' => 'required|min:4|max:30',
-            'content' => 'required|min:30|unique:terms,content'
-        ]);
-
-        Term::find($term_id)->update($validated);
+    public function update(TermStoreRequest $request ,$term_id) {
+        Term::find($term_id)->update($request->validated());
 
         return redirect()->route('home')->with('message', 'Term updated successfully');
     }
