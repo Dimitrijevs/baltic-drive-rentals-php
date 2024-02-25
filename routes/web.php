@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LearnController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\ReservationController;
 */
 
 //home
-Route::get('/', [HomeController::class, 'index'])->name('home'); 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // auth
 //register
@@ -44,7 +45,7 @@ Route::get('/profile/{user}', [UserController::class, 'profile'])->middleware('a
 Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('edit');
 Route::put('/profile/{user}/edit', [UserController::class, 'update'])->name('update');
 
-//delete 
+//delete
 Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
 
 
@@ -53,12 +54,10 @@ Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware(
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 
 //create
-Route::get('/terms/create', [TermController::class, 'create'])->name('terms.create'); 
-Route::post('/terms/create', [TermController::class, 'store']);
+Route::post('/terms/create', [TermController::class, 'store'])->name('terms.create');
 
 //edit
-Route::get('/terms/{term}/edit', [TermController::class, 'edit'])->middleware('auth')->name('terms.edit');
-Route::put('/terms/{term}/edit', [TermController::class, 'update']);
+Route::put('/terms/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
 
 //delete
 Route::delete('terms/{term}', [TermController::class, 'destroy'])->middleware('auth')->name('terms.delete');
@@ -82,7 +81,12 @@ Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
 Route::post('/cars/{car}', [ReservationController::class, 'store'])->name('reservation');
 
 
-// Reservations
+// Likes
+// like
+Route::post('/like', [LikeController::class, 'store'])->name('like');
+
+// unlike
+Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
 
 
 

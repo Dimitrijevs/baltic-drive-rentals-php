@@ -59,6 +59,14 @@ export default {
             required: true,
         },
     },
+    mounted() {
+        let modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
+
+        document.body.style.overflow = 'auto';
+    },
 };
 </script>
 

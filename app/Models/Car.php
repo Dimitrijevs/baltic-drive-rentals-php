@@ -31,6 +31,10 @@ class Car extends Model
         'carImage8'
     ];
 
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
     public function getImageURLs()
     {
         $maxImages = 8;

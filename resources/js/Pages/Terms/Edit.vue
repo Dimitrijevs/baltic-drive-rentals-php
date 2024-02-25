@@ -1,80 +1,46 @@
 <template>
-    <Layout>
-        <div class="container">
-            <div class="row" id="section">
-                <h2>Updated Term</h2>
+    <button type="button" class="btn btn-warning text-primary mb-3" data-bs-toggle="modal" :data-bs-target="'#editTermModal' + term.id">
+        Edit
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" :id="'editTermModal' + term.id" tabindex="-1" :aria-labelledby="'editTermModalLabel' + term.id" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" :id="'editTermModalLabel' + term.id">Create New Term</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                 <form @submit.prevent="handleSubmit">
-                    <div class="card bg-primary text-light mb-2">
-                        <div class="card-body text-center">
-                            <input
-                                v-model="form.title"
-                                type="text"
-                                name="title"
-                                id="title"
-                                class="p-2 mb-3"
-                                
-                            />
-                            <div class="d-block mt-2" v-if="errors.title">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.title }}
-                                </span>
-                            </div>
-                            <textarea
-                                v-model="form.content"
-                                name="content"
-                                id="content"
-                                cols="126"
-                                rows="6"
-                                
-                                ></textarea
-                            >
-                            <div class="d-block mt-2" v-if="errors.content">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.content }}
-                                </span>
-                            </div>
+                    <div class="modal-body">
+                        <div class="form-group mt-3">
+                            <label for="title" class="text-dark">Title:</label><br />
+                            <input v-model="form.title" type="text" name="title" id="title" class="form-control" />
+                            <div v-if="errors.title" class="text-danger">{{ errors.title }}</div>
                         </div>
-                        <div
-                            class="d-flex justify-content-end align-items-center mb-3 me-3"
-                        >
-                            <div class="form-group">
-                                <button
-                                    type="submit"
-                                    class="btn btn-warning text-primary py-2 px-3"
-                                >
-                                    Save Term
-                                </button>
-                            </div>
+                        <div class="form-group mt-3">
+                            <label for="password" class="text-dark">Term Text:</label><br />
+                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5"></textarea>
+                            <div v-if="errors.content" class="text-danger">{{ errors.content }}</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <div class="form-group d-flex justify-content-end">
+                            <button type="submit" name="submit"
+                                class="btn btn-primary btn-md h3 text-warning">Submit</button>
                         </div>
                     </div>
                 </form>
-
-                <h2 class="mt-5">Former Term</h2>
-                <div class="card bg-primary text-light mb-4">
-                    <div class="card-body text-center">
-                        <div
-                            class="mb-2"
-                        >
-                            <h3 class="card-title">{{ term.title }}</h3>
-                        </div>
-                        <p class="card-tex text-light">
-                            {{ term.content }}
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
-    </Layout>
+    </div>
 </template>
 
 <script>
-import Layout from "../../Layout/App.vue";
 import { useForm } from "@inertiajs/vue3";
 
 export default {
-    components: {
-        Layout,
-    },
     props: {
         errors: Object,
         term: {
@@ -97,8 +63,4 @@ export default {
 };
 </script>
 
-<style>
-#section {
-    margin: 140px auto 60px;
-}
-</style>
+<style scoped></style>

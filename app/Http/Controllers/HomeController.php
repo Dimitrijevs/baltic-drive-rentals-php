@@ -24,6 +24,7 @@ class HomeController extends Controller
                 'price_per_day' => $car->price_per_day,
                 'price_per_km' => $car->price_per_km,
                 'carImageURL' => $car->getFirstImageURL(),
+                'likes' => $car->likes->count(),
             ];
         });
 

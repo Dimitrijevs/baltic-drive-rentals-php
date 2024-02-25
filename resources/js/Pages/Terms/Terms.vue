@@ -1,10 +1,7 @@
 <template>
     <Layout>
         <section class="mb-3" id="section">
-
-            <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-3">
-                <Link :href="route('terms.create')" class="bg-warning nav-link h1 text-primary bg-primary py-3 px-4 rounded img-zoom">Create new Term</Link>
-            </div>
+            <CreateTermModal :errors="$page.props.errors" />
 
             <div class="container">
                 <div class="row">
@@ -29,13 +26,7 @@
                                     v-if="$page.props.isAdmin"
                                     class="mb-2 d-flex justify-content-center"
                                 >
-                                    <Link
-                                        :href="
-                                            route('terms.edit', term.id)
-                                        "
-                                        class="btn btn-warning text-primary mb-3"
-                                        >Edit</Link
-                                    >
+                                    <EditTermModal :term="term" :errors="$page.props.errors" />
                                     <button
                                         @click="destroy(term.id)"
                                         type="submit"
@@ -60,10 +51,14 @@
 import Layout from "../../Layout/App.vue";
 import { router } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
+import CreateTermModal from "./Create.vue";
+import EditTermModal from "./Edit.vue";
 
 export default {
     components: {
         Layout,
+        EditTermModal,
+        CreateTermModal,
         Link,
     },
     props: {

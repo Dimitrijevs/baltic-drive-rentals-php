@@ -13,17 +13,13 @@ class TermController extends Controller
         return Inertia::render('Terms/Terms', compact('terms'));
     }
 
-    public function create() {
-        return Inertia::render('Terms/Create');
-    }
-
     public function store(TermStoreRequest $request) {
         Term::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->route('home')->with('message', 'Term created successfully!');
+        return redirect()->route('home')->with('message', 'Term created successfully');
     }
 
     public function edit($term_id) {

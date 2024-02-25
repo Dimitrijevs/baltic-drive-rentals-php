@@ -52,12 +52,16 @@ class User extends Authenticatable
         return $this->hasMany(Reservation::class);
     }
 
+    public function likes() {
+        return $this->hasMany(Like::class);
+    }
+
     public function getImageURL()
     {
         if ($this->avatar) {
             return url('storage/'.$this->avatar);
         }
-    
+
         return url('/images/default-profile.png');
     }
 }
