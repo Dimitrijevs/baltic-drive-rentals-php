@@ -12,21 +12,19 @@ class HomeController extends Controller
 
         //new arriavals
         $cars = Car::orderBy('created_at', 'DESC')
-                ->take(6)
-                ->select('id', 'brand', 'model', 'price_per_day', 'price_per_km', 'carImage1')
-                ->get();
+            ->take(6)
+            ->get();
 
-        $carsWithImageURLs = $cars->map(function ($car) {
-            return [
-                'id' => $car->id,
-                'brand' => $car->brand,
-                'model' => $car->model,
-                'price_per_day' => $car->price_per_day,
-                'price_per_km' => $car->price_per_km,
-                'carImageURL' => $car->getFirstImageURL(),
-                'likes' => $car->likes->count(),
-            ];
-        });
+        foreach ($cars as $car) {
+            $car->carImage1 = asset($car->carImage1);
+            $car->likesCount = $car->likes->count();
+        }
+
+        if(auth()->user()){
+            foreach ($cars as $car) {
+                $car->isLikedByUser = $car->likes()->where('user_id', auth()->id())->exists();
+            }
+        }
 
         // start
         $mazdaImage = asset(Storage::url('carImages/wAjkoVEnYq4iVdsEiKWqvoECalR9xoRw6T2qgThF.png'));
@@ -47,7 +45,7 @@ class HomeController extends Controller
         return Inertia::render('Home/Home', [
             'mazdaImage' => $mazdaImage,
             'teslaImage' => $teslaImage,
-            'cars' => $carsWithImageURLs,
+            'cars' => $cars,
             'getStartedURLs' => $getStartedURLs,
             'parkingImage' => $parkingImage,
         ]);

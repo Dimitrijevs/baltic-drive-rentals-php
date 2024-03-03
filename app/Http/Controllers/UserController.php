@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\Like;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Hash;
@@ -15,12 +17,42 @@ class UserController extends Controller
 
         $reservations = $user->reservations()->orderBy('created_at', 'desc')->get();
 
-        $cars = [];
         foreach ($reservations as $reservation) {
             $cars[] = [
                 'brand' => $reservation->car->brand,
                 'model' => $reservation->car->model,
             ];
+        }
+
+
+        $likedCarIds = Like::where('user_id', $user->id)
+                   ->pluck('car_id')
+                   ->toArray();
+
+        foreach ($likedCarIds as $carId) {
+            $likedCars[] = Car::find($carId);
+        }
+
+        foreach ($likedCars as $likedCar) {
+            $likedCar->carImage1 = asset($likedCar->carImage1);
+            $likedCar->likesCount = $likedCar->likes->count();
+        }
+
+        if(auth()->user()){
+            foreach ($likedCars as $likedCar) {
+                $likedCar['isLikedByUser'] = $likedCar->likes()->where('user_id', auth()->id())->exists();
+            }
+        }
+
+        foreach ($likedCars as $likedCar) {
+            $likedCar->carImage1 = asset($likedCar->carImage1);
+            $likedCar->likesCount = $likedCar->likes->count();
+        }
+
+        if(auth()->user()){
+            foreach ($likedCars as $likedCar) {
+                $likedCar->isLikedByUser = $likedCar->likes()->where('user_id', auth()->id())->exists();
+            }
         }
 
         $user['avatar'] = $user->getImageURL();
@@ -29,6 +61,7 @@ class UserController extends Controller
             'user' => $user,
             'reservations' => $reservations,
             'cars' => $cars,
+            'likedCars' => $likedCars,
         ]);
     }
 

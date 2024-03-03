@@ -83,10 +83,10 @@ Route::post('/cars/{car}', [ReservationController::class, 'store'])->name('reser
 
 // Likes
 // like
-Route::post('/like', [LikeController::class, 'store'])->name('like');
+Route::post('/cars/{car}/like', [LikeController::class, 'toggle'])->name('like');
 
 // unlike
-Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
+Route::post('/cars/{car}/unlike', [LikeController::class, 'destroy'])->name('unlike');
 
 
 
@@ -97,9 +97,3 @@ Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
 // GET	/photos/{photo}/edit	edit	photos.edit
 // PUT/PATCH	/photos/{photo}	update	photos.update
 // DELETE	/photos/{photo}	destroy	photos.destroy
-
-
-
-
-// Environmental Impact Tracking
-// Reward Programs

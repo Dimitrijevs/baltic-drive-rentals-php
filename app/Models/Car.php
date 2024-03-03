@@ -32,6 +32,10 @@ class Car extends Model
     ];
 
     public function likes() {
+        return $this->belongsToMany(User::class, 'likes');
+    }
+
+    public function likes_count() {
         return $this->hasMany(Like::class);
     }
 

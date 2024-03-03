@@ -19,12 +19,7 @@ class TermController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->route('home')->with('message', 'Term created successfully');
-    }
-
-    public function edit($term_id) {
-        $term = Term::find($term_id);
-        return Inertia::render("Terms/Edit", compact('term'));
+        return redirect()->route('home')->with('message', 'Term created successfully!');
     }
 
     public function update(TermStoreRequest $request ,$term_id) {

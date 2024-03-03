@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Like;
 
 class LikeController extends Controller
 {
-    public function store($car_id){
+    public function toggle(Car $car){
+        $car->likes()->toggle(auth()->id());
 
-        dd($car_id);
-        $user_id = request()->user();
-
-        Like::create(
-            [
-                'user_id' => $user_id,
-                'car_id' => $car_id
-            ]
-        );
+        return redirect()->back();
     }
 }

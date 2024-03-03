@@ -5,21 +5,21 @@
                 <h1 class="text-center mb-2 text-warning">
                     {{ car.brand }} {{ car.model }}
                 </h1>
-                <div class="px-5 mb-2">
+                <div class="px-5">
                     <div id="main-container" class="container">
                         <div class="d-flex">
-                            <div id="statistics" class="me-5">
-                                <ul class="list-unstyled">
-                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0">
+                            <div id="statistics" class="me-2">
+                                <ul class="list-unstyled mb-2">
+                                    <li class="bg-light py-2 px-4 d-flex mb-2 mt-0 rounded">
                                         <p class="mb-0 me-2 fw-bold">Name:</p>
                                         <span class="">{{ car.brand }}
                                             {{ car.model }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">Year:</p>
                                         <span class="">{{ car.year }}.</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Body Type:
                                         </p>
@@ -27,13 +27,13 @@
                                             car.body_type
                                         }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Gearbox:
                                         </p>
                                         <span class="">{{ car.gearbox }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Fuel Type:
                                         </p>
@@ -41,31 +41,49 @@
                                             car.fuel_type
                                         }}</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Horsepowers:
                                         </p>
                                         <span class="">{{ car.horsepower }}Hp</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             CO2 Emissions:
                                         </p>
                                         <span class="">{{ car.emissions }}g/km</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price Per Day:
                                         </p>
                                         <span class="">{{ car.price_per_day }}€</span>
                                     </li>
-                                    <li class="bg-light py-2 px-4 d-flex my-2">
+                                    <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
                                             Price Per Km:
                                         </p>
                                         <span class="">{{ car.price_per_km }}€</span>
                                     </li>
                                 </ul>
+                                <div>
+                                    <button v-if="$page.props.auth" class="btn btn-light border-none px-2 py-0 btn-48"
+                                        @click="toggleLike(car.id)">
+                                        <div class="d-flex align-items-center m-0">
+                                            {{ car.likesCount }}
+                                            <i class="bi h4 text-danger ms-1 mt-2"
+                                            :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
+                                        </div>
+                                    </button>
+                                    <Link v-if="!$page.props.auth" :href="route('login')">
+                                        <button class="btn btn-light border-none px-2 py-2 btn-48">
+                                            <div class="d-flex align-items-center m-0">
+                                                {{ car.likesCount }}
+                                                <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                            </div>
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
 
                             <div id="carouselExample" class="carousel slide">
@@ -357,6 +375,24 @@ export default {
             return this.calculateTotalPrice();
         },
     },
+    data() {
+        return {
+            isPressed: {}
+        }
+    },
+    methods: {
+        toggleLike(carId) {
+            this.$inertia.post(`/cars/${carId}/like`, {}, { preserveScroll: true })
+        }
+    },
+    mounted() {
+        let modalBackdrop = document.querySelector('.modal-backdrop');
+        if (modalBackdrop) {
+            modalBackdrop.remove();
+        }
+
+        document.body.style.overflow = 'auto';
+    },
 };
 </script>
 
@@ -379,5 +415,8 @@ export default {
 
 input {
     width: 400px;
+}
+.btn-48{
+    height: 48px;
 }
 </style>

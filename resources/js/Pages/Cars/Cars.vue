@@ -1,7 +1,8 @@
 <template>
     <Layout>
         <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-0">
-            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add New Car</a>
+            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add New
+                Car</a>
         </div>
 
         <div class="box d-flex mx-auto my-3 justify-content-center">
@@ -11,23 +12,28 @@
                         <div class="filter-box">
                             <h4>Brand</h4>
                             <div class="one-line">
-                                <label for="audiCheckbox"><input type="checkbox" id="audiCheckbox" name="brands[]" value="Audi">
+                                <label for="audiCheckbox"><input type="checkbox" id="audiCheckbox" name="brands[]"
+                                        value="Audi">
                                     Audi</label>
                             </div>
                             <div class="one-line">
-                                <label for="bmwCheckbox"><input type="checkbox" id="bmwCheckbox" name="brands[]" value="BMW">
+                                <label for="bmwCheckbox"><input type="checkbox" id="bmwCheckbox" name="brands[]"
+                                        value="BMW">
                                     BMW</label>
                             </div>
                             <div class="one-line">
-                                <label for="mazdaCheckbox"><input type="checkbox" id="mazdaCheckbox" name="brands[]" value="Mazda">
+                                <label for="mazdaCheckbox"><input type="checkbox" id="mazdaCheckbox" name="brands[]"
+                                        value="Mazda">
                                     Mazda</label>
                             </div>
                             <div class="one-line">
-                                <label for="skodaCheckbox"><input type="checkbox" id="skodaCheckbox" name="brands[]" value="Skoda">
+                                <label for="skodaCheckbox"><input type="checkbox" id="skodaCheckbox" name="brands[]"
+                                        value="Skoda">
                                     Skoda</label>
                             </div>
                             <div class="one-line">
-                                <label for="teslaCheckbox"><input type="checkbox" id="teslaCheckbox" name="brands[]" value="Tesla">
+                                <label for="teslaCheckbox"><input type="checkbox" id="teslaCheckbox" name="brands[]"
+                                        value="Tesla">
                                     Tesla</label>
                             </div>
                             <div class="one-line">
@@ -35,7 +41,8 @@
                                         value="Toyota"> Toyota</label>
                             </div>
                             <div class="one-line">
-                                <label for="vwCheckbox"><input type="checkbox" id="vwCheckbox" name="brands[]" value="Volkswagen">
+                                <label for="vwCheckbox"><input type="checkbox" id="vwCheckbox" name="brands[]"
+                                        value="Volkswagen">
                                     VW</label>
                             </div>
                             <hr>
@@ -44,16 +51,16 @@
                         <div class="filter-box">
                             <h4>Body Type</h4>
                             <div class="one-line">
-                                <label for="cabrioletCheckbox"><input type="checkbox" id="cabrioletCheckbox" name="body_types[]"
-                                        value="Cabriolet"> Cabriolet</label>
+                                <label for="cabrioletCheckbox"><input type="checkbox" id="cabrioletCheckbox"
+                                        name="body_types[]" value="Cabriolet"> Cabriolet</label>
                             </div>
                             <div class="one-line">
                                 <label for="estateCheckbox"><input type="checkbox" id="estateCheckbox" name="body_types[]"
                                         value="Estate"> Estate</label>
                             </div>
                             <div class="one-line">
-                                <label for="hatchbackCheckbox"><input type="checkbox" id="hatchbackCheckbox" name="body_types[]"
-                                        value="Hatchback"> Hatchback</label>
+                                <label for="hatchbackCheckbox"><input type="checkbox" id="hatchbackCheckbox"
+                                        name="body_types[]" value="Hatchback"> Hatchback</label>
                             </div>
                             <div class="one-line">
                                 <label for="sedanCheckbox"><input type="checkbox" id="sedanCheckbox" name="body_types[]"
@@ -87,7 +94,8 @@
                         <div class="filter-box">
                             <h4>Gearbox</h4>
                             <div class="one-line">
-                                <label for="automaticCheckbox"><input type="checkbox" id="automaticCheckbox"> Automatic</label>
+                                <label for="automaticCheckbox"><input type="checkbox" id="automaticCheckbox">
+                                    Automatic</label>
                             </div>
                             <div class="one-line">
                                 <label for="manualCheckbox"><input type="checkbox" id="manualCheckbox"> Manual</label>
@@ -114,7 +122,8 @@
                                     70€</label>
                             </div>
                             <div class="one-line">
-                                <label for="upTo100Checkbox"><input type="radio" name="priceRange" id="upTo100Checkbox"> Up to
+                                <label for="upTo100Checkbox"><input type="radio" name="priceRange" id="upTo100Checkbox"> Up
+                                    to
                                     100€</label>
                             </div>
                         </div>
@@ -136,12 +145,9 @@
                     <div class="p-5">
                         <div class="container text-center">
                             <div class="row justify-content-between">
-                                <div class="card col-3 p-0 m-3 bg-primary text-light border-primary" v-for="car in cars" :key="car.id">
-                                    <img
-                                        :src="car.carImageURL"
-                                        class="card-img-top img-fluid"
-                                        alt=""
-                                    />
+                                <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
+                                    v-for="car in cars" :key="car.id">
+                                    <img :src="car.carImageURL" class="card-img-top img-fluid" alt="" />
                                     <div class="card-body">
                                         <h3 class="card-title">
                                             {{ car.brand }} {{ car.model }}
@@ -152,12 +158,30 @@
                                         <p class="text-white">
                                             Price Per Km: {{ car.price_per_km }}€
                                         </p>
-                                        <Link
-                                            :href="route('car.show', car.id)"
-                                            class="btn btn-warning mb-1 img-zoom text-primary"
-                                        >
-                                            <i class="bi bi-chevron-right"></i> Read More
-                                        </Link>
+                                        <div class="d-flex justify-content-center">
+                                            <Link :href="route('car.show', car.id)"
+                                                class="btn btn-warning mb-3 img-zoom text-primary">
+                                                <i class="bi bi-chevron-right"></i> Read More
+                                            </Link>
+                                            <button v-if="$page.props.auth"
+                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
+                                                @click="toggleLike(car.id)">
+                                                <div class="d-flex align-items-center m-0">
+                                                    {{ car.likesCount }}
+                                                    <i class="bi h4 text-danger ms-1 mt-2"
+                                                        :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
+                                                </div>
+                                            </button>
+                                            <Link v-if="!$page.props.auth" :href="route('login')">
+                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48">
+                                                <div class="d-flex align-items-center m-0">
+                                                    {{ car.likesCount }}
+                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                                </div>
+                                            </button>
+                                            </Link>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div v-html="pagination"></div>
@@ -185,23 +209,36 @@ export default {
             required: true
         },
         cars: {
-            type: Array,
+            type: Object,
             required: true
         },
         pagination: {
             type: String,
             required: true
         },
+    },
+    data() {
+        return {
+            isPressed: {}
+        }
+    },
+    methods: {
+        toggleLike(carId) {
+            this.$inertia.post(`/cars/${carId}/like`, {}, { preserveScroll: true })
+        }
     }
 }
 </script>
 
 <style scoped>
-    .logo {
-        width: 100px;
-    }
+.logo {
+    width: 100px;
+}
 
-    #create {
-        margin-top: 20px;
-    }
-</style>
+#create {
+    margin-top: 20px;
+}
+
+.btn-48 {
+    height: 48px;
+}</style>

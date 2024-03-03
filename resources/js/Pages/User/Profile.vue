@@ -1,29 +1,31 @@
 <template>
     <Layout>
         <div class="profile d-flex mx-auto mb-5">
-            <div class="profileImg-navBar text-center rounded bg-light me-2 p-5">
+            <div class="profileImg-navBar text-center rounded bg-light me-2 p-3">
                 <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
-                <ul>
-                    <li class="m-1">
-                        <a :href="route('home')" class="text-secondary h5 text-decoration-none">Home Page</a>
+                <ul class="list-unstyled">
+                    <li class="mb-1 mt-0">
+                        <Link :href="route('edit', { user: $page.props.auth })" class="btn btn-primary d-block py-2">
+                        <i class="bi bi-person-lines-fill me-2"></i> Edit Profile
+                        </Link>
                     </li>
-                    <li class="m-1">
-                        <Link :href="route('edit', { user: $page.props.auth })"
-                            class="text-secondary h5 text-decoration-none">Edit Profile</Link>
+                    <li class="mb-1 mt-0">
+                        <Link :href="route('logout')" class="btn btn-primary d-block py-2">
+                        <i class="bi bi-box-arrow-right me-2"></i> Log Out
+                        </Link>
                     </li>
-                    <li class="m-1">
-                        <Link :href="route('logout')" class="text-secondary h5 text-decoration-none">Log Out</Link>
+                    <li class="mb-1 mt-0">
+                        <likedCars :likedCars="likedCars"/>
                     </li>
-                    <li class="m-1">
-                        <button @click="destroy(user.id)" type="submit"
-                            class="btn border-none bg-danger h5 py-2 px-3 text-white">
-                            Delete Account
+                    <li class="mb-1 mt-0">
+                        <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216">
+                            <i class="bi bi-trash-fill me-2"></i> Delete Account
                         </button>
                     </li>
                 </ul>
             </div>
             <div class="right-info">
-                <div class="about rounded bg-light p-5">
+                <div class="about rounded bg-light p-3">
                     <h3 class="text-center">About You</h3>
                     <ul class="list-group list-group-flush lead">
                         <li>
@@ -49,29 +51,44 @@
                         </li>
                     </ul>
                 </div>
-                <div class="rent-history rounded bg-light mt-2 p-5 overflow-auto">
+                <div class="rent-history rounded bg-light mt-2 p-3 overflow-auto">
                     <h3 class="text-center">Rent History</h3>
-                    <ul class="rents list-unstyled">
-                        <li class="rent">
-                            <p class="m-1">Car</p>
-                            <p class="m-1">Start Date</p>
-                            <p class="m-1">End Date</p>
-                            <p class="m-1">Drived distance (Km)</p>
-                            <p class="rounded py-1 px-2 m-1">Total price (€)</p>
-                        </li>
-                        <hr class="m-1" />
-                    </ul>
-                    <ul class="rents list-unstyled" v-for="(reservation, index) in reservations" :key="index">
-                        <li class="rent">
-                            <p class="m-1">{{ cars[index].brand }} {{ cars[index].model }}</p>
-                            <p class="m-1">{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</p>
-                            <p class="m-1">{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</p>
-                            <p class="m-1">{{ reservation.kilometers }} Km</p>
-                            <p class="rounded py-1 px-2 m-1 bg-primary text-warning">{{ reservation.end_price }}€</p>
-                        </li>
-                        <hr class="m-1" />
-                    </ul>
-
+                    <table class="table table-sm table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Car</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">
+                                    <div class="text-center">
+                                        Driven distance (Km)
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    <div class="text-center">
+                                        Total price (€)
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(reservation, index) in reservations" :key="index">
+                                <td>{{ cars[index].brand }} {{ cars[index].model }}</td>
+                                <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
+                                <td>{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</td>
+                                <td>
+                                    <div class="text-center">
+                                        {{ reservation.kilometers }} Km
+                                    </div>
+                                </td>
+                                <td class="text-end bg-primary text-warning">
+                                    <div class="text-center">
+                                        {{ reservation.end_price }}€
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -83,11 +100,13 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import moment from "moment";
 import { router } from "@inertiajs/vue3";
+import likedCars from "./Profile/likedCars.vue";
 
 export default {
     components: {
         Layout,
         Link,
+        likedCars,
     },
     props: {
         user: {
@@ -101,7 +120,11 @@ export default {
         cars: {
             type: Array,
             required: true,
-        }
+        },
+        likedCars: {
+            type: Array,
+            required: true,
+        },
     },
     data() {
         return {
@@ -135,8 +158,7 @@ export default {
 }
 
 .profile .right-info .rent-history {
-    min-height: 400px;
-    max-height: 400px;
+    height: 420px;
 }
 
 .profile .right-info .rent-history .rents .rent p:nth-child(4) {
@@ -175,4 +197,9 @@ export default {
     align-items: flex-end;
     justify-content: space-between;
 }
+
+.width-216 {
+    width: 216px;
+}
+
 </style>

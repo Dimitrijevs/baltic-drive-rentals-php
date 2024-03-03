@@ -15,16 +15,24 @@ class CarController extends Controller
             ->select('id', 'brand', 'model', 'price_per_day', 'price_per_km', 'carImage1')
             ->paginate(9);
 
-            $carsWithImageURLs = $cars->map(function ($car) {
-                return [
-                    'id' => $car->id,
-                    'brand' => $car->brand,
-                    'model' => $car->model,
-                    'price_per_day' => $car->price_per_day,
-                    'price_per_km' => $car->price_per_km,
-                    'carImageURL' => $car->getFirstImageURL(),
-                ];
-            });
+        $carsWithImageURLs = $cars->map(function ($car) {
+            $car->carImage1 = asset($car->carImage1);
+            $car->likesCount = $car->likes->count();
+            $isLikedByUser = false;
+            if(auth()->user()){
+                $isLikedByUser = $car->likes()->where('user_id', auth()->id())->exists();
+            }
+            return [
+                'id' => $car->id,
+                'brand' => $car->brand,
+                'model' => $car->model,
+                'price_per_day' => $car->price_per_day,
+                'price_per_km' => $car->price_per_km,
+                'carImageURL' => $car->carImage1,
+                'likesCount' => $car->likesCount,
+                'isLikedByUser' => $isLikedByUser,
+            ];
+        });
 
         $carBrandsImages = array(
             asset("images/logos/audi.png"),
@@ -46,6 +54,12 @@ class CarController extends Controller
         $car['carImage1'] = $car->getFirstImageURL();
 
         $carImages = $car->getImageURLs();
+
+        $car->likesCount = $car->likes->count();
+
+        if(auth()->user()){
+            $car->isLikedByUser = $car->likes()->where('user_id', auth()->id())->exists();
+        }
 
         return Inertia::render('Cars/Car', [
             'car' => $car,
