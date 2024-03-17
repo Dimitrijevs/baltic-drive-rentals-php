@@ -1,5 +1,5 @@
 <template>
-    <footer class="p-4 bg-primary text-white text-center position-relative">
+    <footer class="p-4 bg-primary text-white text-center">
         <div class="container">
             <p class="lead text-light">
                 Copyright © 2024
@@ -14,4 +14,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

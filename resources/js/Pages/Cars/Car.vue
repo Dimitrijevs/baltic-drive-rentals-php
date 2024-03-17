@@ -1,5 +1,6 @@
 <template>
     <Layout>
+        <Message />
         <section class="p-4 bg-primary">
             <div class="container">
                 <h1 class="text-center mb-2 text-warning">
@@ -66,23 +67,28 @@
                                         <span class="">{{ car.price_per_km }}€</span>
                                     </li>
                                 </ul>
-                                <div>
-                                    <button v-if="$page.props.auth" class="btn btn-light border-none px-2 py-0 btn-48"
-                                        @click="toggleLike(car.id)">
-                                        <div class="d-flex align-items-center m-0">
-                                            {{ car.likesCount }}
-                                            <i class="bi h4 text-danger ms-1 mt-2"
-                                            :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
-                                        </div>
-                                    </button>
-                                    <Link v-if="!$page.props.auth" :href="route('login')">
-                                        <button class="btn btn-light border-none px-2 py-2 btn-48">
+                                <div class="d-flex">
+                                    <div>
+                                        <button v-if="$page.props.auth" class="btn btn-light border-none px-2 py-0 btn-48"
+                                            @click="toggleLike(car.id)">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ car.likesCount }}
-                                                <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                                <i class="bi h4 text-danger ms-1 mt-2"
+                                                :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
                                             </div>
                                         </button>
-                                    </Link>
+                                        <Link v-if="!$page.props.auth" :href="route('login')">
+                                            <button class="btn btn-light border-none px-2 py-2 btn-48">
+                                                <div class="d-flex align-items-center m-0">
+                                                    {{ car.likesCount }}
+                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                                </div>
+                                            </button>
+                                        </Link>
+                                    </div>
+                                    <div>
+                                        <Comments :profilePhoto="profilePhoto" :errors="errors" :carId="car.id" :comments="comments"/>
+                                    </div>
                                 </div>
                             </div>
 
@@ -284,6 +290,8 @@
 import Layout from "../../Layout/App.vue";
 import ContactUs from "../Home/Components/ContactUs.vue";
 import { Link, useForm } from "@inertiajs/vue3";
+import Comments from "../Cars/Comments.vue";
+import Message from "../Home/Components/Message.vue";
 
 
 export default {
@@ -291,6 +299,8 @@ export default {
         Layout,
         ContactUs,
         Link,
+        Comments,
+        Message,
     },
     props: {
         errors: Object,
@@ -299,6 +309,14 @@ export default {
             required: true,
         },
         carImages: {
+            type: Array,
+            required: true,
+        },
+        profilePhoto: {
+            type: Image,
+            required: true,
+        },
+        comments: {
             type: Array,
             required: true,
         },
@@ -416,6 +434,7 @@ export default {
 input {
     width: 400px;
 }
+
 .btn-48{
     height: 48px;
 }

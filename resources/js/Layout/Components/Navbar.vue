@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-primary">
+    <section class="bg-primary sticky-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary">
                 <div class="container-fluid px-0">
@@ -92,7 +92,7 @@
                                     >Profile Page</Link
                                 >
                             </li>
-        
+
                             <li
                                 v-if="$page.props.auth"
                                 class="nav-item d-flex align-items-center my-2 my-lg-0 bg-danger p-2 rounded me-0"
@@ -104,7 +104,7 @@
                                     >Log Out</Link
                                 >
                             </li>
-        
+
                             <li
                                 v-if="!$page.props.auth"
                                 class="nav-item d-flex align-items-center my-2 my-lg-0"
@@ -123,7 +123,7 @@
                                     >Log In</Link
                                 >
                             </li>
-        
+
                             <li
                                 v-if="!$page.props.auth"
                                 class="nav-item d-flex align-items-center my-2 my-lg-0"

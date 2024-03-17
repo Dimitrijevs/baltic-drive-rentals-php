@@ -1,6 +1,6 @@
 <template>
     <button type="button" class="btn btn-warning text-primary mb-3" data-bs-toggle="modal" :data-bs-target="'#editTermModal' + term.id">
-        Edit
+        <i class="bi bi-pencil-square h5"></i>
     </button>
 
     <!-- Modal -->

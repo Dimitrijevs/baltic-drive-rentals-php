@@ -8,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LearnController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReservationController;
 
 /*
@@ -87,6 +88,16 @@ Route::post('/cars/{car}/like', [LikeController::class, 'toggle'])->name('like')
 
 // unlike
 Route::post('/cars/{car}/unlike', [LikeController::class, 'destroy'])->name('unlike');
+
+// comments
+// store
+Route::post('/cars/{car}/comment', [CommentController::class, 'store'])->name('comment');
+
+//edit
+Route::put('/cars/{car}/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+
+//delete
+Route::delete('/cars/{car}/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
 
 
 

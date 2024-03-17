@@ -2,7 +2,7 @@
     <div
         v-if="$page.props.flash.message"
         id="message"
-        class="z-2 position-absolute mt-5 start-50 translate-middle alert alert-success alert-dismissible fade show h4 py-3 px-5"
+        class="z-10 position-absolute mt-5 start-50 translate-middle alert alert-success alert-dismissible fade show h4 py-3 px-5"
     >
         {{ $page.props.flash.message }}
         <button

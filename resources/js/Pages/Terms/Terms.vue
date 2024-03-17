@@ -5,34 +5,21 @@
 
             <div class="container">
                 <div class="row">
-                    <div
-                        class="card bg-primary text-light mb-3 p-4"
-                        v-for="(term, index) in terms"
-                        :key="term.id"
-                    >
+                    <div class="card bg-primary text-light mb-3 p-4" v-for="(term, index) in terms" :key="term.id">
                         <div class="card-body text-center">
-                            <div
-                                class="d-flex align-items-center justify-content-between mb-3"
-                            >
+                            <div class="d-flex align-items-center justify-content-between mb-3">
                                 <h3 class="card-title">
                                     <span
-                                        class="rounded-circle border border-warning bg-warning py-2 px-3 text-primary text-center me-1"
-                                        >{{ index + 1 }}</span
-                                    >
+                                        class="rounded-circle border border-warning bg-warning py-2 px-3 text-primary text-center me-1">{{
+                index + 1 }}</span>
                                     {{ term.title }}
                                 </h3>
 
-                                <div
-                                    v-if="$page.props.isAdmin"
-                                    class="mb-2 d-flex justify-content-center"
-                                >
+                                <div v-if="$page.props.isAdmin" class="mb-2 d-flex justify-content-center">
                                     <EditTermModal :term="term" :errors="$page.props.errors" />
-                                    <button
-                                        @click="destroy(term.id)"
-                                        type="submit"
-                                        class="btn btn-danger text-primary mb-3 ms-2"
-                                    >
-                                        Delete
+                                    <button @click="destroy(term.id)" type="submit"
+                                        class="btn btn-danger text-primary mb-3 ms-2">
+                                        <i class="bi bi-trash h5"></i>
                                     </button>
                                 </div>
                             </div>
