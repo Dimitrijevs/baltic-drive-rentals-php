@@ -14,9 +14,7 @@ class CarController extends Controller
 {
     public function index(Request $request)
     {
-        $cars = Car::orderBy('created_at', 'ASC')
-            ->select('id', 'brand', 'model', 'price_per_day', 'price_per_km', 'carImage1')
-            ->paginate(9);
+        $cars = Car::orderBy('created_at', 'ASC')->get();
 
         $carsWithImageURLs = $cars->map(function ($car) {
             $car->carImage1 = asset($car->carImage1);
@@ -29,6 +27,10 @@ class CarController extends Controller
                 'id' => $car->id,
                 'brand' => $car->brand,
                 'model' => $car->model,
+                'body_type' => $car->body_type,
+                'fuel_type' => $car->fuel_type,
+                'gearbox' => $car->gearbox,
+                'emissions' => $car->emissions,
                 'price_per_day' => $car->price_per_day,
                 'price_per_km' => $car->price_per_km,
                 'carImageURL' => $car->carImage1,
@@ -37,18 +39,8 @@ class CarController extends Controller
             ];
         });
 
-        $carBrandsImages = array(
-            asset("images/logos/audi.png"),
-            asset("images/logos/bmw.png"),
-            asset("images/logos/tesla.png"),
-            asset("images/logos/toyota.png"),
-            asset("images/logos/vw.png"),
-        );
-
         return Inertia::render('Cars/Cars', [
-            'carBrandsImages' => $carBrandsImages,
             'cars' => $carsWithImageURLs,
-            'pagination' => $cars->links()->toHtml(),
         ]);
     }
 
@@ -93,7 +85,7 @@ class CarController extends Controller
             'car' => $car,
             'carImages' => $carImages,
             'profilePhoto' => $profilePhoto,
-            'comments'=> $comments
+            'comments' => $comments
         ]);
     }
 

@@ -1,152 +1,28 @@
 <template>
     <Layout>
         <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-0">
-            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add New
-                Car</a>
+            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add
+                New Car</a>
         </div>
 
         <div class="box d-flex mx-auto my-3 justify-content-center">
-            <div class="left">
-                <form action="">
-                    <div class="filter rounded bg-light p-4 me-2">
-                        <div class="filter-box">
-                            <h4>Brand</h4>
-                            <div class="one-line">
-                                <label for="audiCheckbox"><input type="checkbox" id="audiCheckbox" name="brands[]"
-                                        value="Audi">
-                                    Audi</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="bmwCheckbox"><input type="checkbox" id="bmwCheckbox" name="brands[]"
-                                        value="BMW">
-                                    BMW</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="mazdaCheckbox"><input type="checkbox" id="mazdaCheckbox" name="brands[]"
-                                        value="Mazda">
-                                    Mazda</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="skodaCheckbox"><input type="checkbox" id="skodaCheckbox" name="brands[]"
-                                        value="Skoda">
-                                    Skoda</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="teslaCheckbox"><input type="checkbox" id="teslaCheckbox" name="brands[]"
-                                        value="Tesla">
-                                    Tesla</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="toyotaCheckbox"><input type="checkbox" id="toyotaCheckbox" name="brands[]"
-                                        value="Toyota"> Toyota</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="vwCheckbox"><input type="checkbox" id="vwCheckbox" name="brands[]"
-                                        value="Volkswagen">
-                                    VW</label>
-                            </div>
-                            <hr>
-                        </div>
 
-                        <div class="filter-box">
-                            <h4>Body Type</h4>
-                            <div class="one-line">
-                                <label for="cabrioletCheckbox"><input type="checkbox" id="cabrioletCheckbox"
-                                        name="body_types[]" value="Cabriolet"> Cabriolet</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="estateCheckbox"><input type="checkbox" id="estateCheckbox" name="body_types[]"
-                                        value="Estate"> Estate</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="hatchbackCheckbox"><input type="checkbox" id="hatchbackCheckbox"
-                                        name="body_types[]" value="Hatchback"> Hatchback</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="sedanCheckbox"><input type="checkbox" id="sedanCheckbox" name="body_types[]"
-                                        value="Sedan"> Sedan</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="suvCheckbox"><input type="checkbox" id="suvCheckbox" name="body_types[]"
-                                        value="Crossover"> Crossover</label>
-                            </div>
-                            <hr>
-                        </div>
-
-                        <div class="filter-box">
-                            <h4>Fuel Type</h4>
-                            <div class="one-line">
-                                <label for="dieselCheckbox"><input type="checkbox" id="dieselCheckbox"> Diesel</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="electricCheckbox"><input type="checkbox" id="electricCheckbox"> Electric</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="hybridCheckbox"><input type="checkbox" id="hybridCheckbox"> Hybrid (Petrol +
-                                    Electric)</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="petrolCheckbox"><input type="checkbox" id="petrolCheckbox"> Petrol</label>
-                            </div>
-                            <hr>
-                        </div>
-
-                        <div class="filter-box">
-                            <h4>Gearbox</h4>
-                            <div class="one-line">
-                                <label for="automaticCheckbox"><input type="checkbox" id="automaticCheckbox">
-                                    Automatic</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="manualCheckbox"><input type="checkbox" id="manualCheckbox"> Manual</label>
-                            </div>
-                            <hr>
-                        </div>
-
-                        <div class="filter-box one-select">
-                            <h4>Price</h4>
-                            <div class="one-line">
-                                <label for="upTo20Checkbox"><input type="radio" name="priceRange" id="upTo20Checkbox"> Up to
-                                    20€</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="upTo30Checkbox"><input type="radio" name="priceRange" id="upTo30Checkbox"> Up to
-                                    30€</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="upTo50Checkbox"><input type="radio" name="priceRange" id="upTo50Checkbox"> Up to
-                                    50€</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="upTo70Checkbox"><input type="radio" name="priceRange" id="upTo70Checkbox"> Up to
-                                    70€</label>
-                            </div>
-                            <div class="one-line">
-                                <label for="upTo100Checkbox"><input type="radio" name="priceRange" id="upTo100Checkbox"> Up
-                                    to
-                                    100€</label>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-warning text-primary py-2 px-3">Apply</button>
-                </form>
-            </div>
+            <Filter @setPricePerKmFilter="handlePricePerKmFilter" @setPriceFilter="handleSetPriceFilter"
+                @setGearboxFilter="handleGearboxFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
+                @updateBodyTypeFilter="handleBodyTypeFilter" @updateBrandFilter="handleBrandFilter" @setEmissionsilter="updateEmissionsilter" />
 
             <div class="right">
-                <div class="brands p-4 rounded bg-light mb-2 d-flex">
-                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[0]" alt="#">
-                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[1]" alt="#">
-                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[2]" alt="#">
-                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[3]" alt="#">
-                    <img class="img-zoom mx-auto logo" :src="carBrandsImages[4]" alt="#">
+                <div class="w-100">
+                    <Search @search="handleSearch" />
                 </div>
 
                 <section class="bg-light mt-2 rounded">
                     <div class="p-5">
                         <div class="container text-center">
                             <div class="row justify-content-between">
+                                <div class="width-1100" v-if="filteredCars.length === 0">This record doesnt exists</div>
                                 <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
-                                    v-for="car in cars" :key="car.id">
+                                    v-for="car in filteredCars" :key="car.id">
                                     <img :src="car.carImageURL" class="card-img-top img-fluid" alt="" />
                                     <div class="card-body">
                                         <h3 class="card-title">
@@ -161,7 +37,7 @@
                                         <div class="d-flex justify-content-center">
                                             <Link :href="route('car.show', car.id)"
                                                 class="btn btn-warning mb-3 img-zoom text-primary">
-                                                <i class="bi bi-chevron-right"></i> Read More
+                                            <i class="bi bi-chevron-right"></i> Read More
                                             </Link>
                                             <button v-if="$page.props.auth"
                                                 class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
@@ -181,10 +57,8 @@
                                             </button>
                                             </Link>
                                         </div>
-
                                     </div>
                                 </div>
-                                <div v-html="pagination"></div>
                             </div>
                         </div>
                     </div>
@@ -196,20 +70,20 @@
 
 <script>
 import Layout from "../../Layout/App.vue";
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
+import Search from "./Components/Search.vue";
+import Filter from "./Components/Filter.vue";
 
 export default {
     components: {
         Layout,
         Link,
+        Search,
+        Filter,
     },
     props: {
-        carBrandsImages: {
-            type: Array,
-            required: true
-        },
         cars: {
-            type: Object,
+            type: Array,
             required: true
         },
         pagination: {
@@ -219,12 +93,103 @@ export default {
     },
     data() {
         return {
-            isPressed: {}
+            isPressed: {},
+            searchFilter: '',
+            pricePerKmFilter: '',
+            pricePerDayFilter: '',
+            gearboxFilter: [],
+            fuelTypeFilters: [],
+            emissionsFilter: '',
+            bodyTypeFilters: [],
+            brandFilters: [],
         }
     },
     methods: {
         toggleLike(carId) {
             this.$inertia.post(`/cars/${carId}/like`, {}, { preserveScroll: true })
+        },
+        handleSearch(search) {
+            this.searchFilter = search;
+        },
+        handlePricePerKmFilter(pricePerKm) {
+            this.pricePerKmFilter = pricePerKm;
+        },
+        handleSetPriceFilter(pricePerDay) {
+            this.pricePerDayFilter = pricePerDay;
+        },
+        handleGearboxFilter(gearbox) {
+            if (this.gearboxFilter.includes(gearbox)) {
+                this.gearboxFilter.splice(this.gearboxFilter.indexOf(gearbox), 1);
+            } else {
+                this.gearboxFilter.push(gearbox);
+            }
+        },
+        handleFuelTypeFilter(fuelType) {
+            if (this.fuelTypeFilters.includes(fuelType)) {
+                this.fuelTypeFilters.splice(this.fuelTypeFilters.indexOf(fuelType), 1);
+            } else {
+                this.fuelTypeFilters.push(fuelType);
+            }
+        },
+        updateEmissionsilter(emissions) {
+            this.emissionsFilter = emissions;
+        },
+        handleBodyTypeFilter(bodyType) {
+            if (this.bodyTypeFilters.includes(bodyType)) {
+                this.bodyTypeFilters.splice(this.bodyTypeFilters.indexOf(bodyType), 1);
+            } else {
+                this.bodyTypeFilters.push(bodyType);
+            }
+        },
+        handleBrandFilter(brand) {
+            if (this.brandFilters.includes(brand)) {
+                this.brandFilters.splice(this.brandFilters.indexOf(brand), 1);
+            } else {
+                this.brandFilters.push(brand);
+            }
+        }
+    },
+    computed: {
+        filteredCars() {
+            let cars = this.cars;
+
+            if (this.pricePerKmFilter !== '') {
+                cars = cars.filter(car => car.price_per_km <= this.pricePerKmFilter);
+            }
+
+            if (this.pricePerDayFilter !== '') {
+                cars = cars.filter(car => car.price_per_day <= this.pricePerDayFilter);
+            }
+
+            if (this.gearboxFilter.length > 0) {
+                cars = cars.filter(car => this.gearboxFilter.includes(car.gearbox));
+            }
+
+            if (this.fuelTypeFilters.length > 0) {
+                cars = cars.filter(car => this.fuelTypeFilters.includes(car.fuel_type));
+            }
+
+            if (this.emissionsFilter !== '') {
+                cars = cars.filter(car => car.emissions <= this.emissionsFilter);
+            }
+
+            if (this.bodyTypeFilters.length > 0) {
+                cars = cars.filter(car => this.bodyTypeFilters.includes(car.body_type));
+            }
+
+            if (this.brandFilters.length > 0) {
+                cars = cars.filter(car => this.brandFilters.includes(car.brand));
+            }
+
+            if (this.searchFilter !== '') {
+                cars = cars.filter(car => car.brand.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
+                    car.model.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
+                    car.body_type.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
+                    car.fuel_type.toLowerCase().includes(this.searchFilter.toLowerCase()) ||
+                    car.gearbox.toLowerCase().includes(this.searchFilter.toLowerCase()));
+            }
+
+            return cars;
         }
     }
 }
@@ -241,4 +206,9 @@ export default {
 
 .btn-48 {
     height: 48px;
-}</style>
+}
+
+.width-1100 {
+    width: 1400px;
+}
+</style>
