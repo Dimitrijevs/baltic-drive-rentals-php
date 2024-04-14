@@ -7,9 +7,14 @@
 
         <div class="box d-flex mx-auto my-3 justify-content-center">
 
-            <Filter @setPricePerKmFilter="handlePricePerKmFilter" @setPriceFilter="handleSetPriceFilter"
-                @setGearboxFilter="handleGearboxFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
-                @updateBodyTypeFilter="handleBodyTypeFilter" @updateBrandFilter="handleBrandFilter" @setEmissionsilter="updateEmissionsilter" />
+            <div class="left">
+                <Sort @sort="handleSort" />
+
+                <Filter @setPricePerKmFilter="handlePricePerKmFilter" @setPriceFilter="handleSetPriceFilter"
+                    @setGearboxFilter="handleGearboxFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
+                    @updateBodyTypeFilter="handleBodyTypeFilter" @updateBrandFilter="handleBrandFilter"
+                    @setEmissionsilter="updateEmissionsilter" />
+            </div>
 
             <div class="right">
                 <div class="w-100">
@@ -19,8 +24,8 @@
                 <section class="bg-light mt-2 rounded">
                     <div class="p-5">
                         <div class="container text-center">
-                            <div class="row justify-content-between">
-                                <div class="width-1100" v-if="filteredCars.length === 0">This record doesnt exists</div>
+                            <div class="row justify-content-between width-1100">
+                                <div class="" v-if="filteredCars.length === 0">This record doesnt exists</div>
                                 <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
                                     v-for="car in filteredCars" :key="car.id">
                                     <img :src="car.carImageURL" class="card-img-top img-fluid" alt="" />
@@ -73,6 +78,7 @@ import Layout from "../../Layout/App.vue";
 import { Link } from "@inertiajs/vue3";
 import Search from "./Components/Search.vue";
 import Filter from "./Components/Filter.vue";
+import Sort from "./Components/Sort.vue";
 
 export default {
     components: {
@@ -80,6 +86,7 @@ export default {
         Link,
         Search,
         Filter,
+        Sort,
     },
     props: {
         cars: {
@@ -102,11 +109,12 @@ export default {
             emissionsFilter: '',
             bodyTypeFilters: [],
             brandFilters: [],
+            sortedCars: [],
         }
     },
     methods: {
         toggleLike(carId) {
-            this.$inertia.post(`/cars/${carId}/like`, {}, { preserveScroll: true })
+            this.$inertia.post(`/cars/${carId}/like`, {filteredCars}, { preserveScroll: true })
         },
         handleSearch(search) {
             this.searchFilter = search;
@@ -147,6 +155,22 @@ export default {
             } else {
                 this.brandFilters.push(brand);
             }
+        },
+        handleSort(value) {
+            console.log(value);
+            if (value === 'cheapToExpensiveDay') {
+                this.cars.sort((a, b) => a.price_per_day - b.price_per_day);
+            } else if (value === 'expensiveToCheapDay') {
+                this.cars.sort((a, b) => b.price_per_day - a.price_per_day);
+            } else if (value === 'cheapToExpensiveKM') {
+                this.cars.sort((a, b) => a.price_per_km - b.price_per_km);
+            } else if (value === 'expensiveToCheapKM') {
+                this.cars.sort((a, b) => b.price_per_km - a.price_per_km);
+            } else if (value === 'mostPopular') {
+                this.cars.sort((a, b) => b.likesCount - a.likesCount);
+            } else if (value === 'leastPopular') {
+                this.cars.sort((a, b) => a.likesCount - b.likesCount);
+            }
         }
     },
     computed: {
@@ -179,6 +203,10 @@ export default {
 
             if (this.brandFilters.length > 0) {
                 cars = cars.filter(car => this.brandFilters.includes(car.brand));
+            }
+
+            if (this.sortedCars.length > 0) {
+                cars = this.sortedCars;
             }
 
             if (this.searchFilter !== '') {
