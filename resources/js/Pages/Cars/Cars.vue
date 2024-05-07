@@ -1,8 +1,14 @@
 <template>
     <Layout>
-        <div v-if="$page.props.isAdmin" id="create" class="d-flex justify-content-center mb-0">
-            <a :href="route('cars.create')" class="bg-primary nav-link h1 text-primary bg-warning py-3 px-4 rounded">Add
-                New Car</a>
+        <div v-if="$page.props.isAdmin" id="create" class="text-center mb-0">
+            <a :href="route('cars.create')" class="btn btn-warning text-primary pb-2 align-items-center">
+                <div class="d-flex">
+                    <i class="bi bi-car-front-fill h4 me-1"></i>
+                    <p class="mb-0">
+                        Add New Car
+                    </p>
+                </div>
+            </a>
         </div>
 
         <div class="box d-flex mx-auto my-3 justify-content-center">
@@ -22,11 +28,11 @@
                 </div>
 
                 <section class="bg-light mt-2 rounded">
-                    <div class="p-5">
+                    <div class="p-2">
                         <div class="container text-center">
-                            <div class="row justify-content-between width-1100">
+                            <div class="row justify-content-between">
                                 <div class="" v-if="filteredCars.length === 0">This record doesnt exists</div>
-                                <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
+                                <div class="card col-lg-3 col-md-5 p-0 m-3 bg-primary text-light border-primary"
                                     v-for="car in filteredCars" :key="car.id">
                                     <img :src="car.carImageURL" class="card-img-top img-fluid" alt="" />
                                     <div class="card-body">
@@ -114,7 +120,7 @@ export default {
     },
     methods: {
         toggleLike(carId) {
-            this.$inertia.post(`/cars/${carId}/like`, {filteredCars}, { preserveScroll: true })
+            this.$inertia.post(`/cars/${carId}/like`, { filteredCars: this.filteredCars }, { preserveScroll: true })
         },
         handleSearch(search) {
             this.searchFilter = search;
@@ -234,9 +240,5 @@ export default {
 
 .btn-48 {
     height: 48px;
-}
-
-.width-1100 {
-    width: 1400px;
 }
 </style>

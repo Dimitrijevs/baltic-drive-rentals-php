@@ -7,14 +7,14 @@
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl"> <!-- Set modal-xl for extra large modal -->
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header justify-content-around">
                     <h5 class="modal-title" id="staticBackdropLabel">Liked cars</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row justify-content-between">
+                    <div class="row">
                         <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
                             v-for="car in likedCars" :key="car.id">
                             <img :src="car.carImage1" class="card-img-top img-fluid" alt="" />

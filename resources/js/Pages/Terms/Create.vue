@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="password" class="text-dark">Term Text:</label><br />
-                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5"></textarea>
+                            <textarea v-model="form.content" name="content" id="content" class="form-control" cols="49" rows="5"></textarea>
                             <div class="d-block mt-2" v-if="errors.content">
                                 <span class="fs-5 text-danger">
                                     {{ errors.content }}

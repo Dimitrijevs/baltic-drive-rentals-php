@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->after('car_id');
+            $table->date('end_date')->after('car_start_point');
         });
     }
 

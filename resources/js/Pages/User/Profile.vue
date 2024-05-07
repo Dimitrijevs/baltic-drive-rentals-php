@@ -15,7 +15,7 @@
                         </Link>
                     </li>
                     <li class="mb-1 mt-0">
-                        <likedCars :likedCars="likedCars"/>
+                        <likedCars :likedCars="likedCars" />
                     </li>
                     <li class="mb-1 mt-0">
                         <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216">
@@ -47,13 +47,13 @@
                             <p class="fw-bold m-0">Accout Created At</p>
                             <span>{{
                                 moment(user.created_at).format("DD-MM-YYYY")
-                            }}</span>
+                                }}</span>
                         </li>
                     </ul>
                 </div>
                 <div class="rent-history rounded bg-light mt-2 p-3 overflow-auto">
-                    <h3 class="text-center">Rent History</h3>
-                    <table class="table table-sm table-striped table-bordered">
+                    <h3 class="text-center">Rents</h3>
+                    <table v-if="cars" class="table table-sm table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">Car</th>
@@ -73,7 +73,15 @@
                         </thead>
                         <tbody>
                             <tr v-for="(reservation, index) in reservations" :key="index">
-                                <td>{{ cars[index].brand }} {{ cars[index].model }}</td>
+                                <td class="p-0">
+                                    <div :class="{
+                                        'bg-success': isCurrentReservation(cars[index].start_date, cars[index].end_date),
+                                        'bg-warning': isPastReservation(cars[index].end_date),
+                                        'bg-info': isFutureReservation(cars[index].start_date)
+                                    }" class="text-center p-2 my-1">
+                                        {{ cars[index].brand }} {{ cars[index].model }}
+                                    </div>
+                                </td>
                                 <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
                                 <td>{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</td>
                                 <td>
@@ -89,6 +97,15 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div v-if="!cars" class="">
+                        <div class="text-center mt-2 h5">
+                            <h5>
+                                No reservations were made
+                            </h5>
+                            <Link :href="route('cars')" class="btn btn-warning text-black p-2 rounded">Check out our
+                            available cars list!</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,16 +132,36 @@ export default {
         },
         reservations: {
             type: Array,
-            required: true,
+            required: false,
         },
         cars: {
             type: Array,
-            required: true,
+            required: false,
         },
         likedCars: {
             type: Array,
-            required: true,
+            required: false,
         },
+    },
+    methods: {
+        isCurrentReservation(start_date, end_date) {
+            const now = moment();
+            const start = moment(start_date);
+            const end = moment(end_date);
+            return start.isSameOrBefore(now) && end.isSameOrAfter(now);
+        },
+
+        isPastReservation(end_date) {
+            const now = moment();
+            const end = moment(end_date);
+            return end.isBefore(now);
+        },
+
+        isFutureReservation(start_date) {
+            const now = moment();
+            const start = moment(start_date);
+            return start.isAfter(now);
+        }
     },
     data() {
         return {
@@ -201,5 +238,4 @@ export default {
 .width-216 {
     width: 216px;
 }
-
 </style>

@@ -15,43 +15,33 @@ class UserController extends Controller
     public function profile($id) {
         $user = User::find($id);
 
-        $reservations = $user->reservations()->orderBy('created_at', 'desc')->get();
+        $reservations = $user->reservations()->orderBy('created_at', 'asc')->get();
 
-        foreach ($reservations as $reservation) {
-            $cars[] = [
-                'brand' => $reservation->car->brand,
-                'model' => $reservation->car->model,
-            ];
+        if ($reservations->count() > 0) {
+            foreach ($reservations as $reservation) {
+                $cars[] = [
+                    'brand' => $reservation->car->brand,
+                    'model' => $reservation->car->model,
+                ];
+            }
         }
-
 
         $likedCarIds = Like::where('user_id', $user->id)
                    ->pluck('car_id')
                    ->toArray();
 
-        foreach ($likedCarIds as $carId) {
-            $likedCars[] = Car::find($carId);
-        }
-
-        foreach ($likedCars as $likedCar) {
-            $likedCar->carImage1 = asset($likedCar->carImage1);
-            $likedCar->likesCount = $likedCar->likes->count();
-        }
-
-        if(auth()->user()){
-            foreach ($likedCars as $likedCar) {
-                $likedCar['isLikedByUser'] = $likedCar->likes()->where('user_id', auth()->id())->exists();
+        if(!empty($likedCarIds)){
+            foreach ($likedCarIds as $carId) {
+                $likedCars[] = Car::find($carId);
             }
-        }
-
-        foreach ($likedCars as $likedCar) {
-            $likedCar->carImage1 = asset($likedCar->carImage1);
-            $likedCar->likesCount = $likedCar->likes->count();
-        }
-
-        if(auth()->user()){
+    
             foreach ($likedCars as $likedCar) {
-                $likedCar->isLikedByUser = $likedCar->likes()->where('user_id', auth()->id())->exists();
+                $likedCar->carImage1 = asset($likedCar->carImage1);
+                $likedCar->likesCount = $likedCar->likes->count();
+            
+                if(auth()->user()){
+                    $likedCar->isLikedByUser = $likedCar->likes()->where('user_id', auth()->id())->exists();
+                }
             }
         }
 
@@ -60,8 +50,8 @@ class UserController extends Controller
         return Inertia::render("User/Profile", [
             'user' => $user,
             'reservations' => $reservations,
-            'cars' => $cars,
-            'likedCars' => $likedCars,
+            'cars' => $cars ?? null,
+            'likedCars' => $likedCars ?? null,
         ]);
     }
 
@@ -98,9 +88,16 @@ class UserController extends Controller
         return redirect()->route('home')->with('message', 'Profile updated successfully!');
     }
 
-    public function destroy(User $user) {
-        $user->delete();
+    public function destroy($id) {
+        $user = User::find($id);
 
-        return redirect()->route('home')->with('message', 'Profile deleted successfully');
+        if ($user) {
+            auth()->logout();
+            $user->delete();
+
+            return redirect()->route('home')->with('message', 'User deleted successfully!');
+        }
+
+        return redirect()->route('home')->with('message', 'User not found!');
     }
 }

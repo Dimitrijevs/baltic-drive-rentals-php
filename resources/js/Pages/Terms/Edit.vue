@@ -8,19 +8,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" :id="'editTermModalLabel' + term.id">Create New Term</h5>
+                    <h5 class="modal-title text-black" :id="'editTermModalLabel' + term.id">Edit Term</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form @submit.prevent="handleSubmit">
                     <div class="modal-body">
                         <div class="form-group mt-3">
                             <label for="title" class="text-dark">Title:</label><br />
-                            <input v-model="form.title" type="text" name="title" id="title" class="form-control" />
+                            <input v-model="form.title" type="text" name="title" id="title" class="form-control" required minlength="3" maxlength="255"/>
                             <div v-if="errors.title" class="text-danger">{{ errors.title }}</div>
                         </div>
                         <div class="form-group mt-3">
                             <label for="password" class="text-dark">Term Text:</label><br />
-                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5"></textarea>
+                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5" class="form-control" required minlength="3"></textarea>
                             <div v-if="errors.content" class="text-danger">{{ errors.content }}</div>
                         </div>
                     </div>

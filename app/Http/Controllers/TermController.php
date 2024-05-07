@@ -25,12 +25,12 @@ class TermController extends Controller
     public function update(TermStoreRequest $request ,$term_id) {
         Term::find($term_id)->update($request->validated());
 
-        return redirect()->route('home')->with('message', 'Term updated successfully');
+        return redirect()->route('home')->with('message', 'Term updated successfully!');
     }
 
     public function destroy(Term $term) {
         Term::find($term->id)->delete();
 
-        return redirect()->route('home')->with('message', 'Term deleted successfully');
+        return redirect()->route('home')->with('message', 'Term deleted successfully!');
     }
 }

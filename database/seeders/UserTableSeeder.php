@@ -13,6 +13,15 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
+        User::create([
+            'name' => 'CEO of BDRentals',
+            'is_admin' => 1,
+            'phone_number' => '22722505',
+            'email' => 'dimitrijevgleb@gmail.com',
+            'avatar' => null,
+            'password' => bcrypt('12345678'),
+        ]);
+
+        User::factory(99)->create();
     }
 }
