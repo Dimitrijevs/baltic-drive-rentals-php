@@ -17,7 +17,7 @@ class TermsSeeder extends Seeder
 
         for ($i = 0; $i < 5; $i++) {
             DB::table('terms')->insert([
-                'title' => $faker->sentence,
+                'title' => $faker->words(3, true),
                 'content' => $faker->paragraph(10),
             ]);
         }

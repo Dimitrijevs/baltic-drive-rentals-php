@@ -3,11 +3,11 @@
         <section class="mb-3" id="section">
             <CreateTermModal :errors="$page.props.errors" />
 
-            <div class="container">
+            <div v-if="terms" class="container">
                 <div class="row">
-                    <div class="card bg-primary text-light mb-3 p-4" v-for="(term, index) in terms" :key="term.id">
-                        <div class="card-body text-center">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div class="card bg-primary text-light mb-3 p-2" v-for="(term, index) in terms" :key="term.id">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
                                 <h3 class="card-title">
                                     <span
                                         class="rounded-circle border border-warning bg-warning py-2 px-3 text-primary text-center me-1">{{
@@ -23,13 +23,15 @@
                                     </button>
                                 </div>
                             </div>
-                            <p class="card-tex text-light">
+                            <p class="card-text mb-0 text-light">
                                 {{ term.content }}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div v-if="terms.length == 0" class="text-center mt-2 h-75"><h1>We have no Terms and conditions! :)</h1></div>
         </section>
     </Layout>
 </template>

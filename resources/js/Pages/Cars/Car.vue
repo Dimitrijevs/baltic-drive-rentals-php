@@ -122,50 +122,58 @@
                 <div class="container mt-5">
                     <div class="text-center">
                         <div class="d-flex justify-content-around">
-                            <div class="mb-3">
-                                <label class="text-white mb-2" for="start_date">Starting Date</label>
-                                <input v-model="form.start_date" class="form-control form-control-md input-small mx-auto"
-                                    type="date" id="start_date" />
-                            </div>
-                            <div v-if="errors.start_date" class="d-block mt-2">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.start_date }}
-                                </span>
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <label class="text-white mb-2" for="start_date">Starting Date</label>
+                                    <input v-model="form.start_date" class="form-control form-control-md input-small mx-auto"
+                                        type="date" id="start_date" />
+                                </div>
+                                <div v-if="errors.start_date" class="d-block mt-2">
+                                    <span class="fs-5 text-danger">
+                                        {{ errors.start_date }}
+                                    </span>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="text-white mb-2" for="end_date">End Date</label>
-                                <input v-model="form.end_date" class="form-control form-control-md input-small mx-auto"
-                                    type="date" id="end_date" />
-                            </div>
-                            <div v-if="errors.end_date" class="d-block mt-2">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.end_date }}
-                                </span>
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <label class="text-white mb-2" for="end_date">End Date</label>
+                                    <input v-model="form.end_date" class="form-control form-control-md input-small mx-auto"
+                                        type="date" id="end_date" />
+                                </div>
+                                <div v-if="errors.end_date" class="d-block mt-2">
+                                    <span class="fs-5 text-danger">
+                                        {{ errors.end_date }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="d-flex justify-content-around">
-                            <div class="mb-3">
-                                <label class="text-white mb-2" for="kilometers">How many kilometers?</label>
-                                <input v-model="form.kilometers" class="form-control form-control-md input-small mx-auto"
-                                    type="number" id="kilometers" placeholder="0-20000 Km" />
-                            </div>
-                            <div v-if="errors.kilometers" class="d-block mt-2">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.kilometers }}
-                                </span>
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <label class="text-white mb-2" for="kilometers">How many kilometers?</label>
+                                    <input v-model="form.kilometers" class="form-control form-control-md input-small mx-auto"
+                                        type="number" id="kilometers" placeholder="0-20000 Km" />
+                                </div>
+                                <div v-if="errors.kilometers" class="d-block mt-2">
+                                    <span class="fs-5 text-danger">
+                                        {{ errors.kilometers }}
+                                    </span>
+                                </div>
                             </div>
 
-                            <div class="mb-3">
-                                <label class="text-white mb-2" for="start_time">Starting Time</label>
-                                <input v-model="form.start_time" class="form-control form-control-md input-small mx-auto"
-                                    type="time" id="start_time" />
-                            </div>
-                            <div v-if="errors.start_time" class="d-block mt-2">
-                                <span class="fs-5 text-danger">
-                                    {{ errors.start_time }}
-                                </span>
+                            <div class="mb-4">
+                                <div class="mb-2">
+                                    <label class="text-white mb-2" for="start_time">Starting Time</label>
+                                    <input v-model="form.start_time" class="form-control form-control-md input-small mx-auto"
+                                        type="time" id="start_time" />
+                                </div>
+                                <div v-if="errors.start_time" class="d-block mt-2">
+                                    <span class="fs-5 text-danger">
+                                        {{ errors.start_time }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
