@@ -14,7 +14,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row justify-content-around">
                         <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary"
                             v-for="car in likedCars" :key="car.id">
                             <img :src="car.carImage1" class="card-img-top img-fluid" alt="" />

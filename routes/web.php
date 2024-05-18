@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LearnController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ReservationController;
@@ -25,79 +26,65 @@ use App\Http\Controllers\ReservationController;
 //home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// auth
-//register
-Route::get('/register', [AuthController::class, 'register'])->middleware('guest')->name('register');
-Route::post('/register', [AuthController::class, 'store']);
+//auth
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'store'])->name('register');
 
-//login
-Route::get('/login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-Route::post('/login', [AuthController::class, 'authenticate']);
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+});
 
 //logout
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // user
-//profile
-Route::get('/profile/{user}', [UserController::class, 'profile'])->middleware('auth')->name('profile');
-
-//edit
-Route::get('/profile/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->name('edit');
-Route::put('/profile/{user}/edit', [UserController::class, 'update'])->name('update');
-
-//delete
-Route::delete('profile/{user}', [UserController::class, 'destroy'])->middleware('auth')->name('delete');
-
+Route::middleware('auth')->prefix('profile/{user}')->group(function () {
+    Route::get('/', [UserController::class, 'profile'])->name('profile');
+    Route::get('/edit', [UserController::class, 'edit'])->name('edit');
+    Route::put('/edit', [UserController::class, 'update'])->name('update');
+    Route::delete('/', [UserController::class, 'destroy'])->name('delete');
+});
 
 //terms
-//show
 Route::get('/terms', [TermController::class, 'index'])->name('terms');
 
-//create
-Route::post('/terms/create', [TermController::class, 'store'])->name('terms.create');
-
-//edit
-Route::put('/terms/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
-
-//delete
-Route::delete('terms/{term}', [TermController::class, 'destroy'])->middleware('auth')->name('terms.delete');
-
+Route::middleware(['auth', 'admin'])->prefix('terms')->group(function () {
+    Route::post('/create', [TermController::class, 'store'])->name('terms.create');
+    Route::put('/{term}/edit', [TermController::class, 'update'])->name('terms.edit');
+    Route::delete('/{term}', [TermController::class, 'destroy'])->name('terms.delete');
+});
 
 //learn
-//show
 Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 
-
 //cars
-// index
-Route::get('/cars', [CarController::class, 'index'])->name('cars');
+Route::prefix('cars')->group(function () {
+    Route::get('/', [CarController::class, 'index'])->name('cars');
 
-//create car
-Route::get('/cars/create', [CarController::class, 'create'])->name('cars.create');
-Route::post('/cars/create', [CarController::class, 'store']);
+    Route::get('/{car}', [CarController::class, 'show'])->name('car.show');
+    Route::post('/{car}', [ReservationController::class, 'store'])->name('reservation');
 
-//show
-Route::get('/cars/{car}', [CarController::class, 'show'])->name('car.show');
-Route::post('/cars/{car}', [ReservationController::class, 'store'])->name('reservation');
-
+    Route::middleware(['auth', 'admin'])->prefix('create')->group(function () {
+        Route::get('/', [CarController::class, 'create'])->name('cars.create');
+        Route::post('/', [CarController::class, 'store'])->name('cars.create');
+    });
+});
 
 // Likes
-// like
-Route::post('/cars/{car}/like', [LikeController::class, 'toggle'])->name('like');
+Route::middleware('auth')->prefix('cars/{car}')->group(function () {
+    Route::post('/like', [LikeController::class, 'toggle'])->name('like');
+    Route::post('/unlike', [LikeController::class, 'destroy'])->name('unlike');
 
-// unlike
-Route::post('/cars/{car}/unlike', [LikeController::class, 'destroy'])->name('unlike');
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment');
+    Route::put('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
+});
 
-// comments
-// store
-Route::post('/cars/{car}/comment', [CommentController::class, 'store'])->name('comment');
-
-//edit
-Route::put('/cars/{car}/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
-
-//delete
-Route::delete('/cars/{car}/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.delete');
+// admin
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
+});
 
 
 

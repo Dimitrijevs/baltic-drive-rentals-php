@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-6 text-center">
                     <img
-                        class="img-fluid rounded hover-shadow img-zoom"
+                        class="img-fluid rounded hover-shadow"
                         :src="mazdaImage"
                         alt="404"
                     />

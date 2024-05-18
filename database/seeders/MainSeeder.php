@@ -20,6 +20,8 @@ class MainSeeder extends Seeder
             UserTableSeeder::class,
             CarsSeeder::class,
             LikesTableSeeder::class,
+            CommentsSeeder::class,
+            ReservationsSeeder::class,
         ]);
     }
 }

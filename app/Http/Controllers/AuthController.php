@@ -24,7 +24,7 @@ class AuthController extends Controller
         // Mail::to($user->email)
         // ->send(new WelcomeEmail($user));
 
-        return redirect()->route('home')->with('message', 'Registered successfully!');
+        return redirect()->route('home')->with('message', 'Registered successfully, please log in!');
     }
 
     public function login() {
