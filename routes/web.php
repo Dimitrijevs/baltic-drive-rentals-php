@@ -84,6 +84,7 @@ Route::middleware('auth')->prefix('cars/{car}')->group(function () {
 // admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
+    Route::get('/cars', [AdminController::class, 'cars'])->name('admin.cars');
 });
 
 

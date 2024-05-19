@@ -12,17 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $cars = Car::orderBy('created_at', 'ASC')->get();
-
-        $carsWithImageURLs = $cars->map(function ($car) {
-            $car->carImage1 = asset($car->carImage1);
-            $car->likesCount = $car->likes->count();
-            $isLikedByUser = false;
+        $cars = Car::orderBy('created_at', 'ASC')->get()->map(function ($car) {
             if (auth()->user()) {
                 $isLikedByUser = $car->likes()->where('user_id', auth()->id())->exists();
             }
+
             return [
                 'id' => $car->id,
                 'brand' => $car->brand,
@@ -33,14 +29,14 @@ class CarController extends Controller
                 'emissions' => $car->emissions,
                 'price_per_day' => $car->price_per_day,
                 'price_per_km' => $car->price_per_km,
-                'carImageURL' => $car->carImage1,
-                'likesCount' => $car->likesCount,
-                'isLikedByUser' => $isLikedByUser,
+                'carImageURL' => $car->getFirstImageURL(),
+                'likesCount' => $car->likes->count(),
+                'isLikedByUser' => $isLikedByUser ?? false,
             ];
         });
 
         return Inertia::render('Cars/Cars', [
-            'cars' => $carsWithImageURLs,
+            'cars' => $cars,
         ]);
     }
 

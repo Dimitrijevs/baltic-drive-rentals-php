@@ -22,7 +22,7 @@
                     @setEmissionsilter="updateEmissionsilter" />
             </div>
 
-            <div class="right">
+            <div class="right w-75">
                 <div class="w-100">
                     <Search @search="handleSearch" />
                 </div>
