@@ -114,7 +114,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary" @click="addFileInput">Add another Image</button>
+                    <button type="button" class="btn btn-primary mt-3" @click="addFileInput">Add another Image</button>
 
                     <div class="d-flex justify-content-end align-items-center my-3">
                         <div class="form-group ms-3">

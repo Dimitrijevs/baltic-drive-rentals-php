@@ -23,14 +23,31 @@
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('admin.cars')" class="nav-link" :class="{
-                        'text-secondary':
-                            !$page.url.includes('/admin/cars'),
-                        'text-white': $page.url.includes('/admin/cars'),
-                    }">
-                    <i class="bi bi-car-front-fill text-white me-1"></i>
-                    <span>Cars</span>
-                    </Link>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle px-3" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-car-front-fill text-white me-1"></i>
+                            Cars
+                        </button>
+                        <ul class="dropdown-menu bg-primary">
+                            <Link :href="route('admin.cars')" class="nav-link" :class="{
+                                'text-secondary':
+                                    !$page.url.includes('/admin/cars/table'),
+                                'text-white': $page.url.includes('/admin/cars/table'),
+                            }">
+                            <i class="bi bi-car-front-fill text-white me-1"></i>
+                            <span>Table</span>
+                            </Link>
+                            <Link :href="route('admin.cars.charts')" class="nav-link" :class="{
+                                'text-secondary':
+                                    !$page.url.includes('/admin/cars/charts'),
+                                'text-white': $page.url.includes('/admin/cars/charts'),
+                            }">
+                            <i class="bi bi-car-front-fill text-white me-1"></i>
+                            <span>Statistics</span>
+                            </Link>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <Link :href="route('admin')" class="nav-link" :class="{
@@ -68,4 +85,8 @@ export default {
 
 </script>
 
-<style></style>
+<style scoped>
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+</style>

@@ -62,13 +62,11 @@ Route::get('/learn', [LearnController::class, 'index'])->name('learn');
 Route::prefix('cars')->group(function () {
     Route::get('/', [CarController::class, 'index'])->name('cars');
 
+    Route::get('/create', [CarController::class, 'create'])->middleware(['auth', 'admin'])->name('cars.create');
+    Route::post('/create', [CarController::class, 'store'])->middleware(['auth', 'admin'])->name('cars.store');
+
     Route::get('/{car}', [CarController::class, 'show'])->name('car.show');
     Route::post('/{car}', [ReservationController::class, 'store'])->name('reservation');
-
-    Route::middleware(['auth', 'admin'])->prefix('create')->group(function () {
-        Route::get('/', [CarController::class, 'create'])->name('cars.create');
-        Route::post('/', [CarController::class, 'store'])->name('cars.create');
-    });
 });
 
 // Likes
@@ -84,7 +82,9 @@ Route::middleware('auth')->prefix('cars/{car}')->group(function () {
 // admin
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
-    Route::get('/cars', [AdminController::class, 'cars'])->name('admin.cars');
+
+    Route::get('/cars/table', [AdminController::class, 'carsTable'])->name('admin.cars');
+    Route::get('/cars/charts', [AdminController::class, 'carsCharts'])->name('admin.cars.charts');
 });
 
 

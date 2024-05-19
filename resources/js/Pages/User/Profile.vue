@@ -61,7 +61,7 @@
                                 <th scope="col">End Date</th>
                                 <th scope="col">
                                     <div class="text-center">
-                                        Driven distance (Km)
+                                        Drive distance (Km)
                                     </div>
                                 </th>
                                 <th scope="col">

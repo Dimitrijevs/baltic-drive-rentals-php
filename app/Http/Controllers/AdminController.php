@@ -8,7 +8,6 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Comment;
 use App\Models\Reservation;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -37,19 +36,23 @@ class AdminController extends Controller
         return redirect()->route('home')->with('message', 'You are not an admin!');
     }
 
-    public function cars()
+    public function carsTable()
     {
-        $cars = Car::paginate(10)->through(function ($car) {
-            return [
-                'id' => $car->id,
-                'brand' => $car->brand,
-                'model' => $car->model,
-                'year' => $car->year,
-                'price_per_day' => $car->price_per_day,
-                'price_per_km' => $car->price_per_km,
-            ];
-        });
+        $cars = Car::paginate(10);
 
         return Inertia::render('Admin/Cars', ['cars' => $cars]);
+    }
+
+    public function carsCharts()
+    {
+        $cars = Car::all();
+
+        $carsGroupedByYear = $cars->groupBy('year');
+
+        $carsCountByYear = $carsGroupedByYear->map(function ($carsInYear) {
+            return $carsInYear->count();
+        });
+
+        return Inertia::render('Admin/CarsCharts', ['carsCountByYear' => $carsCountByYear]);
     }
 }
