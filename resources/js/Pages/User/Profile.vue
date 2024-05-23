@@ -57,7 +57,7 @@
                 </div>
                 <div class="rent-history rounded bg-light mt-2 p-3 overflow-auto">
                     <h3 class="text-center">Rents</h3>
-                    <table v-if="cars" class="table table-sm table-striped table-bordered">
+                    <table v-if="reservations" class="table table-sm table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">Car</th>
@@ -76,14 +76,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(reservation, index) in reservations" :key="index">
+                            <tr v-for="reservation in reservations">
                                 <td class="p-0">
                                     <div :class="{
-                                        'bg-success': isCurrentReservation(cars[index].start_date, cars[index].end_date),
-                                        'bg-warning': isPastReservation(cars[index].end_date),
-                                        'bg-info': isFutureReservation(cars[index].start_date)
+                                        'bg-success': isCurrentReservation(reservation.start_date, reservation.end_date),
+                                        'bg-warning': isPastReservation(reservation.end_date),
+                                        'bg-info': isFutureReservation(reservation.start_date)
                                     }" class="text-center p-2 my-1">
-                                        {{ cars[index].brand }} {{ cars[index].model }}
+                                        {{ reservation.brand }} {{ reservation.model }}
                                     </div>
                                 </td>
                                 <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
@@ -101,7 +101,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div v-if="!cars" class="">
+                    <div v-if="!reservations" class="">
                         <div class="text-center mt-2 h5">
                             <h5>
                                 No reservations were made
@@ -138,11 +138,7 @@ export default {
         },
         reservations: {
             type: Array,
-            required: false,
-        },
-        cars: {
-            type: Array,
-            required: false,
+            required: true,
         },
         likedCars: {
             type: Array,
@@ -154,7 +150,8 @@ export default {
             const now = moment();
             const start = moment(start_date);
             const end = moment(end_date);
-            return start.isSameOrBefore(now) && end.isSameOrAfter(now);
+            const isCurrent = start.isSameOrBefore(now) && end.isSameOrAfter(now);
+            return isCurrent;
         },
 
         isPastReservation(end_date) {

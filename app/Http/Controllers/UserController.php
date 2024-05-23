@@ -19,10 +19,8 @@ class UserController extends Controller
 
         if ($reservations->count() > 0) {
             foreach ($reservations as $reservation) {
-                $cars[] = [
-                    'brand' => $reservation->car->brand,
-                    'model' => $reservation->car->model,
-                ];
+                $reservation->brand = $reservation->car->brand;
+                $reservation->model = $reservation->car->model;
             }
         }
 
@@ -50,7 +48,6 @@ class UserController extends Controller
         return Inertia::render("User/Profile", [
             'user' => $user,
             'reservations' => $reservations,
-            'cars' => $cars ?? null,
             'likedCars' => $likedCars ?? null,
         ]);
     }

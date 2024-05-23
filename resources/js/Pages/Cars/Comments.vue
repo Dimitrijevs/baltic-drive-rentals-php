@@ -1,7 +1,7 @@
 <template>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48"
-        data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Open Comments Modal">
+    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop" aria-label="Open Comments Modal">
         <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
     </button>
 
@@ -11,14 +11,14 @@
         <div id="commentModal" class="modal-dialog" role="dialog" aria-label="Comments Modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Comments section</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Comments</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form @submit.prevent="handleSubmit">
-                        <h6>Write a comment</h6>
                         <div class="form-group d-flex">
-                            <img :src="profilePhoto" alt="" class="rounded-circle profile-photo me-2">
+                            <img v-if="$props.auth" :src="profilePhoto" alt="profile photo" class="rounded-circle profile-photo me-2">
+                            <img v-else src="/public/images/default-profile.png" alt="profile photo" class="rounded-circle profile-photo me-2">
                             <div class=""></div>
                             <input v-model="form.comment" type="text" name="comment" id="comment"
                                 class="border-0 border-bottom flex-grow-1">
@@ -69,10 +69,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary text-white px-3 py-2"
-                        data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
         </div>
     </div>
@@ -122,7 +118,6 @@ export default {
 
         const handleSubmit = () => {
             form.submit("post", route("comment", { car: props.carId }))
-            bsModal.hide();
             form.comment = "";
         };
 

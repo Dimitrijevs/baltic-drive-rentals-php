@@ -33,6 +33,27 @@
                 </label>
             </div>
             <div class="one-line">
+                <label for="mercedesCheckbox">
+                    <input type="checkbox" id="mercedesCheckbox" name="brands[]" value="Mercedes"
+                        @change="updateBrandFilter('Mercedes')" aria-label="Filter by Mercedes">
+                    Mercedes
+                </label>
+            </div>
+            <div class="one-line">
+                <label for="opelCheckbox">
+                    <input type="checkbox" id="opelCheckbox" name="brands[]" value="Opel"
+                        @change="updateBrandFilter('Opel')" aria-label="Filter by Opel">
+                    Opel
+                </label>
+            </div>
+            <div class="one-line">
+                <label for="peugeotCheckbox">
+                    <input type="checkbox" id="peugeotCheckbox" name="brands[]" value="Peugeot"
+                        @change="updateBrandFilter('Peugeot')" aria-label="Filter by Peugeot">
+                    Peugeot
+                </label>
+            </div>
+            <div class="one-line">
                 <label for="teslaCheckbox">
                     <input type="checkbox" id="teslaCheckbox" name="brands[]" value="Tesla"
                         @change="updateBrandFilter('Tesla')" aria-label="Filter by Tesla">
@@ -51,20 +72,6 @@
                     <input type="checkbox" id="vwCheckbox" name="brands[]" value="Volkswagen"
                         @change="updateBrandFilter('Volkswagen')" aria-label="Filter by Volkswagen">
                     Volkswagen
-                </label>
-            </div>
-            <div class="one-line">
-                <label for="mercedesCheckbox">
-                    <input type="checkbox" id="mercedesCheckbox" name="brands[]" value="Mercedes"
-                        @change="updateBrandFilter('Mercedes')" aria-label="Filter by Mercedes">
-                    Mercedes
-                </label>
-            </div>
-            <div class="one-line">
-                <label for="opelCheckbox">
-                    <input type="checkbox" id="opelCheckbox" name="brands[]" value="Opel"
-                        @change="updateBrandFilter('Opel')" aria-label="Filter by Opel">
-                    Opel
                 </label>
             </div>
             <hr>

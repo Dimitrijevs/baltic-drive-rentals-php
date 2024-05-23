@@ -26,7 +26,7 @@
                                         </p>
                                         <span class="">{{
                                             car.body_type
-                                        }}</span>
+                                            }}</span>
                                     </li>
                                     <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
@@ -40,7 +40,7 @@
                                         </p>
                                         <span class="">{{
                                             car.fuel_type
-                                        }}</span>
+                                            }}</span>
                                     </li>
                                     <li class="bg-light py-2 px-4 d-flex my-2 rounded">
                                         <p class="mb-0 me-2 fw-bold">
@@ -94,22 +94,22 @@
                                 </div>
                             </div>
 
-                            <div id="carouselExample" class="carousel slide">
+                            <div id="carouselExample" class="carousel slide" aria-label="Car Image Carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img :src="car.carImage1" class="d-block w-100 rounded" alt="..." />
+                                        <img :src="car.carImage1" class="d-block w-100 rounded" alt="Car Image 1" />
                                     </div>
-                                    <div class="carousel-item active" aria-roledescription="slide">
-                                        <img :src="car.carImage1" class="d-block w-100 rounded" alt="Car Image" />
+                                    <div class="carousel-item" v-for="(CarImage, index) in carImages" :key="index">
+                                        <img :src="CarImage" class="d-block w-100 rounded" alt="Car Image" />
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="prev" aria-label="Previous Slide">
+                                    data-bs-slide="prev" aria-label="Previous">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="next" aria-label="Next Slide">
+                                    data-bs-slide="next" aria-label="Next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>

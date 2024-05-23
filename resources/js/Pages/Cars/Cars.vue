@@ -167,7 +167,6 @@ export default {
             }
         },
         handleSort(value) {
-            console.log(value);
             if (value === 'cheapToExpensiveDay') {
                 this.cars.sort((a, b) => a.price_per_day - b.price_per_day);
             } else if (value === 'expensiveToCheapDay') {
