@@ -1,8 +1,9 @@
 <template>
     <div class="col-lg-6">
-        <div class="p-5 rounded-3 danger-light text-center">
-            <i class="bi bi-file-earmark-ruled text-white me-1 icon"></i>
-            <p class="mt-2 h5 text-white">Terms: <strong>{{ terms }}</strong></p>
+        <div class="p-5 shadow rounded-3 text-center">
+            <i class="bi bi-file-earmark-ruled me-1 text-purple icon"></i>
+            <h1 class="mb-0"><strong>{{ terms }}</strong></h1>
+            <p class="mt-0 h5">Terms</p>
         </div>
     </div>
 </template>
@@ -19,11 +20,11 @@ export default {
 </script>
 
 <style scoped>
-.danger-light {
-    background-color: #000000;
+.text-purple {
+    color: #6B4EB7;
 }
 
 .icon {
-    font-size: 5rem;
+    font-size: 4rem;
 }
 </style>

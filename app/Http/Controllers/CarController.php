@@ -112,4 +112,16 @@ class CarController extends Controller
 
         return redirect()->route('home')->with('message', 'Car created successfully!');
     }
+
+    public function destroy($car_id)
+    {
+        if($car_id == null) {
+            return redirect()->route('home')->with('message', 'Car not found!');
+        }
+
+        $car = Car::find($car_id);
+        $car->delete();
+
+        return redirect()->route('home')->with('message', 'Car deleted successfully!');
+    }
 }

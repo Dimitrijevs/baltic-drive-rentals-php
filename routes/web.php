@@ -67,6 +67,8 @@ Route::prefix('cars')->group(function () {
 
     Route::get('/{car}', [CarController::class, 'show'])->name('car.show');
     Route::post('/{car}', [ReservationController::class, 'store'])->name('reservation');
+
+    Route::delete('/{car}/destroy', [CarController::class, 'destroy'])->middleware(['auth', 'admin'])->name('car.destroy');
 });
 
 // Likes

@@ -1,13 +1,13 @@
 <template>
     <Layout>
-        <div id="main-container" class="row justify-content-center text-center mx-auto">
-            <div class="col-12 col-sm-8 col-md-6 margin-100">
+        <div id="main-container" class="row justify-content-center text-start mx-auto my-4">
+            <div class="col-12 col-sm-8 col-md-6">
                 <form enctype="multipart/form-data" @submit.prevent="handleSubmit">
-                    <h1>Add New Car</h1>
+                    <h1 class="text-center">Add New Car</h1>
                     <div class="form-group mt-3" aria-labelledby="brandLabel">
-                        <label for="brand" class="text-dark" id="brandLabel">Brand Name:</label><br>
+                        <label for="brand" class="text-dark" id="brandLabel">Brand</label><br>
                         <input v-model="form.brand" type="text" name="brand" id="brand"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter brand">
                         <div v-if="errors.brand" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.brand }}
@@ -15,9 +15,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="modelLabel">
-                        <label for="model" class="text-dark" id="modelLabel">Model Name:</label><br>
+                        <label for="model" class="text-dark" id="modelLabel">Model</label><br>
                         <input v-model="form.model" type="text" name="model" id="model"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter model">
                         <div v-if="errors.model" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.model }}
@@ -25,8 +25,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="yearLabel">
-                        <label for="year" class="text-dark" id="yearLabel">Year:</label><br>
-                        <input v-model="form.year" type="number" name="year" id="year" class="form-control">
+                        <label for="year" class="text-dark" id="yearLabel">Year</label><br>
+                        <input v-model="form.year" type="number" name="year" id="year" class="form-control"
+                            placeholder="Enter year">
                         <div v-if="errors.year" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.year }}
@@ -34,9 +35,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="horsepowerLabel">
-                        <label for="horsepower" class="text-dark" id="horsepowerLabel">Horsepowers:</label><br>
+                        <label for="horsepower" class="text-dark" id="horsepowerLabel">Horsepowers</label><br>
                         <input v-model="form.horsepower" type="number" name="horsepower" id="horsepower"
-                            class="form-control">
+                            class="form-control" placeholder="Enter horsepower">
                         <div v-if="errors.horsepower" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.horsepower }}
@@ -44,9 +45,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="bodyTypeLabel">
-                        <label for="body_type" class="text-dark" id="bodyTypeLabel">Body Type:</label><br>
+                        <label for="body_type" class="text-dark" id="bodyTypeLabel">Bodywork</label><br>
                         <input v-model="form.body_type" type="text" name="body_type" id="body_type"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter body type">
                         <div v-if="errors.body_type" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.body_type }}
@@ -54,9 +55,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="fuelTypeLabel">
-                        <label for="fuel_type" class="text-dark" id="fuelTypeLabel">Fuel Type:</label><br>
+                        <label for="fuel_type" class="text-dark" id="fuelTypeLabel">Fuel Type</label><br>
                         <input v-model="form.fuel_type" type="text" name="fuel_type" id="fuel_type"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter fuel type">
                         <div v-if="errors.fuel_type" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.fuel_type }}
@@ -64,9 +65,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="emissionsLabel">
-                        <label for="emissions" class="text-dark" id="emissionsLabel">CO2 Emissions:</label><br>
+                        <label for="emissions" class="text-dark" id="emissionsLabel">CO2 Emissions</label><br>
                         <input v-model="form.emissions" type="number" name="emissions" id="emissions"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter CO2 emissions">
                         <div v-if="errors.emissions" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.emissions }}
@@ -74,9 +75,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="gearboxLabel">
-                        <label for="gearbox" class="text-dark" id="gearboxLabel">Gearbox:</label><br>
+                        <label for="gearbox" class="text-dark" id="gearboxLabel">Gearbox</label><br>
                         <input v-model="form.gearbox" type="text" name="gearbox" id="gearbox"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter gearbox">
                         <div v-if="errors.gearbox" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.gearbox }}
@@ -84,9 +85,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="pricePerDayLabel">
-                        <label for="price_per_day" class="text-dark" id="pricePerDayLabel">Price per day:</label><br>
+                        <label for="price_per_day" class="text-dark" id="pricePerDayLabel">Price per day</label><br>
                         <input v-model="form.price_per_day" type="number" name="price_per_day" id="price_per_day"
-                            class="form-control border-primary">
+                            class="form-control border-primary" placeholder="Enter price per day">
                         <div v-if="errors.price_per_day" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.price_per_day }}
@@ -94,9 +95,9 @@
                         </div>
                     </div>
                     <div class="form-group mt-3" aria-labelledby="pricePerKmLabel">
-                        <label for="price_per_km" class="text-dark" id="pricePerKmLabel">Price per Km:</label><br>
+                        <label for="price_per_km" class="text-dark" id="pricePerKmLabel">Price per km</label><br>
                         <input v-model="form.price_per_km" type="number" step="0.01" name="price_per_km"
-                            id="price_per_km" class="form-control border-primary">
+                            id="price_per_km" class="form-control border-primary" placeholder="Enter price per km">
                         <div v-if="errors.price_per_km" class="d-block mt-2" role="alert">
                             <span class="fs-5 text-danger">
                                 {{ errors.price_per_km }}
@@ -105,7 +106,7 @@
                     </div>
                     <div id="photoInputsContainer" aria-labelledby="carImageLabel">
                         <div class="form-group mt-3">
-                            <label for="carImage1" class="text-dark" id="carImageLabel">Add 1. Car Image:</label><br>
+                            <label for="carImage1" class="text-dark" id="carImageLabel">Add 1. car image</label><br>
                             <input @input="form.carImage1 = $event.target.files[0]" type="file" name="carImage1"
                                 class="carImage form-control border-primary" aria-describedby="carImageError">
                             <div v-if="errors.carImage1" class="d-block mt-2" id="carImageError" role="alert">
@@ -116,14 +117,12 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary mt-3" @click="addFileInput"
-                        aria-label="Add Another Image Input">Add another Image</button>
+                    <div class="mt-3 d-flex justify-content-between">
+                        <button type="button" class="btn btn-primary" @click="addFileInput"
+                            aria-label="Add Another Image Input">Add another Image</button>
 
-                    <div class="d-flex justify-content-end align-items-center my-3">
-                        <div class="form-group ms-3">
-                            <button type="submit" class="btn btn-warning text-primary py-2 px-3"
-                                aria-label="Submit Form">Add New Car!</button>
-                        </div>
+                        <button type="submit" class="btn btn-warning text-primary py-2 px-3"
+                            aria-label="Submit Form">Save!</button>
                     </div>
                 </form>
             </div>
@@ -185,7 +184,7 @@ const addFileInput = () => {
 
     // Create label element
     const label = document.createElement('label');
-    label.textContent = `Add ${nextImageNumber}. Car Image:`;
+    label.textContent = `Add ${nextImageNumber}. car image`;
 
     // Create div element and append label and input
     const div = document.createElement('div');
@@ -213,9 +212,4 @@ const handleSubmit = () => {
 </script>
 
 
-<style scoped>
-#main-container {
-    margin-top: 100px;
-    margin-bottom: 120px;
-}
-</style>
+<style scoped></style>

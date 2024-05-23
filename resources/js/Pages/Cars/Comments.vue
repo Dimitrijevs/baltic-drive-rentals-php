@@ -1,12 +1,6 @@
 <template>
-    <Link v-if="!$page.props.auth" :href="route('login')" aria-label="Login">
-    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48">
-        <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
-    </button>
-    </Link>
-
     <!-- Button trigger modal -->
-    <button v-if="$page.props.auth" type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48"
+    <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48"
         data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Open Comments Modal">
         <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
     </button>
@@ -47,7 +41,7 @@
                             <div class="mb-3 w-100">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h6 class="mb-0 text-secondary">{{ comment.name }}</h6>
-                                    <div class="d-flex">
+                                    <div class="d-flex" v-if="$page.props.auth">
                                         <button v-if="$page.props.auth.id === comment.user_id" type="button"
                                             class="btn btn-warning text-primary me-1 px-2 py-1"
                                             @click="editComment(comment)" aria-label="Edit Comment">

@@ -30,20 +30,10 @@
                             Cars
                         </button>
                         <ul class="dropdown-menu bg-primary">
-                            <Link :href="route('admin.cars')" class="nav-link" :class="{
-                                'text-secondary':
-                                    !$page.url.includes('/admin/cars/table'),
-                                'text-white': $page.url.includes('/admin/cars/table'),
-                            }">
-                            <i class="bi bi-car-front-fill text-white me-1"></i>
+                            <Link :href="route('admin.cars')" class="nav-link text-white">
                             <span>Table</span>
                             </Link>
-                            <Link :href="route('admin.cars.charts')" class="nav-link" :class="{
-                                'text-secondary':
-                                    !$page.url.includes('/admin/cars/charts'),
-                                'text-white': $page.url.includes('/admin/cars/charts'),
-                            }">
-                            <i class="bi bi-car-front-fill text-white me-1"></i>
+                            <Link :href="route('admin.cars.charts')" class="nav-link text-white">
                             <span>Statistics</span>
                             </Link>
                         </ul>

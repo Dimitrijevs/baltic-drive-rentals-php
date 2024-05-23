@@ -3,7 +3,7 @@
         <div class="container text-center">
             <h1 class="mb-2" id="newArrivalsHeading">New Arrivals</h1>
             <div class="row justify-content-between flex-row-reverse">
-                <div class="card col-12 col-md-5 col-lg-3 p-0 mb-3 bg-primary text-light border-primary"
+                <div class="card col-12 col-md-5 col-lg-3 p-0 mb-3 bg-primary m-1 text-light border-primary"
                     v-for="car in cars" :key="car.id">
                     <img :src="car.carImage1" class="card-img-top img-fluid" alt="" />
                     <div class="card-body">

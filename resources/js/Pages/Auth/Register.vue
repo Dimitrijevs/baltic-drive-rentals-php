@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                     <form @submit.prevent="form.post('register')" aria-label="registration form">
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label mb-1" for="name">Full name</label>
                                 <input type="text" v-model="form.name" id="name" name="name" class="form-control"
@@ -19,7 +19,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label mb-1" for="phone_number">Phone number</label>
                                 <input type="text" v-model="form.phone_number" id="phone_number" name="phone_number"
@@ -32,7 +32,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label mb-1" for="email">Email address</label>
                                 <input type="email" v-model="form.email" id="email" name="email" class="form-control"
@@ -44,7 +44,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label mb-1" for="password">Password</label>
                                 <input type="password" v-model="form.password" id="password" name="password"
@@ -56,7 +56,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <div class="form-outline">
                                 <label class="form-label mb-1" for="password_confirmation">Confirm password</label>
                                 <input type="password" v-model="form.password_confirmation" id="password_confirmation"

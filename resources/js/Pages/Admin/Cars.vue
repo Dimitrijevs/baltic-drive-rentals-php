@@ -8,8 +8,15 @@
                 <div class="overflow-auto col-md-9 mt-3">
                     <div class="d-flex justify-content-between" aria-label="cars list header">
                         <h3>Cars list</h3>
-                        <Link :href="route('cars.create')" class="btn btn-warning rounded" aria-label="add new car">Add
-                        new car</Link>
+                        <Link :href="route('cars.create')" class="btn btn-warning text-primary pb-2 rounded"
+                            aria-label="add new car">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-car-front-fill h4 me-1"></i>
+                            <p class="mb-1">
+                                Add New Car
+                            </p>
+                        </div>
+                        </Link>
                     </div>
                     <table class="table" aria-label="cars list table">
                         <thead>
@@ -38,7 +45,8 @@
                                 <td aria-label="car fuel type">{{ car.fuel_type }}</td>
                                 <td class="text-end" aria-label="car actions">
                                     <button class="btn btn-sm btn-warning me-1" aria-label="edit car">Edit</button>
-                                    <button class="btn btn-sm btn-danger" aria-label="delete car">Delete</button>
+                                    <Button @click="destroy(car.id)" class="btn btn-sm btn-danger"
+                                        aria-label="delete car">Delete</Button>
                                 </td>
                             </tr>
                         </tbody>
@@ -53,6 +61,7 @@
 
 <script>
 import Layout from "../../Layout/App.vue";
+import { router } from "@inertiajs/vue3";
 import { Link } from "@inertiajs/vue3";
 import SideBar from "./Partials/SideBar.vue";
 import Pagination from "./Partials/Pagination.vue";
@@ -69,6 +78,15 @@ export default {
             type: Array,
             required: true,
         },
+    },
+    setup() {
+        const destroy = (id) => {
+            if (confirm("Are you sure?")) {
+                router.delete(route("car.destroy", { car: id }));
+            }
+        };
+
+        return { destroy };
     },
 };
 

@@ -8,14 +8,9 @@
                     <div class="card bg-primary text-light mb-3 p-2" v-for="(term, index) in terms" :key="term.id">
                         <div class="card-body">
                             <div class="d-lg-flex align-items-center justify-content-between mb-2">
-                                <div class="d-flex">
-                                    <div style="height: 40px; width: 40px;"
-                                        class="rounded-circle border border-warning bg-warning p-1 text-primary d-flex align-items-center justify-content-center me-1"
-                                        aria-label="Term Number">
-                                        {{ index + 1 }}
-                                    </div>
-                                    <h3 class="card-title">
-                                        {{ term.title }}
+                                <div class="d-flex align-items-center">
+                                    <h3 class="card-title mb-0">
+                                        {{ index + 1 }}. {{ term.title }}
                                     </h3>
                                 </div>
 

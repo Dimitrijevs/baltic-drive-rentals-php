@@ -1,8 +1,9 @@
 <template>
     <div class="col-lg-6">
-        <div class="p-5 rounded-3 info-light text-center">
-            <i class="bi bi-person-lock text-black icon"></i>
-            <p class="mt-2 h5">Admins: <strong>{{ admins }}</strong></p>
+        <div class="p-5 rounded-3 text-center shadow">
+            <i class="bi bi-person-fill-lock text-warning icon"></i>
+            <h1 class="mb-0"><strong>{{ admins }}</strong></h1>
+            <p class="mt-0 h5">Admins</p>
         </div>
     </div>
 </template>
@@ -19,11 +20,7 @@ export default {
 </script>
 
 <style scoped>
-.info-light {
-    background-color: #78f1fa;
-}
-
 .icon {
-    font-size: 5rem;
+    font-size: 4rem;
 }
 </style>

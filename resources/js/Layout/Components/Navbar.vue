@@ -20,13 +20,6 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
-                                <i class="bi bi-clock-history text-white" aria-label="learn to drive icon"></i>
-                                <Link :href="route('learn')" class="nav-link p-1" :class="{
-                                    'text-secondary': !$page.url.includes('/learn'),
-                                    'text-white': $page.url.includes('/learn'),
-                                }" aria-label="learn to drive page">Learn to drive</Link>
-                            </li>
-                            <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
                                 <i class="bi bi-file-earmark-ruled text-white" aria-label="rental terms icon"></i>
                                 <Link :href="route('terms')" class="nav-link p-1" :class="{
                                     'text-secondary': !$page.url.includes('/terms'),
@@ -36,8 +29,8 @@
                             <li class="nav-item d-flex align-items-center me-3 my-2 my-lg-0">
                                 <i class="bi bi-car-front-fill text-white" aria-label="our car list icon"></i>
                                 <Link :href="route('cars')" class="nav-link p-1" :class="{
-                                    'text-secondary': !$page.url.includes('/cars'),
-                                    'text-white': $page.url.includes('/cars'),
+                                    'text-secondary': $page.url !== '/cars',
+                                    'text-white': $page.url === '/cars',
                                 }" aria-label="our car list page">Our Car List</Link>
                             </li>
 
