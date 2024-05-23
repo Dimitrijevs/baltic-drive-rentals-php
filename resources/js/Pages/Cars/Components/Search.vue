@@ -1,6 +1,8 @@
 <template>
     <div class="search-container">
-        <input type="text" class="form-control" @input="search" placeholder="Search for car">
+        <input type="text" class="form-control" @input="search" placeholder="Search for car" aria-label="Search for car"
+            aria-describedby="search-description">
+        <span id="search-description" hidden>Type to search for cars</span>
     </div>
 </template>
 

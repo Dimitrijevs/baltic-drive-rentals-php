@@ -1,16 +1,12 @@
 <template>
-    <section class="p-0 p-lg-5 my-5">
+    <section class="p-0 p-lg-5 my-5" aria-labelledby="parkingSectionHeading">
         <div class="container mt-4">
             <div class="row align-items-center justify-content-center">
                 <div class="col-lg-6">
-                    <img
-                        class="img-fluid rounded img-zoom"
-                        :src="parkingImage"
-                        alt=""
-                    />
+                    <img class="img-fluid rounded img-zoom" :src="parkingImage" alt="" aria-hidden="true" />
                 </div>
                 <div class="col-lg-6 mt-3 mt-lg-0">
-                    <h1 class="text-primary">
+                    <h1 class="text-primary" id="parkingSectionHeading">
                         Now Parking is <span class="text-warning">Free!</span>
                     </h1>
                     <p class="lead text-primary">
@@ -24,6 +20,7 @@
             </div>
         </div>
     </section>
+
 </template>
 
 <script>

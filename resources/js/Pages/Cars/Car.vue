@@ -69,25 +69,27 @@
                                 </ul>
                                 <div class="d-flex">
                                     <div>
-                                        <button v-if="$page.props.auth" class="btn btn-light border-none px-2 py-0 btn-48"
+                                        <button v-if="$page.props.auth"
+                                            class="btn btn-light border-none px-2 py-0 btn-48"
                                             @click="toggleLike(car.id)">
                                             <div class="d-flex align-items-center m-0">
                                                 {{ car.likesCount }}
                                                 <i class="bi h4 text-danger ms-1 mt-2"
-                                                :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
+                                                    :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
                                             </div>
                                         </button>
                                         <Link v-if="!$page.props.auth" :href="route('login')">
-                                            <button class="btn btn-light border-none px-2 py-2 btn-48">
-                                                <div class="d-flex align-items-center m-0">
-                                                    {{ car.likesCount }}
-                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
-                                                </div>
-                                            </button>
+                                        <button class="btn btn-light border-none px-2 py-2 btn-48">
+                                            <div class="d-flex align-items-center m-0">
+                                                {{ car.likesCount }}
+                                                <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                            </div>
+                                        </button>
                                         </Link>
                                     </div>
                                     <div>
-                                        <Comments :profilePhoto="profilePhoto" :errors="errors" :carId="car.id" :comments="comments"/>
+                                        <Comments :profilePhoto="profilePhoto" :errors="errors" :carId="car.id"
+                                            :comments="comments" />
                                     </div>
                                 </div>
                             </div>
@@ -97,17 +99,17 @@
                                     <div class="carousel-item active">
                                         <img :src="car.carImage1" class="d-block w-100 rounded" alt="..." />
                                     </div>
-                                    <div class="carousel-item" v-for="(CarImage, index) in carImages" :key="index">
-                                        <img :src="CarImage" class="d-block w-100 rounded" alt="..." />
+                                    <div class="carousel-item active" aria-roledescription="slide">
+                                        <img :src="car.carImage1" class="d-block w-100 rounded" alt="Car Image" />
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="prev">
+                                    data-bs-slide="prev" aria-label="Previous Slide">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                    data-bs-slide="next">
+                                    data-bs-slide="next" aria-label="Next Slide">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
@@ -125,8 +127,9 @@
                             <div class="mb-4">
                                 <div class="mb-2">
                                     <label class="text-white mb-2" for="start_date">Starting Date</label>
-                                    <input v-model="form.start_date" class="form-control form-control-md input-small mx-auto"
-                                        type="date" id="start_date" />
+                                    <input v-model="form.start_date"
+                                        class="form-control form-control-md input-small mx-auto" type="date"
+                                        id="start_date" />
                                 </div>
                                 <div v-if="errors.start_date" class="d-block mt-2">
                                     <span class="fs-5 text-danger">
@@ -138,8 +141,9 @@
                             <div class="mb-4">
                                 <div class="mb-2">
                                     <label class="text-white mb-2" for="end_date">End Date</label>
-                                    <input v-model="form.end_date" class="form-control form-control-md input-small mx-auto"
-                                        type="date" id="end_date" />
+                                    <input v-model="form.end_date"
+                                        class="form-control form-control-md input-small mx-auto" type="date"
+                                        id="end_date" />
                                 </div>
                                 <div v-if="errors.end_date" class="d-block mt-2">
                                     <span class="fs-5 text-danger">
@@ -153,8 +157,9 @@
                             <div class="mb-4">
                                 <div class="mb-2">
                                     <label class="text-white mb-2" for="kilometers">How many kilometers?</label>
-                                    <input v-model="form.kilometers" class="form-control form-control-md input-small mx-auto"
-                                        type="number" id="kilometers" placeholder="0-20000 Km" />
+                                    <input v-model="form.kilometers"
+                                        class="form-control form-control-md input-small mx-auto" type="number"
+                                        id="kilometers" placeholder="0-20000 Km" />
                                 </div>
                                 <div v-if="errors.kilometers" class="d-block mt-2">
                                     <span class="fs-5 text-danger">
@@ -166,8 +171,9 @@
                             <div class="mb-4">
                                 <div class="mb-2">
                                     <label class="text-white mb-2" for="start_time">Starting Time</label>
-                                    <input v-model="form.start_time" class="form-control form-control-md input-small mx-auto"
-                                        type="time" id="start_time" />
+                                    <input v-model="form.start_time"
+                                        class="form-control form-control-md input-small mx-auto" type="time"
+                                        id="start_time" />
                                 </div>
                                 <div v-if="errors.start_time" class="d-block mt-2">
                                     <span class="fs-5 text-danger">
@@ -185,14 +191,14 @@
                                         data-bs-toggle="dropdown">
                                         {{
                                             form.car_start_point
-                                            ? form.car_start_point
-                                            : "Select Starting Point"
+                                                ? form.car_start_point
+                                                : "Select Starting Point"
                                         }}
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <p class="dropdown-item mb-0" @click="
-                                            form.car_start_point =
+                                                form.car_start_point =
                                                 'Lidosta Rīga'
                                                 ">
                                                 Lidosta Rīga
@@ -229,14 +235,14 @@
                                         data-bs-toggle="dropdown">
                                         {{
                                             form.car_end_point
-                                            ? form.car_end_point
-                                            : "Select Starting Point"
+                                                ? form.car_end_point
+                                                : "Select Starting Point"
                                         }}
                                     </button>
                                     <ul class="dropdown-menu">
                                         <li>
                                             <p class="dropdown-item mb-0" @click="
-                                            form.car_end_point =
+                                                form.car_end_point =
                                                 'Lidosta Rīga'
                                                 ">
                                                 Lidosta Rīga
@@ -284,7 +290,7 @@
 
                 <div v-if="!$page.props.auth" class="my-4 text-center img-zoom">
                     <Link :href="route('login')" class="btn btn-warning text-primary py-3 px-4">
-                        Login to rent!
+                    Login to rent!
                     </Link>
                 </div>
 
@@ -443,7 +449,7 @@ input {
     width: 400px;
 }
 
-.btn-48{
+.btn-48 {
     height: 48px;
 }
 </style>

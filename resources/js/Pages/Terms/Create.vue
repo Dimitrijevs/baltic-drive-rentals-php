@@ -1,6 +1,7 @@
 <template>
     <div v-if="$page.props.isAdmin" class="d-flex justify-content-center mb-3">
-        <button type="button" class="btn btn-warning text-primary pb-2" data-bs-toggle="modal" data-bs-target="#createTermModal">
+        <button type="button" class="btn btn-warning text-primary pb-2" data-bs-toggle="modal"
+            data-bs-target="#createTermModal">
             <div class="d-flex">
                 <i class="bi bi-file-earmark-plus h4"></i>
                 Create new Term
@@ -9,7 +10,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="createTermModal" tabindex="-1" aria-labelledby="createTermModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createTermModal" tabindex="-1" aria-labelledby="createTermModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -20,18 +22,20 @@
                     <div class="modal-body">
                         <div class="form-group mt-3">
                             <label for="title" class="text-dark">Title:</label><br />
-                            <input v-model="form.title" type="text" name="title" id="title" class="form-control" />
+                            <input v-model="form.title" type="text" name="title" id="title" class="form-control"
+                                aria-describedby="titleHelp" />
                             <div class="d-block mt-2" v-if="errors.title">
-                                <span class="fs-5 text-danger">
+                                <span class="fs-5 text-danger" id="titleHelp">
                                     {{ errors.title }}
                                 </span>
                             </div>
                         </div>
                         <div class="form-group mt-3">
                             <label for="password" class="text-dark">Term Text:</label><br />
-                            <textarea v-model="form.content" name="content" id="content" class="form-control" cols="49" rows="5"></textarea>
+                            <textarea v-model="form.content" name="content" id="content" class="form-control" cols="49"
+                                rows="5" aria-describedby="contentHelp"></textarea>
                             <div class="d-block mt-2" v-if="errors.content">
-                                <span class="fs-5 text-danger">
+                                <span class="fs-5 text-danger" id="contentHelp">
                                     {{ errors.content }}
                                 </span>
                             </div>

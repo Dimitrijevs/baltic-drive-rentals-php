@@ -3,10 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <SideBar />
+                    <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="overflow-auto col-md-9 mt-3">
-                    <div ref="chartRef" style="width: 100%; height: 540px;"></div>
+                    <div ref="chartRef" style="width: 100%; height: 540px;" aria-label="data visualization chart"></div>
                 </div>
             </div>
         </div>

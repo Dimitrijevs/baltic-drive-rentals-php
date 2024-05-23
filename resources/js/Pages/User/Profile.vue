@@ -1,9 +1,9 @@
 <template>
     <Layout>
         <div class="profile d-flex mx-auto mb-5">
-            <div class="profileImg-navBar text-center rounded bg-light me-2 p-3">
+            <div class="profileImg-navBar text-center rounded bg-light me-2 p-3" aria-labelledby="profile-nav">
                 <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" id="profile-nav">
                     <li class="mb-1 mt-0">
                         <Link :href="route('edit', { user: $page.props.auth })" class="btn btn-primary d-block py-2">
                         <i class="bi bi-person-lines-fill me-2"></i> Edit Profile
@@ -18,15 +18,17 @@
                         <likedCars :likedCars="likedCars" />
                     </li>
                     <li class="mb-1 mt-0">
-                        <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216">
+                        <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216"
+                            aria-label="Delete Account Button">
                             <i class="bi bi-trash-fill me-2"></i> Delete Account
                         </button>
                     </li>
                 </ul>
             </div>
-            <div class="right-info">
+
+            <div class="right-info" aria-labelledby="user-info">
                 <div class="about rounded bg-light p-3">
-                    <h3 class="text-center">About You</h3>
+                    <h3 class="text-center" id="user-info">About You</h3>
                     <ul class="list-group list-group-flush lead">
                         <li>
                             <p class="fw-bold m-0">Name</p>
@@ -44,10 +46,12 @@
                         </li>
                         <hr class="m-1" />
                         <li>
-                            <p class="fw-bold m-0">Accout Created At</p>
-                            <span>{{
-                                moment(user.created_at).format("DD-MM-YYYY")
-                                }}</span>
+                            <p class="fw-bold m-0">Account Created At</p>
+                            <span>
+                                {{
+                                    moment(user.created_at).format("DD-MM-YYYY")
+                                }}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -102,8 +106,10 @@
                             <h5>
                                 No reservations were made
                             </h5>
-                            <Link :href="route('cars')" class="btn btn-warning text-black p-2 rounded">Check out our
-                            available cars list!</Link>
+                            <Link :href="route('cars')" class="btn btn-warning text-black p-2 rounded"
+                                aria-label="Check Available Cars Button">
+                            Check out our available cars list!
+                            </Link>
                         </div>
                     </div>
                 </div>

@@ -3,58 +3,48 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <SideBar />
+                    <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="overflow-auto col-md-9 mt-3">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between" aria-label="cars list header">
                         <h3>Cars list</h3>
-                        <Link :href="route('cars.create')" class="btn btn-warning rounded">Add new car</Link>
+                        <Link :href="route('cars.create')" class="btn btn-warning rounded" aria-label="add new car">Add
+                        new car</Link>
                     </div>
-                    <table class="table">
+                    <table class="table" aria-label="cars list table">
                         <thead>
                             <tr>
-                                <th>No.</th>
-                                <th>Brand</th>
-                                <th>Model</th>
-                                <th>Year</th>
-                                <th>HP</th>
-                                <th>Bodywork</th>
-                                <th>Fuel</th>
-                                <th class="text-end">Actions</th>
+                                <th aria-label="number column">No.</th>
+                                <th aria-label="brand column">Brand</th>
+                                <th aria-label="model column">Model</th>
+                                <th aria-label="year column">Year</th>
+                                <th aria-label="horsepower column">HP</th>
+                                <th aria-label="bodywork column">Bodywork</th>
+                                <th aria-label="fuel column">Fuel</th>
+                                <th class="text-end" aria-label="actions column">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-if="cars.data.length === 0">
-                                <td colspan="3">No cars found.</td>
+                                <td colspan="8" aria-label="no cars found">No cars found.</td>
                             </tr>
                             <tr v-for="(car, index) in cars.data" :key="car.id">
-                                <td>{{ index + 1 }}.</td>
-                                <td>
-                                    {{ car.brand }}
-                                </td>
-                                <td>
-                                    {{ car.model }}
-                                </td>
-                                <td>
-                                    {{ car.year }}
-                                </td>
-                                <td>
-                                    {{ car.horsepower }}
-                                </td>
-                                <td>
-                                    {{ car.body_type }}
-                                </td>
-                                <td>
-                                    {{ car.fuel_type }}
-                                </td>
-                                <td class="text-end">
-                                    <button class="btn btn-sm btn-warning me-1">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                <td aria-label="car number">{{ index + 1 }}.</td>
+                                <td aria-label="car brand">{{ car.brand }}</td>
+                                <td aria-label="car model">{{ car.model }}</td>
+                                <td aria-label="car year">{{ car.year }}</td>
+                                <td aria-label="car horsepower">{{ car.horsepower }}</td>
+                                <td aria-label="car body type">{{ car.body_type }}</td>
+                                <td aria-label="car fuel type">{{ car.fuel_type }}</td>
+                                <td class="text-end" aria-label="car actions">
+                                    <button class="btn btn-sm btn-warning me-1" aria-label="edit car">Edit</button>
+                                    <button class="btn btn-sm btn-danger" aria-label="delete car">Delete</button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <Pagination :links="cars.links" class="d-flex justify-content-end"/>
+                    <Pagination :links="cars.links" class="d-flex justify-content-end"
+                        aria-label="pagination for cars list" />
                 </div>
             </div>
         </div>

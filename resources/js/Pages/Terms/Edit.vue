@@ -1,10 +1,12 @@
 <template>
-    <button type="button" class="btn btn-warning text-primary mb-3" data-bs-toggle="modal" :data-bs-target="'#editTermModal' + term.id">
+    <button type="button" class="btn btn-warning text-primary mb-3" data-bs-toggle="modal"
+        :data-bs-target="'#editTermModal' + term.id">
         <i class="bi bi-pencil-square h5"></i>
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" :id="'editTermModal' + term.id" tabindex="-1" :aria-labelledby="'editTermModalLabel' + term.id" aria-hidden="true">
+    <div class="modal fade" :id="'editTermModal' + term.id" tabindex="-1"
+        :aria-labelledby="'editTermModalLabel' + term.id" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -15,13 +17,18 @@
                     <div class="modal-body">
                         <div class="form-group mt-3">
                             <label for="title" class="text-dark">Title:</label><br />
-                            <input v-model="form.title" type="text" name="title" id="title" class="form-control" required minlength="3" maxlength="255"/>
-                            <div v-if="errors.title" class="text-danger">{{ errors.title }}</div>
+                            <input v-model="form.title" type="text" name="title" id="title" class="form-control"
+                                required minlength="3" maxlength="255" aria-describedby="'titleError' + term.id" />
+                            <div v-if="errors.title" class="text-danger" :id="'titleError' + term.id">{{ errors.title }}
+                            </div>
                         </div>
                         <div class="form-group mt-3">
                             <label for="password" class="text-dark">Term Text:</label><br />
-                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5" class="form-control" required minlength="3"></textarea>
-                            <div v-if="errors.content" class="text-danger">{{ errors.content }}</div>
+                            <textarea v-model="form.content" name="content" id="content" cols="49" rows="5"
+                                class="form-control" required minlength="3"
+                                aria-describedby="'contentError' + term.id"></textarea>
+                            <div v-if="errors.content" class="text-danger" :id="'contentError' + term.id">{{
+                                errors.content }}</div>
                         </div>
                     </div>
                     <div class="modal-footer">

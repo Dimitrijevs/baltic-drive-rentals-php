@@ -3,20 +3,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <SideBar />
+                    <SideBar aria-label="sidebar navigation" />
                 </div>
                 <div class="col-lg-9">
                     <div class="row my-3">
-                        <UsersCount :users="users" />
-                        <AdminsCount :admins="admins" />
+                        <UsersCount :users="users" aria-label="users count" />
+                        <AdminsCount :admins="admins" aria-label="admins count" />
                     </div>
                     <div class="row">
-                        <CarsCount :cars="cars" />
-                        <TermsCount :terms="terms" />
+                        <CarsCount :cars="cars" aria-label="cars count" />
+                        <TermsCount :terms="terms" aria-label="terms count" />
                     </div>
                     <div class="row my-3">
-                        <CommentsCount :comments="comments" />
-                        <ReservationsCount :money="money" />
+                        <CommentsCount :comments="comments" aria-label="comments count" />
+                        <ReservationsCount :money="money" aria-label="reservations count" />
                     </div>
                 </div>
             </div>
@@ -63,15 +63,15 @@ export default {
         terms: {
             type: Number,
             required: true,
-        },  
+        },
         comments: {
             type: Number,
             required: true,
-        },  
+        },
         money: {
             type: Number,
             required: true,
-        },    
+        },
     },
 };
 

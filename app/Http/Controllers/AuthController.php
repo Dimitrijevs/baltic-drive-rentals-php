@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserAuthenticateRequest;
 
 class AuthController extends Controller
 {
     public function register() {
-        return Inertia::render('Auth/Register');
+        $car = asset(Storage::url('carImages/99dLPzTUNUWqrqaTwWVKn3Tv5BRnsWlQpvXJUpfv.png'));
+
+        return Inertia::render('Auth/Register', ['car' => $car]);
     }
 
     public function store(UserCreateRequest $request) {
@@ -28,7 +31,9 @@ class AuthController extends Controller
     }
 
     public function login() {
-        return Inertia::render('Auth/Login');
+        $car = asset(Storage::url('carImages/9SozCq3fikvLblFvmUka1k81ALsjl2kAUwj7XTBD.png'));
+
+        return Inertia::render('Auth/Login', ['car' => $car]);
     }
 
     public function authenticate(UserAuthenticateRequest $request){

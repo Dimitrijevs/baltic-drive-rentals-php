@@ -1,10 +1,10 @@
 <template>
-    <section class="p-5">
+    <section class="p-lg-5" aria-labelledby="newArrivalsHeading">
         <div class="container text-center">
-            <h1 class="mb-4">New Arrivals</h1>
-            <div class="row justify-content-between">
-                <div class="card col-12 col-md-5 col-lg-3 p-0 m-3 bg-primary text-light border-primary" v-for="car in cars"
-                    :key="car.id">
+            <h1 class="mb-2" id="newArrivalsHeading">New Arrivals</h1>
+            <div class="row justify-content-between flex-row-reverse">
+                <div class="card col-12 col-md-5 col-lg-3 p-0 mb-3 bg-primary text-light border-primary"
+                    v-for="car in cars" :key="car.id">
                     <img :src="car.carImage1" class="card-img-top img-fluid" alt="" />
                     <div class="card-body">
                         <h3 class="card-title">
@@ -20,24 +20,23 @@
                             <Link :href="route('car.show', car.id)" class="btn btn-warning mb-3 img-zoom text-primary">
                             <i class="bi bi-chevron-right"></i> Read More
                             </Link>
-                                <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                    @click="toggleLike(car.id)">
-                                    <div class="d-flex align-items-center m-0">
-                                        {{ car.likesCount }}
-                                        <i class="bi h4 text-danger ms-1 mt-2"
+                            <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
+                                @click="toggleLike(car.id)">
+                                <div class="d-flex align-items-center m-0" aria-label="Like Button">
+                                    {{ car.likesCount }}
+                                    <i class="bi h4 text-danger ms-1 mt-2"
                                         :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
-                                    </div>
-                                </button>
+                                </div>
+                            </button>
                             <Link v-if="!$page.props.auth" :href="route('login')">
-                                <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48">
-                                    <div class="d-flex align-items-center m-0">
-                                        {{ car.likesCount }}
-                                        <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
-                                    </div>
-                                </button>
+                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48" aria-label="Like Button">
+                                <div class="d-flex align-items-center m-0">
+                                    {{ car.likesCount }}
+                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                </div>
+                            </button>
                             </Link>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -72,7 +71,7 @@ export default {
 </script>
 
 <style scoped>
-.btn-48{
+.btn-48 {
     height: 48px;
 }
 </style>

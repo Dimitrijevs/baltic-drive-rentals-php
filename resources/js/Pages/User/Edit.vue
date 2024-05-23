@@ -1,12 +1,12 @@
 <template>
     <Layout>
-        <div id="main-div">
-            <h1 class="text-center">Change Your Data</h1>
-            <EditName :user="user" :errors="errors"/>
-            <EditPhoneNumber :user="user" :errors="errors"/>
-            <EditEmail :user="user" :errors="errors"/>
-            <EditAvatar :avatar="user.avatar" :id="user.id" :errors="errors"/>
-            <EditPassword :user="user" :errors="errors"/>
+        <div id="main-div" aria-labelledby="main-heading">
+            <h1 id="main-heading" class="text-center">Change Your Data</h1>
+            <EditName :user="user" :errors="errors" />
+            <EditPhoneNumber :user="user" :errors="errors" />
+            <EditEmail :user="user" :errors="errors" />
+            <EditAvatar :avatar="user.avatar" :id="user.id" :errors="errors" />
+            <EditPassword :user="user" :errors="errors" />
         </div>
     </Layout>
 </template>

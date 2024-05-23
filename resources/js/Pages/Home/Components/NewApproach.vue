@@ -1,16 +1,12 @@
 <template>
-    <section class="p-5 bg-primary mt-5">
+    <section class="p-lg-5 bg-primary pt-3 my-4" aria-labelledby="mobilityApproach">
         <div class="container mt-4">
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-6 mb-4 mb-lg-0 text-center">
-                    <img
-                        class="img-fluid rounded img-zoom"
-                        :src="teslaImage"
-                        alt=""
-                    />
+                    <img class="img-fluid rounded img-zoom" :src="teslaImage" alt="" />
                 </div>
                 <div class="col-lg-6">
-                    <h1 class="text-white">
+                    <h1 id="mobilityApproach" class="text-white">
                         <span class="text-warning">A new approach</span> to
                         mobility!
                     </h1>

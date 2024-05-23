@@ -1,6 +1,6 @@
 <template>
     <button type="button" class="btn btn-warning text-primary d-block py-2" style="width: 216px;" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop">
+        data-bs-target="#staticBackdrop" aria-label="Liked Cars Button">
         <i class="bi bi-heart-fill me-2"></i> Liked Cars
     </button>
 
@@ -31,11 +31,14 @@
                                 <!-- Button group -->
                                 <div class="d-flex justify-content-center">
                                     <button @click="openCarDetails(car.id)"
-                                        class="btn btn-warning mb-3 img-zoom text-primary">
+                                        class="btn btn-warning mb-3 img-zoom text-primary"
+                                        aria-label="Read More Button">
                                         <i class="bi bi-chevron-right"></i> Read More
                                     </button>
-                                    <button v-if="$page.props.auth" class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                        @click="toggleLike(car.id)">
+                                    <button v-if="$page.props.auth"
+                                        class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
+                                        @click="toggleLike(car.id)"
+                                        :aria-label="car.isLikedByUser ? 'Unlike Car Button' : 'Like Car Button'">
                                         <div class="d-flex align-items-center m-0">
                                             {{ car.likesCount }}
                                             <i class="bi h4 text-danger ms-1 mt-2"
@@ -43,7 +46,8 @@
                                         </div>
                                     </button>
                                     <Link v-if="!$page.props.auth" :href="route('login')">
-                                    <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48">
+                                    <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
+                                        aria-label="Like Car Button">
                                         <div class="d-flex align-items-center m-0">
                                             {{ car.likesCount }}
                                             <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
@@ -56,7 +60,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary p-0" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary p-0" data-bs-dismiss="modal"
+                        aria-label="Close Modal Button">Close</button>
                 </div>
             </div>
         </div>

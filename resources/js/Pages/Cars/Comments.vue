@@ -1,20 +1,20 @@
 <template>
-    <Link v-if="!$page.props.auth" :href="route('login')">
+    <Link v-if="!$page.props.auth" :href="route('login')" aria-label="Login">
     <button type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48">
-        <i class="bi bi-chat-left-text text-primary h4"></i>
+        <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
     </button>
     </Link>
 
     <!-- Button trigger modal -->
     <button v-if="$page.props.auth" type="button" class="btn btn-light border-none px-3 py-2 ms-2 btn-48"
-        data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <i class="bi bi-chat-left-text text-primary h4"></i>
+        data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Open Comments Modal">
+        <i class="bi bi-chat-left-text text-primary h4" aria-hidden="true"></i>
     </button>
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div id="commentModal" class="modal-dialog">
+        <div id="commentModal" class="modal-dialog" role="dialog" aria-label="Comments Modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Comments section</h5>
@@ -29,16 +29,18 @@
                             <input v-model="form.comment" type="text" name="comment" id="comment"
                                 class="border-0 border-bottom flex-grow-1">
                             <button type="submit" :disabled="form.processing"
-                                class="btn btn-warning text-primary ms-1 px-3 py-2 ms-3">Save</button>
+                                class="btn btn-warning text-primary ms-1 px-3 py-2">Save</button>
                         </div>
-                        <div class="d-block mt-2 text-center" v-if="errors.comment">
+                        <div class="d-block mt-2 text-center" v-if="errors.comment" role="alert" aria-live="assertive">
                             <span class="fs-5 text-danger">
                                 {{ errors.comment }}
                             </span>
                         </div>
                     </form>
                     <hr>
-                    <div class="text-center" v-if="!comments.length">Comments will be displayed here</div>
+                    <div class="text-center" v-if="!comments.length" role="status" aria-live="polite">
+                        Comments will be displayed here
+                    </div>
                     <div class="" v-for="comment in comments" :key="comment.id">
                         <div class="d-flex">
                             <img :src="comment.profilePhoto" alt="" class="rounded-circle profile-photo me-2">
@@ -48,13 +50,13 @@
                                     <div class="d-flex">
                                         <button v-if="$page.props.auth.id === comment.user_id" type="button"
                                             class="btn btn-warning text-primary me-1 px-2 py-1"
-                                            @click="editComment(comment)">
-                                            <i class="bi bi-pencil-square h5 ms-1"></i>
+                                            @click="editComment(comment)" aria-label="Edit Comment">
+                                            <i class="bi bi-pencil-square h5 ms-1" aria-hidden="true"></i>
                                         </button>
                                         <button v-if="$page.props.auth.id === comment.user_id"
                                             @click="destroy(comment.id, comment.car_id)" type="submit"
-                                            class="btn btn-danger text-primary px-2 py-1">
-                                            <i class="bi bi-trash h5 ms-1"></i>
+                                            class="btn btn-danger text-primary px-2 py-1" aria-label="Delete Comment">
+                                            <i class="bi bi-trash h5 ms-1" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -80,6 +82,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>

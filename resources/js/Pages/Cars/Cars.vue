@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <div v-if="$page.props.isAdmin" id="create" class="text-center mb-0">
+        <div v-if="$page.props.isAdmin" id="create" class="text-center mb-0" role="region" aria-label="Admin Actions">
             <a :href="route('cars.create')" class="btn btn-warning text-primary pb-2 align-items-center">
                 <div class="d-flex">
                     <i class="bi bi-car-front-fill h4 me-1"></i>
@@ -11,8 +11,7 @@
             </a>
         </div>
 
-        <div class="box d-flex mx-auto my-3 justify-content-center">
-
+        <div class="box d-flex mx-auto my-3 justify-content-center" role="region" aria-label="Filter and Car Results">
             <div class="left">
                 <Sort @sort="handleSort" />
 
@@ -31,10 +30,12 @@
                     <div class="p-2">
                         <div class="container text-center">
                             <div class="row justify-content-between">
-                                <div class="" v-if="filteredCars.length === 0">This record doesnt exists</div>
+                                <div class="" v-if="filteredCars.length === 0" role="status" aria-live="polite">
+                                    This record doesn't exist
+                                </div>
                                 <div class="card col-lg-3 col-md-5 p-0 m-3 bg-primary text-light border-primary"
-                                    v-for="car in filteredCars" :key="car.id">
-                                    <img :src="car.carImageURL" class="card-img-top img-fluid" alt="" />
+                                    v-for="car in filteredCars" :key="car.id" role="listitem">
+                                    <img :src="car.carImageURL" class="card-img-top img-fluid" alt="Car Image" />
                                     <div class="card-body">
                                         <h3 class="card-title">
                                             {{ car.brand }} {{ car.model }}
@@ -56,14 +57,17 @@
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ car.likesCount }}
                                                     <i class="bi h4 text-danger ms-1 mt-2"
-                                                        :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"></i>
+                                                        :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"
+                                                        aria-label="Like"></i>
                                                 </div>
                                             </button>
                                             <Link v-if="!$page.props.auth" :href="route('login')">
-                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48">
+                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
+                                                aria-label="Login to Like">
                                                 <div class="d-flex align-items-center m-0">
                                                     {{ car.likesCount }}
-                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"></i>
+                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"
+                                                        aria-hidden="true"></i>
                                                 </div>
                                             </button>
                                             </Link>
