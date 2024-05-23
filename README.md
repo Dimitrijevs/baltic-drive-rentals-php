@@ -92,16 +92,16 @@ Before getting started, make sure you have the following installed on your syste
 
     After downloading, extract the images and copy the folder to: `baltic-drive-rentals-php/storage/app/public/`
 
-10. **Compile assets (JavaScript, CSS, etc.):**
-
-    ```bash
-    npm run dev
-    ```
-
-11. **Start the development server:**
+10. **Start the development server:**
 
     ```bash
     php artisan serve
+    ```
+
+11. **Compile assets (JavaScript, CSS, etc.):**
+
+    ```bash
+    npm run dev
     ```
 
     Your application will be available at `http://localhost:8000`.
