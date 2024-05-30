@@ -41,7 +41,7 @@ class AuthController extends Controller
         if(auth()->attempt($request->validated())){
             request()->session()->regenerate();
 
-            return redirect()->route('home')->with('message', 'Loged In successfully!');
+            return redirect()->route('home')->with('message', 'Logged in successfully!');
         };
 
         return redirect()->route('login')->withErrors([
@@ -55,6 +55,6 @@ class AuthController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
 
-        return redirect()->route('home')->with('message', 'Loged Out successfully!');
+        return redirect()->route('home')->with('message', 'Logged Out successfully!');
     }
 }
