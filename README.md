@@ -24,6 +24,13 @@ Got questions? Reach out to us!
 
 Start your Baltic adventure with Baltic Drive Rentals today! 🌟🚗💨
 
+### Used Technologies
+
+- Vue 3
+- Bootstrap 5 (Bootswatch)
+- Laravel 10
+- Inertia
+- GitHub
 
 ## Setup Instructions
 
@@ -33,7 +40,7 @@ Before getting started, make sure you have the following installed on your syste
 
 - [PHP](https://www.php.net/) (>= 8.0)
 - [Composer](https://getcomposer.org/)
-- [Node.js](https://nodejs.org/) (>= 16.x)
+- [Node.js](https://nodejs.org/) (>= 18.x)
 - [NPM](https://www.npmjs.com/) (usually comes with Node.js)
 
 ### Steps to Setup
@@ -92,16 +99,16 @@ Before getting started, make sure you have the following installed on your syste
 
     After downloading, extract the images and copy the folder to: `baltic-drive-rentals-php/storage/app/public/`
 
-10. **Compile assets (JavaScript, CSS, etc.):**
-
-    ```bash
-    npm run dev
-    ```
-
-11. **Start the development server:**
+10. **Start the development server:**
 
     ```bash
     php artisan serve
+    ```
+
+11. **Compile assets (JavaScript, CSS, etc.):**
+
+    ```bash
+    npm run dev
     ```
 
     Your application will be available at `http://localhost:8000`.
