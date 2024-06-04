@@ -32,6 +32,10 @@ Start your Baltic adventure with Baltic Drive Rentals today! 🌟🚗💨
 - Inertia
 - GitHub
 
+### Test cases
+
+- Test cases are in testcase.docx file
+
 ## Setup Instructions
 
 ### Prerequisites
