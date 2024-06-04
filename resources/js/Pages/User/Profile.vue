@@ -1,120 +1,160 @@
 <template>
     <Layout>
-        <div class="profile d-flex mx-auto mb-5">
-            <div class="profileImg-navBar text-center rounded bg-light me-2 p-3" aria-labelledby="profile-nav">
-                <img id="avatar" :src="user.avatar" alt="" class="rounded-circle z-1" />
-                <ul class="list-unstyled" id="profile-nav">
-                    <li class="mb-1 mt-0">
-                        <Link :href="route('edit', { user: $page.props.auth })" class="btn btn-primary d-block py-2">
-                        <i class="bi bi-person-lines-fill me-2"></i> Edit Profile
-                        </Link>
-                    </li>
-                    <li class="mb-1 mt-0">
-                        <Link :href="route('logout')" class="btn btn-primary d-block py-2">
-                        <i class="bi bi-box-arrow-right me-2"></i> Log Out
-                        </Link>
-                    </li>
-                    <li class="mb-1 mt-0">
-                        <likedCars :likedCars="likedCars" />
-                    </li>
-                    <li class="mb-1 mt-0">
-                        <button @click="destroy(user.id)" type="submit" class="btn btn-danger d-block py-2 width-216"
-                            aria-label="Delete Account Button">
-                            <i class="bi bi-trash-fill me-2"></i> Delete Account
-                        </button>
-                    </li>
-                </ul>
-            </div>
+        <section style="background-color: #eee;">
+            <div class="container py-3">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card py-2 mb-4">
+                            <div class="card-body text-center py-4">
+                                <img id="avatar" :src="user.avatar" alt="profile image" class="rounded-circle img-fluid border border-primary"
+                                    style="width: 180px; height: 180px;" />
+                                <div class="mb-4 mt-2">
+                                    <h5 class="mb-0">name</h5>
+                                    <p class="my-0">{{ user.name }}</p>
+                                </div>
 
-            <div class="right-info" aria-labelledby="user-info">
-                <div class="about rounded bg-light p-3">
-                    <h3 class="text-center" id="user-info">About You</h3>
-                    <ul class="list-group list-group-flush lead">
-                        <li>
-                            <p class="fw-bold m-0">Name</p>
-                            <span>{{ user.name }}</span>
-                        </li>
-                        <hr class="m-1" />
-                        <li>
-                            <p class="fw-bold m-0">Email</p>
-                            <span>{{ user.email }}</span>
-                        </li>
-                        <hr class="m-1" />
-                        <li>
-                            <p class="fw-bold m-0">Phone</p>
-                            <span>{{ user.phone_number }}</span>
-                        </li>
-                        <hr class="m-1" />
-                        <li>
-                            <p class="fw-bold m-0">Account Created At</p>
-                            <span>
-                                {{
-                                    moment(user.created_at).format("DD-MM-YYYY")
-                                }}
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="rent-history rounded bg-light mt-2 p-3 overflow-auto">
-                    <h3 class="text-center">Rents</h3>
-                    <table v-if="reservations" class="table table-sm table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Car</th>
-                                <th scope="col">Start Date</th>
-                                <th scope="col">End Date</th>
-                                <th scope="col">
-                                    <div class="text-center">
-                                        Drive distance (Km)
+                                <ul class="list-group rounded-3">
+                                    <h5 class="mb-0">Actions</h5>
+                                    <li
+                                        class="border-0 list-group-item d-flex justify-content-center align-items-center pt-2 px-5">
+                                        <Link :href="route('edit', { user: $page.props.auth })"
+                                            class="btn btn-primary d-block py-2 w-100">
+                                        <i class="bi bi-person-lines-fill me-2"></i> Edit Profile
+                                        </Link>
+                                    </li>
+                                    <li
+                                        class="border-0 list-group-item d-flex justify-content-center align-items-center pt-2 px-5">
+                                        <Link :href="route('logout')" class="btn btn-primary d-block py-2 w-100">
+                                        <i class="bi bi-box-arrow-right me-2"></i> Log Out
+                                        </Link>
+                                    </li>
+                                    <li
+                                        class="border-0 list-group-item d-flex justify-content-center align-items-center px-5">
+                                        <likedCars :likedCars="likedCars" />
+                                    </li>
+                                    <li
+                                        class="border-0 list-group-item d-flex justify-content-center align-items-center pb-0 px-5">
+                                        <button @click="destroy(user.id)" type="submit"
+                                            class="btn btn-danger d-block py-2 w-100"
+                                            aria-label="Delete Account Button">
+                                            <i class="bi bi-trash-fill me-2"></i> Delete Account
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Name</p>
                                     </div>
-                                </th>
-                                <th scope="col">
-                                    <div class="text-center">
-                                        Total price (€)
+                                    <div class="col-sm-9">
+                                        <p class="mb-0 text-end fw-bold">{{ user.name }}</p>
                                     </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="reservation in reservations">
-                                <td class="p-0">
-                                    <div :class="{
-                                        'bg-success': isCurrentReservation(reservation.start_date, reservation.end_date),
-                                        'bg-warning': isPastReservation(reservation.end_date),
-                                        'bg-info': isFutureReservation(reservation.start_date)
-                                    }" class="text-center p-2 my-1">
-                                        {{ reservation.brand }} {{ reservation.model }}
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email address</p>
                                     </div>
-                                </td>
-                                <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
-                                <td>{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</td>
-                                <td>
-                                    <div class="text-center">
-                                        {{ reservation.kilometers }} Km
+                                    <div class="col-sm-9">
+                                        <p class="mb-0 text-end fw-bold">{{ user.email }}</p>
                                     </div>
-                                </td>
-                                <td class="text-end bg-primary text-warning">
-                                    <div class="text-center">
-                                        {{ reservation.end_price }}€
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Phone number</p>
                                     </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div v-if="!reservations" class="">
-                        <div class="text-center mt-2 h5">
-                            <h5>
-                                No reservations were made
-                            </h5>
-                            <Link :href="route('cars')" class="btn btn-warning text-black p-2 rounded"
-                                aria-label="Check Available Cars Button">
-                            Check out our available cars list!
-                            </Link>
+                                    <div class="col-sm-9">
+                                        <p class="mb-0 text-end fw-bold">{{ user.phone_number }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Account created at</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="mb-0 text-end fw-bold">{{
+                                            moment(user.created_at).format("DD-MM-YYYY")
+                                            }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body" style="height: 300px; overflow-y: auto;">
+                                        <h3 class="text-center">Rents</h3>
+                                        <table v-if="reservations" class="table table-sm table-striped table-bordered mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Car</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">End Date</th>
+                                                    <th scope="col">
+                                                        <div class="text-center">
+                                                            Drive distance (Km)
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div class="text-center">
+                                                            Total price (€)
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="reservation in reservations">
+                                                    <td class="p-0">
+                                                        <div :class="{
+                                                            'bg-success': isCurrentReservation(reservation.start_date, reservation.end_date),
+                                                            'bg-warning': isPastReservation(reservation.end_date),
+                                                            'bg-info': isFutureReservation(reservation.start_date)
+                                                        }" class="text-center p-2 my-1">
+                                                            {{ reservation.brand }} {{ reservation.model }}
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ moment(reservation.start_date).format("DD-MM-YYYY") }}</td>
+                                                    <td>{{ moment(reservation.end_date).format("DD-MM-YYYY") }}</td>
+                                                    <td>
+                                                        <div class="text-center">
+                                                            {{ reservation.kilometers }} Km
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-end bg-primary text-warning">
+                                                        <div class="text-center">
+                                                            {{ reservation.end_price }}€
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div v-if="!reservations" class="">
+                                            <div class="text-center mt-2 h5">
+                                                <h5>
+                                                    No reservations were made
+                                                </h5>
+                                                <Link :href="route('cars')"
+                                                    class="btn btn-warning text-black p-2 rounded"
+                                                    aria-label="Check Available Cars Button">
+                                                Check out our available cars list!
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </Layout>
 </template>
 
@@ -183,62 +223,4 @@ export default {
 };
 </script>
 
-<style scoped>
-#avatar {
-    max-height: 240px;
-}
-
-.profile {
-    width: 60%;
-    margin-top: 20px;
-}
-
-.profile .right-info {
-    width: 100%;
-}
-
-.profile .right-info .rent-history {
-    height: 420px;
-}
-
-.profile .right-info .rent-history .rents .rent p:nth-child(4) {
-    background-color: var(--black);
-    color: var(--skin);
-}
-
-.profile .profileImg-navBar ul,
-.profile .right-info .about ul,
-.profile .right-info .rent-history ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.profile .profileImg-navBar ul {
-    margin-top: 80%;
-}
-
-.profile .profileImg-navBar ul li {
-    margin: 12px;
-}
-
-.profile .profileImg-navBar ul li a {
-    position: relative;
-    text-decoration-color: var(--white-white);
-}
-
-.profile .profileImg-navBar img {
-    width: 240px;
-}
-
-.profile .right-info .about ul li,
-.profile .right-info .rent-history ul li {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-.width-216 {
-    width: 216px;
-}
-</style>
+<style scoped></style>

@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
 
         //new arriavals
         $cars = Car::orderBy('created_at', 'DESC')
@@ -16,27 +17,24 @@ class HomeController extends Controller
             ->get();
 
         foreach ($cars as $car) {
-            $car->carImage1 = asset($car->carImage1);
+            $car->carImage1 = 'storage/' . $car->carImage1;
             $car->likesCount = $car->likes->count();
-        }
-
-        if(auth()->user()){
-            foreach ($cars as $car) {
+            if (auth()->user()) {
                 $car->isLikedByUser = $car->likes()->where('user_id', auth()->id())->exists();
             }
         }
 
         // start
-        $mazdaImage = asset(Storage::url('carImages/wAjkoVEnYq4iVdsEiKWqvoECalR9xoRw6T2qgThF.png'));
+        $mazdaImage = 'storage/carImages/wAjkoVEnYq4iVdsEiKWqvoECalR9xoRw6T2qgThF.png';
 
         // 3.
         $teslaImage = asset(Storage::url('carImages/E8EEKMGHZahsuBqMp6wns0Qpacl1b3Tm5TAMZ3dh.png'));
 
         // carousel
         $getStartedURLs = array(
-            asset(Storage::url('carImages/eSCfGBEsh2teeEt5TokKRvxWl21OTR2vcwc3fNiN.png')),
-            asset(Storage::url('carImages/MJtpwZkQpuSM1RQyt3UEMbugdF3VwsO9o3vNvSuc.png')),
-            asset(Storage::url('carImages/sEIt193zwxSBrMgIMpqc9OQILjZXfmPBeawgqZ4I.png'))
+            'storage/carImages/eSCfGBEsh2teeEt5TokKRvxWl21OTR2vcwc3fNiN.png',
+            'storage/carImages/MJtpwZkQpuSM1RQyt3UEMbugdF3VwsO9o3vNvSuc.png',
+            'storage/carImages/sEIt193zwxSBrMgIMpqc9OQILjZXfmPBeawgqZ4I.png'
         );
 
         // almost end

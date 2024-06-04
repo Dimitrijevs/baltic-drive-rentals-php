@@ -1,6 +1,6 @@
 <template>
-    <button type="button" class="btn btn-warning text-primary d-block py-2" style="width: 216px;" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop" aria-label="Liked Cars Button">
+    <button type="button" class="btn btn-warning text-primary d-block py-2 w-100" style="width: 216px;"
+        data-bs-toggle="modal" data-bs-target="#staticBackdrop" aria-label="Liked Cars Button">
         <i class="bi bi-heart-fill me-2"></i> Liked Cars
     </button>
 

@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Vecais bembīts one Love',
+            'name' => 'Sergey Chinila',
             'is_admin' => 1,
             'phone_number' => '22722505',
             'email' => 'dimitrijevgleb@gmail.com',
