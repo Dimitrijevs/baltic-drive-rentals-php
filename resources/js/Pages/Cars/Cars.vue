@@ -11,73 +11,76 @@
             </a>
         </div>
 
-        <div class="box d-flex mx-auto my-3 justify-content-center" role="region" aria-label="Filter and Car Results">
-            <div class="left">
-                <Sort @sort="handleSort" />
-
-                <Filter @setPricePerKmFilter="handlePricePerKmFilter" @setPriceFilter="handleSetPriceFilter"
-                    @setGearboxFilter="handleGearboxFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
-                    @updateBodyTypeFilter="handleBodyTypeFilter" @updateBrandFilter="handleBrandFilter"
-                    @setEmissionsilter="updateEmissionsilter" />
-            </div>
-
-            <div class="right w-75">
-                <div class="w-100">
-                    <Search @search="handleSearch" />
+        <div class="container my-3" role="region" aria-label="Filter and Car Results">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 mb-3">
+                    <Sort @sort="handleSort" />
+                    <Filter @setPricePerKmFilter="handlePricePerKmFilter" @setPriceFilter="handleSetPriceFilter"
+                        @setGearboxFilter="handleGearboxFilter" @updateFuelTypeFilter="handleFuelTypeFilter"
+                        @updateBodyTypeFilter="handleBodyTypeFilter" @updateBrandFilter="handleBrandFilter"
+                        @setEmissionsilter="updateEmissionsilter" />
                 </div>
 
-                <section class="bg-light mt-2 rounded">
-                    <div class="p-2">
-                        <div class="container text-center">
-                            <div class="row justify-content-between">
-                                <div class="" v-if="filteredCars.length === 0" role="status" aria-live="polite">
-                                    This record doesn't exist
-                                </div>
-                                <div class="card col-lg-3 col-md-5 p-0 m-3 bg-primary text-light border-primary"
-                                    v-for="car in filteredCars" :key="car.id" role="listitem">
-                                    <img :src="car.carImageURL" class="card-img-top img-fluid" alt="Car Image" />
-                                    <div class="card-body">
-                                        <h3 class="card-title">
-                                            {{ car.brand }} {{ car.model }}
-                                        </h3>
-                                        <p class="text-white mb-0">
-                                            Price Per Day: {{ car.price_per_day }}€
-                                        </p>
-                                        <p class="text-white">
-                                            Price Per Km: {{ car.price_per_km }}€
-                                        </p>
-                                        <div class="d-flex justify-content-center">
-                                            <Link :href="route('car.show', car.id)"
-                                                class="btn btn-warning mb-3 img-zoom text-primary">
-                                            <i class="bi bi-chevron-right"></i> Read More
-                                            </Link>
-                                            <button v-if="$page.props.auth"
-                                                class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
-                                                @click="toggleLike(car.id)">
-                                                <div class="d-flex align-items-center m-0">
-                                                    {{ car.likesCount }}
-                                                    <i class="bi h4 text-danger ms-1 mt-2"
-                                                        :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"
-                                                        aria-label="Like"></i>
-                                                </div>
-                                            </button>
-                                            <Link v-if="!$page.props.auth" :href="route('login')">
-                                            <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
-                                                aria-label="Login to Like">
-                                                <div class="d-flex align-items-center m-0">
-                                                    {{ car.likesCount }}
-                                                    <i class="bi bi-heart h4 text-danger ms-1 mt-2"
-                                                        aria-hidden="true"></i>
-                                                </div>
-                                            </button>
-                                            </Link>
+                <div class="col-lg-9 col-md-8">
+                    <div class="w-100 mb-3">
+                        <Search @search="handleSearch" />
+                    </div>
+
+                    <section class="bg-light mt-2 rounded">
+                        <div class="p-2">
+                            <div class="container text-center">
+                                <div class="row justify-content-center">
+                                    <div v-if="filteredCars.length === 0" class="col-12" role="status"
+                                        aria-live="polite">
+                                        This record doesn't exist
+                                    </div>
+                                    <div v-for="car in filteredCars" :key="car.id"
+                                        class="card col-lg-3 col-md-5 col-sm-12 p-0 m-3 bg-primary text-light border-primary"
+                                        role="listitem">
+                                        <img :src="car.carImageURL" class="card-img-top img-fluid" alt="Car Image" />
+                                        <div class="card-body">
+                                            <h3 class="card-title">
+                                                {{ car.brand }} {{ car.model }}
+                                            </h3>
+                                            <p class="text-white mb-0">
+                                                Price Per Day: {{ car.price_per_day }}€
+                                            </p>
+                                            <p class="text-white">
+                                                Price Per Km: {{ car.price_per_km }}€
+                                            </p>
+                                            <div class="d-flex justify-content-center">
+                                                <Link :href="route('car.show', car.id)"
+                                                    class="btn btn-warning mb-3 img-zoom text-primary">
+                                                <i class="bi bi-chevron-right"></i> Read More
+                                                </Link>
+                                                <button v-if="$page.props.auth"
+                                                    class="btn btn-light border-none ms-2 px-2 py-0 btn-48"
+                                                    @click="toggleLike(car.id)">
+                                                    <div class="d-flex align-items-center m-0">
+                                                        {{ car.likesCount }}
+                                                        <i class="bi h4 text-danger ms-1 mt-2"
+                                                            :class="{ 'bi-heart-fill': car.isLikedByUser, 'bi-heart': !car.isLikedByUser }"
+                                                            aria-label="Like"></i>
+                                                    </div>
+                                                </button>
+                                                <Link v-if="!$page.props.auth" :href="route('login')">
+                                                <button class="btn btn-light border-none ms-2 px-2 py-2 btn-48"
+                                                    aria-label="Login to Like">
+                                                    <div class="d-flex align-items-center m-0">
+                                                        {{ car.likesCount }}
+                                                        <i class="bi bi-heart h4 text-danger ms-1 mt-2"
+                                                            aria-hidden="true"></i>
+                                                    </div>
+                                                </button>
+                                                </Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </Layout>

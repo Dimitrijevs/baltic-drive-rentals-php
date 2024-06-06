@@ -15,7 +15,7 @@ class UserController extends Controller
     public function profile($id) {
         $user = User::find($id);
 
-        $reservations = $user->reservations()->orderBy('created_at', 'asc')->get();
+        $reservations = $user->reservations()->orderBy('created_at', 'DESC')->get();
 
         if ($reservations->count() > 0) {
             foreach ($reservations as $reservation) {

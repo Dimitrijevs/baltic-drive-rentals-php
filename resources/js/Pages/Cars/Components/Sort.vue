@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown filter rounded bg-light p-4 me-2" aria-labelledby="sortingDropdown">
         <h4 class="text-center">Sorting</h4>
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle p-0" type="button" id="sortingDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Please select an option
         </button>
         <ul class="dropdown-menu" id="sortingOptions" aria-labelledby="sortingDropdown">
